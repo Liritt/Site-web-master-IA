@@ -88,11 +88,15 @@
         ],
         "test:cs" : [
             "php-cs-fixer fix --dry-run"
+        ],
+        "fix:cs": [
+            "php-cs-fixer fix"
         ]
     },
     "scripts-descriptions": {
         "start": "Démarre le serveur symfony sans restriction de durée.",
-        "test:cs": "Démarre un test cs-fixer permettant de montrer les erreurs de syntaxe dans le projet."
+        "test:cs": "Démarre un test cs-fixer permettant de montrer les erreurs de syntaxe dans le projet.",
+        "fix:cs": "Fixe les problèmes de syntaxes du projet."
     },
     "conflict": {
         "symfony/symfony": "*"
