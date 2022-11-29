@@ -81,7 +81,14 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "start" : [
+            "Composer\\Config::disableProcessTimeout",
+            "symfony serve"
         ]
+    },
+    "scripts-descriptions": {
+        "start": "Démarre le serveur symfony sans restriction de durée.",
     },
     "conflict": {
         "symfony/symfony": "*"
