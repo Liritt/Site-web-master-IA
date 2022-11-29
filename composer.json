@@ -101,6 +101,12 @@
         "test": [
             "@test:cs",
             "@test:codecept"
+        ],
+        "db": [
+            "php bin/console doctrine:database:drop --force --if-exists",
+            "php bin/console doctrine:database:create",
+            "php bin/console doctrine:migrations:migrate --no-interaction",
+            "php bin/console doctrine:fixtures:load --no-interaction"
         ]
     },
     "scripts-descriptions": {
@@ -108,7 +114,8 @@
         "test:cs": "Démarre un test cs-fixer permettant de montrer les erreurs de syntaxe dans le projet.",
         "fix:cs": "Fixe les problèmes de syntaxes du projet.",
         "test:codecept": "Regénère une base de donnée de test en y insérant des données puis execute les tests de codeception.",
-        "test": "Démarre les tests de codeception et de composer à la suite."
+        "test": "Démarre les tests de codeception et de composer à la suite.",
+        "db": "Génère une base de donnée de test."
     },
     "conflict": {
         "symfony/symfony": "*"
