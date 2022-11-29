@@ -85,10 +85,14 @@
         "start" : [
             "Composer\\Config::disableProcessTimeout",
             "symfony serve"
+        ],
+        "test:cs" : [
+            "php-cs-fixer fix --dry-run"
         ]
     },
     "scripts-descriptions": {
         "start": "Démarre le serveur symfony sans restriction de durée.",
+        "test:cs": "Démarre un test cs-fixer permettant de montrer les erreurs de syntaxe dans le projet."
     },
     "conflict": {
         "symfony/symfony": "*"
