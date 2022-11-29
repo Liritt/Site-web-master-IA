@@ -91,12 +91,19 @@
         ],
         "fix:cs": [
             "php-cs-fixer fix"
+        ],
+        "test:codecept": [
+            "php bin/console doctrine:database:drop --force --quiet --env=test",
+            "php bin/console doctrine:database:create --quiet --env=test",
+            "php bin/console doctrine:schema:create --quiet --env=test",
+            "php vendor/bin/codecept run"
         ]
     },
     "scripts-descriptions": {
         "start": "Démarre le serveur symfony sans restriction de durée.",
         "test:cs": "Démarre un test cs-fixer permettant de montrer les erreurs de syntaxe dans le projet.",
-        "fix:cs": "Fixe les problèmes de syntaxes du projet."
+        "fix:cs": "Fixe les problèmes de syntaxes du projet.",
+        "test:codecept": "Regénère une base de donnée de test en y insérant des données puis execute les tests de codeception."
     },
     "conflict": {
         "symfony/symfony": "*"
