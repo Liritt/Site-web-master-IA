@@ -1,5 +1,12 @@
 <h1 style='color:red'>Projet : site web pour le master IA de l'URCA</h1>
 
+## Membres du projet :
+
+- LEMONT Gaétan, `lemo0037`
+- PLUCHART Evan, `pluc0003`
+- ROBION Alban, `robi0082`
+- LAIDIE Lucie, `laid0003`
+
 ____
 
 ## Introduction du projet
