@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Teacher;
 use App\Repository\TeacherRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -27,32 +28,27 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Teacher[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Teacher[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class TeacherFactory extends ModelFactory
+final class TeacherFactory extends UserFactory
 {
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
-     *
-     * @todo inject services if required
-     */
-    public function __construct()
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
-        parent::__construct();
+        parent::__construct($userPasswordHasher);
     }
 
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
-     *
-     * @todo add your default values here
-     */
     protected function getDefaults(): array
     {
+        $firstname = self::faker()->firstName();
+        $lastname = self::faker()->lastName();
+        $emailF = transliterator_transliterate('Any-Latin; Latin-ASCII', mb_strtolower($firstname));
+        $emailL = transliterator_transliterate('Any-Latin; Latin-ASCII', mb_strtolower($lastname));
+
         return [
-            'birthDate' => self::faker()->dateTime(),
-            'email' => self::faker()->text(180),
-            'firstname' => self::faker()->text(20),
-            'lastname' => self::faker()->text(20),
-            'password' => self::faker()->text(),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'birthdate' => self::faker()->dateTimeBetween('-65 years', '-30 years'),
+            'email' => self::faker()->unique()->numerify($emailF . '.' . $emailL . '##').'@univ-reims.fr',
             'roles' => [],
+            'password' => 'test',
         ];
     }
 
@@ -61,9 +57,7 @@ final class TeacherFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Teacher $teacher): void {})
-        ;
+        return parent::initialize();
     }
 
     protected static function getClass(): string

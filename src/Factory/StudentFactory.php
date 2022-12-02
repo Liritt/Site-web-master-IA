@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Student;
 use App\Repository\StudentRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -27,35 +28,30 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Student[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Student[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class StudentFactory extends ModelFactory
+final class StudentFactory extends UserFactory
 {
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
-     *
-     * @todo inject services if required
-     */
-    public function __construct()
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
-        parent::__construct();
+        parent::__construct($userPasswordHasher);
     }
 
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
-     *
-     * @todo add your default values here
-     */
     protected function getDefaults(): array
     {
+        $firstname = self::faker()->firstName();
+        $lastname = self::faker()->lastName();
+        $emailF = transliterator_transliterate('Any-Latin; Latin-ASCII', mb_strtolower($firstname));
+        $emailL = transliterator_transliterate('Any-Latin; Latin-ASCII', mb_strtolower($lastname));
+
         return [
-            'birthDate' => self::faker()->dateTime(),
-            'certificate' => self::faker()->text(),
-            'cv' => self::faker()->text(),
-            'degree' => self::faker()->randomNumber(),
-            'email' => self::faker()->text(180),
-            'firstname' => self::faker()->text(20),
-            'lastname' => self::faker()->text(20),
-            'password' => self::faker()->text(),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'birthdate' => self::faker()->dateTimeBetween('-30 years', '-21 years'),
+            'email' => self::faker()->unique()->numerify($emailF . '.' . $emailL . '##').'@etudiant.univ-reims.fr',
+            'degree' => self::faker()->randomElement([1, 2]),
             'roles' => [],
+            'password' => 'test',
+            'cv' => self::faker()->text(100),
+            'certificate' => self::faker()->text(100),
         ];
     }
 
@@ -64,9 +60,7 @@ final class StudentFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Student $student): void {})
-        ;
+        return parent::initialize();
     }
 
     protected static function getClass(): string

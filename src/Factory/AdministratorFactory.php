@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Administrator;
 use App\Repository\AdministratorRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -27,30 +28,16 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Administrator[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Administrator[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class AdministratorFactory extends ModelFactory
+final class AdministratorFactory extends UserFactory
 {
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
-     *
-     * @todo inject services if required
-     */
-    public function __construct()
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
-        parent::__construct();
+        parent::__construct($userPasswordHasher);
     }
 
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
-     *
-     * @todo add your default values here
-     */
     protected function getDefaults(): array
     {
-        return [
-            'email' => self::faker()->text(180),
-            'password' => self::faker()->text(),
-            'roles' => [],
-        ];
+        return parent::getDefaults();
     }
 
     /**
@@ -58,9 +45,7 @@ final class AdministratorFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Administrator $administrator): void {})
-        ;
+        return parent::initialize();
     }
 
     protected static function getClass(): string

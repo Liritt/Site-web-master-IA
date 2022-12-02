@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Company;
 use App\Repository\CompanyRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -27,32 +28,28 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Company[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Company[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class CompanyFactory extends ModelFactory
+final class CompanyFactory extends UserFactory
 {
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
-     *
-     * @todo inject services if required
-     */
-    public function __construct()
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
-        parent::__construct();
+        parent::__construct($userPasswordHasher);
     }
 
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
-     *
-     * @todo add your default values here
-     */
     protected function getDefaults(): array
     {
+        $firstname = self::faker()->firstName();
+        $lastname = self::faker()->lastName();
+        $company = self::faker()->text(15);
+        $emailF = transliterator_transliterate('Any-Latin; Latin-ASCII', mb_strtolower($firstname));
+        $emailL = transliterator_transliterate('Any-Latin; Latin-ASCII', mb_strtolower($lastname));
+
         return [
-            'companyName' => self::faker()->text(30),
-            'email' => self::faker()->text(180),
-            'password' => self::faker()->text(),
+            'company_name' => $company,
+            'supervisor_firstname' => $firstname,
+            'supervisor_lastname' => $lastname,
+            'email' => self::faker()->unique()->numerify($emailF . '.' . $emailL . '##').'@' . $company . '.fr',
             'roles' => [],
-            'supervisorFirstname' => self::faker()->text(20),
-            'supervisorLastname' => self::faker()->text(20),
+            'password' => 'test',
         ];
     }
 
@@ -61,9 +58,7 @@ final class CompanyFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Company $company): void {})
-        ;
+        return parent::initialize();
     }
 
     protected static function getClass(): string
