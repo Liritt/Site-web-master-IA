@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TeacherRepository::class)]
-class Teacher
+class Teacher extends User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

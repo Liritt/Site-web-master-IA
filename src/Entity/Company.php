@@ -6,7 +6,7 @@ use App\Repository\CompanyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
-class Company
+class Company extends User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
