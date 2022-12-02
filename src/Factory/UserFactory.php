@@ -28,9 +28,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static UserRepository|RepositoryProxy repository()
  * @method        User|Proxy                     create(array|callable $attributes = [])
  */
-final class UserFactory extends ModelFactory
+abstract class UserFactory extends ModelFactory
 {
-    private UserPasswordHasherInterface $passwordHasher;
+    private $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
@@ -43,8 +43,10 @@ final class UserFactory extends ModelFactory
     {
         return [
             'email' => self::faker()->unique()->numerify('user-###').'@example.com',
-            'roles' => [],
+            'firstname' => self::faker()->firstName(),
+            'lastname' => self::faker()->lastName(),
             'password' => 'test',
+            'roles' => [],
         ];
     }
 
@@ -54,7 +56,7 @@ final class UserFactory extends ModelFactory
             ->afterInstantiate(function (User $user) {
                 $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
             })
-        ;
+            ;
     }
 
     protected static function getClass(): string

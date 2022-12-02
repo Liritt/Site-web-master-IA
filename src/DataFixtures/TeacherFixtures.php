@@ -2,14 +2,14 @@
 
 namespace App\DataFixtures;
 
-use App\Factory\UserFactory;
+use App\Factory\TeacherFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class UserFixtures extends Fixture
+class TeacherFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $manager->flush();
+        TeacherFactory::createMany(10);
     }
 }
