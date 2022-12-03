@@ -32,6 +32,9 @@ class Student extends User
     #[ORM\Column(type: Types::BLOB)]
     private $certificate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'students')]
+    private ?Internship $internship = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Student extends User
     public function setCertificate($certificate): self
     {
         $this->certificate = $certificate;
+
+        return $this;
+    }
+
+    public function getInternship(): ?Internship
+    {
+        return $this->internship;
+    }
+
+    public function setInternship(?Internship $internship): self
+    {
+        $this->internship = $internship;
 
         return $this;
     }
