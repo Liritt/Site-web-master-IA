@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ internship.company.companyName }}</h5>
                             <p class="card-text">{{ internship.company.supervisorLastname }} {{ internship.company.supervisorFirstname }}</p>
-                            <a href="#" class="btn btn-primary">Plus de détails</a>
+                            <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-primary">Plus de détails</a>
                         </div>
                     </div>
                 </div>

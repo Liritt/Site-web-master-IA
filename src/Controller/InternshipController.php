@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Internship;
 use App\Repository\InternshipRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,12 @@ class InternshipController extends AbstractController
     {
         $internships = $service->findAll();
         return $this->render('internship/index.html.twig', ['internships' => $internships]);
+    }
+
+    #[Route('/internship/{id}', name: 'app_internship_show', requirements: ['id' => '\d+'])]
+    public function show(Internship $internship): Response
+    {
+        return $this->render('internship/show.html.twig', ['internship' => $internship]);
     }
 
 }
