@@ -15,8 +15,8 @@ class InternshipController extends AbstractController
     #[Route('/internship', name: 'app_internship')]
     public function index(InternshipRepository $service): Response
     {
-        $internshipList = $service->findAll();
-        return $this->render('internship/index.html.twig', ['internships' => $internshipList]);
+        $internships = $service->findAll();
+        return $this->render('internship/index.html.twig', ['internships' => $internships]);
     }
 
 }
