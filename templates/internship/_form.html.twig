@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+{{ form_widget(form.company, {'label': 'Entreprise'}) }}
+{{ form_row(form.beginDate, {'label': 'Date de début'}) }}
+{{ form_row(form.endDate, {'label': 'Date de fin'}) }}
+{{ form_row(form.city, {'label': 'Ville'}) }}
+{{ form_row(form.studentsNumber, {'label': 'Nombre d\'étudiants'}) }}
+{{ form_row(form.subject, {'label': 'Sujet du stage'}) }}
+<input type="submit" value="{{label_submit}}" class="btn btn-primary" />
+{{ form_end(form) }}

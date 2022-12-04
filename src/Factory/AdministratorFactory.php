@@ -37,7 +37,11 @@ final class AdministratorFactory extends UserFactory
 
     protected function getDefaults(): array
     {
-        return parent::getDefaults();
+        return [
+            'email' => self::faker()->unique()->numerify('admin-####').'@univ-reims.fr',
+            'roles' => ['ROLE_ADMIN'],
+            'password' => 'test',
+        ];
     }
 
     /**

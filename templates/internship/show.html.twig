@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Stage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Entreprise</th>
+                <td>{{ internship.company.companyName }}</td>
+            </tr>
+            <tr>
+                <th>Superviseur</th>
+                <td>{{ internship.company.supervisorFirstname }} {{ internship.company.supervisorLastname }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ internship.city }}</td>
+            </tr>
+            <tr>
+                <th>Début de stage</th>
+                <td>{% if internship.beginDate %}{{ internship.beginDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fin du stage</th>
+                <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nombre de places</th>
+                <td>{{ internship.studentsNumber }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de places restantes</th>
+                <td>{{ internship.studentsNumber - internship.students|length }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2>Sujet du stage</h2>
+    <p>{{ internship.subject }}</p>
+
+
+    <h2>Etudiants inscrits</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in internship.students %}
+                <tr>
+                    <td>{{ student.lastname }}</td>
+                    <td>{{ student.firstname }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>
+                        <a href="#">Voir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    <a href="{{ path('app_internship') }}" class="btn btn-primary">Retour à la liste</a>
+
+
+
+
+
+{% endblock %}
+
+{% block title %}
+    {{ internship.company.companyName }}
+
+
+{% endblock %}
+
