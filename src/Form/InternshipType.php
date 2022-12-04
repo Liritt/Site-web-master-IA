@@ -44,10 +44,10 @@ class InternshipType extends AbstractType
             ])
             ->add('company', EntityType::class, [
                 'class' => Company::class,
-                'choice_label' => 'name',
+                'choice_label' => 'companyName',
                 'query_builder' => function (EntityRepository $entityRepository) {
                     return $entityRepository->createQueryBuilder('c')
-                        ->orderBy('c.name', 'ASC');
+                        ->orderBy('c.companyName', 'ASC');
                 },
             ])
         ;

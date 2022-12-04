@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Internship;
+use App\Form\InternshipType;
 use App\Repository\InternshipRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,4 +29,19 @@ class InternshipController extends AbstractController
         return $this->render('internship/show.html.twig', ['internship' => $internship]);
     }
 
+    #[Route('/internship/{id}/update', name: 'app_internship_update', requirements: ['id' => '\d+'])]
+    public function update(Request $request, ManagerRegistry $doctrine, Internship $internship): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $form = $this->createForm(InternshipType::class, $internship);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+        }
+
+        return $this->renderForm('internship/update.html.twig', ['contact' => $internship, 'form' => $form]);
+    }
 }
