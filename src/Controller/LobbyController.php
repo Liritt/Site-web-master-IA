@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LobbyController extends AbstractController
 {
-    #[Route('/Accueil', name: 'app_lobby')]
+    #[Route('/accueil', name: 'app_lobby')]
     public function index(): Response
     {
         return $this->render('lobby/index.html.twig');

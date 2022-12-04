@@ -1,0 +1,20 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,20%);
+
+  .navbar-toggler {
+    display: flex;
+    list-style-type: none;
+    gap: 2rem;
+    padding-right: 5rem;
+    align-items: center;
+    margin: 0;
+    flex-direction: row;
+
+    .header-button {
+      background-color: #37828E;
+    }
+  }
+}
