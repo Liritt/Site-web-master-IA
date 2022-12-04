@@ -6,6 +6,7 @@ use App\Entity\Internship;
 use App\Form\InternshipType;
 use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,12 @@ class InternshipController extends AbstractController
     public function index(InternshipRepository $service): Response
     {
         $internships = $service->search();
+
         return $this->render('internship/index.html.twig', ['internships' => $internships]);
     }
 
     #[Route('/internship/{id}', name: 'app_internship_show', requirements: ['id' => '\d+'])]
+    #[Entity('internship', expr: 'repository.findwithCompany(id)')]
     public function show(Internship $internship): Response
     {
         return $this->render('internship/show.html.twig', ['internship' => $internship]);

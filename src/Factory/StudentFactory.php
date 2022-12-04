@@ -12,21 +12,21 @@ use Zenstruck\Foundry\RepositoryProxy;
 /**
  * @extends ModelFactory<Student>
  *
- * @method        Student|Proxy create(array|callable $attributes = [])
- * @method static Student|Proxy createOne(array $attributes = [])
- * @method static Student|Proxy find(object|array|mixed $criteria)
- * @method static Student|Proxy findOrCreate(array $attributes)
- * @method static Student|Proxy first(string $sortedField = 'id')
- * @method static Student|Proxy last(string $sortedField = 'id')
- * @method static Student|Proxy random(array $attributes = [])
- * @method static Student|Proxy randomOrCreate(array $attributes = [])
+ * @method        Student|Proxy                     create(array|callable $attributes = [])
+ * @method static Student|Proxy                     createOne(array $attributes = [])
+ * @method static Student|Proxy                     find(object|array|mixed $criteria)
+ * @method static Student|Proxy                     findOrCreate(array $attributes)
+ * @method static Student|Proxy                     first(string $sortedField = 'id')
+ * @method static Student|Proxy                     last(string $sortedField = 'id')
+ * @method static Student|Proxy                     random(array $attributes = [])
+ * @method static Student|Proxy                     randomOrCreate(array $attributes = [])
  * @method static StudentRepository|RepositoryProxy repository()
- * @method static Student[]|Proxy[] all()
- * @method static Student[]|Proxy[] createMany(int $number, array|callable $attributes = [])
- * @method static Student[]|Proxy[] createSequence(array|callable $sequence)
- * @method static Student[]|Proxy[] findBy(array $attributes)
- * @method static Student[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static Student[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static Student[]|Proxy[]                 all()
+ * @method static Student[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
+ * @method static Student[]|Proxy[]                 createSequence(array|callable $sequence)
+ * @method static Student[]|Proxy[]                 findBy(array $attributes)
+ * @method static Student[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
+ * @method static Student[]|Proxy[]                 randomSet(int $number, array $attributes = [])
  */
 final class StudentFactory extends UserFactory
 {
@@ -46,9 +46,9 @@ final class StudentFactory extends UserFactory
             'firstname' => $firstname,
             'lastname' => $lastname,
             'birthdate' => self::faker()->dateTimeBetween('-30 years', '-21 years'),
-            'email' => self::faker()->unique()->numerify($emailF . '.' . $emailL . '##').'@etudiant.univ-reims.fr',
+            'email' => self::faker()->unique()->numerify($emailF.'.'.$emailL.'##').'@etudiant.univ-reims.fr',
             'degree' => self::faker()->randomElement([1, 2]),
-            'roles' => [],
+            'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
             'cv' => self::faker()->text(100),
             'certificate' => self::faker()->text(100),

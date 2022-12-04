@@ -49,6 +49,17 @@ class InternshipRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findwithCompany(int $id): ?Internship
+    {
+        return $this->createQueryBuilder('internship')
+            ->addSelect('comp as company')
+            ->leftJoin('internship.company', 'comp')
+            ->where('internship.id = :id')
+            ->setParameter(':id', $id)
+            ->getQuery()
+            ->getResult()[0];
+    }
+
 //    /**
 //     * @return Internship[] Returns an array of Internship objects
 //     */
