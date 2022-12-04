@@ -5,10 +5,7 @@
 {% block body %}
     <h1>Édition</h1>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-primary">Enregistrer</button>
-        {{ form_end(form) }}
+    {{ include('internship/_form.html.twig', {label_submit: "Modifier", form: form}, with_context = false) }}
 
 
 {% endblock %}
