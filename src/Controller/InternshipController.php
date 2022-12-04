@@ -44,4 +44,20 @@ class InternshipController extends AbstractController
 
         return $this->renderForm('internship/update.html.twig', ['contact' => $internship, 'form' => $form]);
     }
+
+    #[Route('/internship/create', name: 'app_internship_create')]
+    public function create(Request $request, InternshipRepository $service): Response
+    {
+        $internship = new Internship();
+        $form = $this->createForm(InternshipType::class, $internship);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $service->save($internship, true);
+
+            return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+        }
+
+        return $this->renderForm('internship/create.html.twig', ['form' => $form]);
+    }
 }
