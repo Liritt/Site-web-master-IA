@@ -63,9 +63,8 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/delete', name: 'app_internship_delete', requirements: ['id' => '\d+'])]
-    public function delete(Request $request, ManagerRegistry $doctrine, Internship $internship): Response
+    public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
-        $entityManager = $doctrine->getManager();
         $form = $this->createFormBuilder($internship)
             ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary']])
             ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
@@ -73,8 +72,7 @@ class InternshipController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'delete' === $form->getClickedButton()->getName()) {
-            $entityManager->remove($internship);
-            $entityManager->flush();
+            $service->remove($internship, true);
 
             return $this->redirectToRoute('app_internship');
         }
