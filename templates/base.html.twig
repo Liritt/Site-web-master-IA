@@ -14,32 +14,28 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        <style>
-            .dropdown-menu {
-                background-color: rgba(0,0,0,0);
-                border: none;
-            }
-        </style>
     </head>
     <body>
     {% if path(app.request.attributes.get('_route')) != '/login' %}
         <header>
-            <img src="{{ asset('img/logo-header-urca.png') }}" alt="logo header urca" class="img-fluid" width="513px" height="70px">
-            <ul class="navbar-toggler">
-                <li>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-                    <button class="btn btn-primary header-button" onclick="self.location.href='{{ path('app_login') }}'">Se connecter</button>
-                    {% else %}
-                    <button class="btn btn-danger" onclick="self.location.href='{{ path('app_logout') }}'">Se déconnecter</button>
-                    {% endif %}
-                </li>
-                <div class="dropdown">
+            <div class="main-nav-bar">
+                <img src="{{ asset('img/logo-header-urca.png') }}" alt="logo header urca" class="img-fluid" width="513px" height="70px">
+                <ul class="navbar-toggler">
+                    <li>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                            <button class="btn btn-primary header-button" onclick="self.location.href='{{ path('app_login') }}'">Se connecter</button>
+                        {% else %}
+                            <button class="btn btn-danger" onclick="self.location.href='{{ path('app_logout') }}'">Se déconnecter</button>
+                        {% endif %}
+                    </li>
+                    <div class="dropdown">
                     <span class="dropdown-toggle" type="button" id="dropdownMenuLanguage" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('img/france-flag.png') }}" alt="france flag" class="img-fluid" width="43px" height="27px">
                     </span>
-                    <!-- <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid dropdown-menu" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px"> -->
-                </div>
-            </ul>
+                        <!-- <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid dropdown-menu" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px"> -->
+                    </div>
+                </ul>
+            </div>
             {% block header %}
             {% endblock %}
         </header>
