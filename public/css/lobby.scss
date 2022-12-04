@@ -1,20 +1,50 @@
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,20%);
-
-  .navbar-toggler {
+  .main-nav-bar {
     display: flex;
-    list-style-type: none;
-    gap: 2rem;
-    padding-right: 5rem;
+    justify-content: space-between;
     align-items: center;
-    margin: 0;
-    flex-direction: row;
+    border-bottom: 1px solid rgba(0,0,0,20%);
 
-    .header-button {
-      background-color: #37828E;
+    .navbar-toggler {
+      display: flex;
+      list-style-type: none;
+      gap: 2rem;
+      padding-right: 5rem;
+      align-items: center;
+      margin: 0;
+      flex-direction: row;
+
+      .header-button {
+        background-color: #37828E;
+      }
+    }
+  }
+
+  .disconnected-nav-bar {
+    border-bottom: 1px solid rgba(0,0,0,20%);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+    background-color: #EEEEEE;
+    height: 50px;
+  }
+
+  .connected-nav-bar {
+    border-bottom: 1px solid rgba(0,0,0,20%);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+    display: flex;
+    background-color: #EEEEEE;
+
+    .accueil-link {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 50px;
+      gap: 25px;
+      color: white;
+
+      background: #37828E;
+      border: 1px solid #EEEEEE;
+      text-decoration: none;
     }
   }
 }
