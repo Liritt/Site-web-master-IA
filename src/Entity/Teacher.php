@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TeacherRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class Teacher extends User
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthDate = null;
+
+    #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: TER::class)]
+    private Collection $TERs;
+
+    public function __construct()
+    {
+        $this->TERs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,36 @@ class Teacher extends User
     public function setBirthDate(\DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TER>
+     */
+    public function getTERs(): Collection
+    {
+        return $this->TERs;
+    }
+
+    public function addTER(TER $tER): self
+    {
+        if (!$this->TERs->contains($tER)) {
+            $this->TERs->add($tER);
+            $tER->setTeacher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTER(TER $tER): self
+    {
+        if ($this->TERs->removeElement($tER)) {
+            // set the owning side to null (unless already changed)
+            if ($tER->getTeacher() === $this) {
+                $tER->setTeacher(null);
+            }
+        }
 
         return $this;
     }

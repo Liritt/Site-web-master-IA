@@ -4,18 +4,35 @@
 
 {% block body %}
     <h1>Stages</h1>
+
     <div class="container">
         <div class="row">
             {% for internship in internships %}
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ internship.company.companyName }}</h5>
-                            <p class="card-text">{{ internship.company.supervisorLastname }} {{ internship.company.supervisorFirstname }}</p>
-                            <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-primary">Plus de détails</a>
+
+                {% if internship.company.userIdentifier == app.user.userIdentifier %}
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ internship.company.companyName }}</h5>
+
+                                <p class="card-text">{{ internship.company.supervisorLastname }} {{ internship.company.supervisorFirstname }}</p>
+                                <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-primary">Plus de détails</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% elseif app.user.roles[0] != 'ROLE_COMPANY' %}
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ internship.company.companyName }}</h5>
+
+                                <p class="card-text">{{ internship.company.supervisorLastname }} {{ internship.company.supervisorFirstname }}</p>
+                                <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-primary">Plus de détails</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
             {% endfor %}
         </div>
     </div>

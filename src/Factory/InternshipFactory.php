@@ -3,7 +3,6 @@
 namespace App\Factory;
 
 use App\Entity\Internship;
-use App\Factory\CompanyFactory;
 use App\Repository\InternshipRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -12,21 +11,21 @@ use Zenstruck\Foundry\RepositoryProxy;
 /**
  * @extends ModelFactory<Internship>
  *
- * @method        Internship|Proxy create(array|callable $attributes = [])
- * @method static Internship|Proxy createOne(array $attributes = [])
- * @method static Internship|Proxy find(object|array|mixed $criteria)
- * @method static Internship|Proxy findOrCreate(array $attributes)
- * @method static Internship|Proxy first(string $sortedField = 'id')
- * @method static Internship|Proxy last(string $sortedField = 'id')
- * @method static Internship|Proxy random(array $attributes = [])
- * @method static Internship|Proxy randomOrCreate(array $attributes = [])
+ * @method        Internship|Proxy                     create(array|callable $attributes = [])
+ * @method static Internship|Proxy                     createOne(array $attributes = [])
+ * @method static Internship|Proxy                     find(object|array|mixed $criteria)
+ * @method static Internship|Proxy                     findOrCreate(array $attributes)
+ * @method static Internship|Proxy                     first(string $sortedField = 'id')
+ * @method static Internship|Proxy                     last(string $sortedField = 'id')
+ * @method static Internship|Proxy                     random(array $attributes = [])
+ * @method static Internship|Proxy                     randomOrCreate(array $attributes = [])
  * @method static InternshipRepository|RepositoryProxy repository()
- * @method static Internship[]|Proxy[] all()
- * @method static Internship[]|Proxy[] createMany(int $number, array|callable $attributes = [])
- * @method static Internship[]|Proxy[] createSequence(array|callable $sequence)
- * @method static Internship[]|Proxy[] findBy(array $attributes)
- * @method static Internship[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static Internship[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static Internship[]|Proxy[]                 all()
+ * @method static Internship[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
+ * @method static Internship[]|Proxy[]                 createSequence(array|callable $sequence)
+ * @method static Internship[]|Proxy[]                 findBy(array $attributes)
+ * @method static Internship[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
+ * @method static Internship[]|Proxy[]                 randomSet(int $number, array $attributes = [])
  */
 final class InternshipFactory extends ModelFactory
 {

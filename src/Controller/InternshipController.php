@@ -6,6 +6,7 @@ use App\Entity\Internship;
 use App\Form\InternshipType;
 use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,11 +21,13 @@ class InternshipController extends AbstractController
     #[Route('/internship', name: 'app_internship')]
     public function index(InternshipRepository $service): Response
     {
-        $internships = $service->findAll();
+        $internships = $service->search();
+
         return $this->render('internship/index.html.twig', ['internships' => $internships]);
     }
 
     #[Route('/internship/{id}', name: 'app_internship_show', requirements: ['id' => '\d+'])]
+    #[Entity('internship', expr: 'repository.findwithCompany(id)')]
     public function show(Internship $internship): Response
     {
         return $this->render('internship/show.html.twig', ['internship' => $internship]);
@@ -63,9 +66,8 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/delete', name: 'app_internship_delete', requirements: ['id' => '\d+'])]
-    public function delete(Request $request, ManagerRegistry $doctrine, Internship $internship): Response
+    public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
-        $entityManager = $doctrine->getManager();
         $form = $this->createFormBuilder($internship)
             ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary']])
             ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
@@ -73,8 +75,7 @@ class InternshipController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'delete' === $form->getClickedButton()->getName()) {
-            $entityManager->remove($internship);
-            $entityManager->flush();
+            $service->remove($internship, true);
 
             return $this->redirectToRoute('app_internship');
         }

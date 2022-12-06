@@ -56,7 +56,7 @@ abstract class UserFactory extends ModelFactory
             ->afterInstantiate(function (User $user) {
                 $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
             })
-            ;
+        ;
     }
 
     protected static function getClass(): string
