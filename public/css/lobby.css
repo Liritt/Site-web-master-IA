@@ -1,10 +1,20 @@
-header .main-nav-bar {
+@charset "UTF-8";
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  /* Navigation bar */
+  /* Début du contenu de la page */
+}
+body header .main-nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-header .main-nav-bar .navbar-toggler {
+body header .main-nav-bar .navbar-toggler {
   display: flex;
   list-style-type: none;
   gap: 2rem;
@@ -13,22 +23,22 @@ header .main-nav-bar .navbar-toggler {
   margin: 0;
   flex-direction: row;
 }
-header .main-nav-bar .navbar-toggler .header-button {
+body header .main-nav-bar .navbar-toggler .header-button {
   background-color: #37828E;
 }
-header .disconnected-nav-bar {
+body header .disconnected-nav-bar {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
   background-color: #EEEEEE;
-  height: 50px;
+  height: 55px;
 }
-header .connected-nav-bar {
+body header .connected-nav-bar {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
   display: flex;
   background-color: #EEEEEE;
 }
-header .connected-nav-bar .accueil-link {
+body header .connected-nav-bar .accueil-link {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -37,8 +47,22 @@ header .connected-nav-bar .accueil-link {
   gap: 25px;
   color: white;
   background: #37828E;
+  cursor: pointer;
   border: 1px solid #EEEEEE;
   text-decoration: none;
+}
+body header .connected-nav-bar .accueil-link:hover {
+  background-color: #378E64;
+}
+body .titre {
+  color: #37828E;
+  text-align: center;
+  padding: 1%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+body .titre strong {
+  font-size: 2.5rem;
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=lobby.css.map */
