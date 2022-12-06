@@ -1,6 +1,8 @@
+$font = 'Inter', sans-serif;
+
 html, body {
   height: 100%;
-
+  font-family: $font;
   box-sizing: border-box;
 }
 
@@ -64,8 +66,10 @@ body {
 
   /* Début du contenu de la page */
 
+  $colorTitle: #37828E;
+
   .titre {
-    color: #37828E;
+    color: $colorTitle;
     text-align: center;
     padding: 1%;
     border-bottom: 1px solid rgba(0,0,0,20%);
@@ -74,4 +78,10 @@ body {
       text-transform: uppercase;
     }
   }
+
+  .titre2 {
+    color: $colorTitle;
+    padding: 1%;
+  }
+
 }
