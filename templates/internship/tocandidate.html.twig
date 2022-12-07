@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <h1>Test</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.cv, {'label': 'File'}) }}
+    {{ form_row(form.coverLetter, {'label': 'myLetter'}) }}
+    {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
+    <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
+    {{ form_end(form) }}
+{% endblock %}
+

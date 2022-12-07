@@ -38,9 +38,13 @@ class Internship
     #[ORM\OneToMany(mappedBy: 'internship', targetEntity: Student::class)]
     private Collection $students;
 
+    #[ORM\OneToMany(mappedBy: 'internship', targetEntity: Candidacy::class)]
+    private Collection $candidacies;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->candidacies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +148,36 @@ class Internship
             // set the owning side to null (unless already changed)
             if ($student->getInternship() === $this) {
                 $student->setInternship(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidacy>
+     */
+    public function getCandidacies(): Collection
+    {
+        return $this->candidacies;
+    }
+
+    public function addCandidacy(Candidacy $candidacy): self
+    {
+        if (!$this->candidacies->contains($candidacy)) {
+            $this->candidacies->add($candidacy);
+            $candidacy->setInternship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidacy(Candidacy $candidacy): self
+    {
+        if ($this->candidacies->removeElement($candidacy)) {
+            // set the owning side to null (unless already changed)
+            if ($candidacy->getInternship() === $this) {
+                $candidacy->setInternship(null);
             }
         }
 

@@ -10,9 +10,12 @@ class StudentFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        StudentFactory::createSequence([
-            ['email' => 'test@example.com', 'roles' => ['ROLE_USER'], 'password' => 'test'],
-            ['email' => 'user@example.com', 'roles' => ['ROLE_USER'], 'password' => 'test'],
+        StudentFactory::createOne([
+            'email' => 'student@example.com',
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+            'firstname' => 'Student',
+            'lastname' => 'Tester'
         ]);
         StudentFactory::createMany(10);
     }

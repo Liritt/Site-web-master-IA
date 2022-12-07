@@ -68,7 +68,11 @@
 
     </table>
 
-    <a href="{{ path('app_internship') }}" class="btn btn-primary">Retour à la liste</a>
+    {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+        <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btn btn-primary">Candidater</a>
+    {% endif %}
+    <a href="{{ path('app_internship') }}" class="btn btn-secondary">Retour à la liste</a>
+
 
 
 

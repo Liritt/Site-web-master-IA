@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidacy;
 use App\Entity\Internship;
+use App\Form\CandidacyType;
 use App\Form\InternshipType;
+use App\Repository\CandidacyRepository;
 use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,5 +89,25 @@ class InternshipController extends AbstractController
         }
 
         return $this->renderForm('internship/delete.html.twig', ['contact' => $internship, 'form' => $form]);
+    }
+
+    #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
+    public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
+    {
+        $candidacy = new Candidacy();
+        $form = $this->createForm(CandidacyType::class, $candidacy)
+            ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btn btn-primary']]);
+
+        $form->handleRequest($request);
+        if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
+            $service->save($candidacy, true);
+            return $this->redirectToRoute('app_internship');
+        }
+
+        if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
+            return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+        }
+
+        return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
     }
 }

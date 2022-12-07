@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StudentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Student extends User
 
     #[ORM\ManyToOne(inversedBy: 'students')]
     private ?Internship $internship = null;
+
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Candidacy::class)]
+    private Collection $candidacies;
+
+    public function __construct()
+    {
+        $this->candidacies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,36 @@ class Student extends User
     public function setInternship(?Internship $internship): self
     {
         $this->internship = $internship;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidacy>
+     */
+    public function getCandidacies(): Collection
+    {
+        return $this->candidacies;
+    }
+
+    public function addCandidacy(Candidacy $candidacy): self
+    {
+        if (!$this->candidacies->contains($candidacy)) {
+            $this->candidacies->add($candidacy);
+            $candidacy->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidacy(Candidacy $candidacy): self
+    {
+        if ($this->candidacies->removeElement($candidacy)) {
+            // set the owning side to null (unless already changed)
+            if ($candidacy->getStudent() === $this) {
+                $candidacy->setStudent(null);
+            }
+        }
 
         return $this;
     }
