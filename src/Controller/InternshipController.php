@@ -86,4 +86,24 @@ class InternshipController extends AbstractController
 
         return $this->renderForm('internship/delete.html.twig', ['contact' => $internship, 'form' => $form]);
     }
+
+    #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
+    public function toCandidate(Request $request, Internship $internship, InternshipRepository $service): Response
+    {
+        $form = $this->createFormBuilder($internship)
+            ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btn btn-primary']])
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
+            return $this->redirectToRoute('app_internship');
+        }
+
+        if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
+            return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+        }
+
+        return $this->renderForm('internship/tocandidate.html.twig', ['form' => $form]);
+    }
 }
