@@ -11,7 +11,7 @@
         <section class="d-flex flex-row align-items-center mt-5 mb-5">
             <div class="flex-row mx-5">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
-                <h2 class="titre2 my-3">PRÉSENTATION</h2>
+                <h2 class="titre2 mb-3">PRÉSENTATION</h2>
                 <p class="mt-2">
                     Le <strong>Master Informatique parcours IA</strong> est un diplôme national,
                     il est organisé en <strong>5 Unités d’Enseignement</strong>.
@@ -26,12 +26,12 @@
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
             </div>
-            <img src="{{ asset('img/Unit_enseign.png') }}" alt="image unités enseignement" class="justify-content-end w-50">
+            <img src="{{ asset('img/Unit_enseign.png') }}" alt="image unités enseignement" class="justify-content-end w-50 img-fluid">
         </section>
         <section class="d-flex my-5">
-            <div class="mx-5 justify-content-end">
+            <div class="mx-5">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
-                <h2 class="titre2 my-3">COMPÉTENCES ACQUISES</h2>
+                <h2 class="titre2 mb-3">COMPÉTENCES ACQUISES</h2>
                 <p class="mt-2">
                     Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
                     les humanités numériques, l’aide à la décision et la fouille de données (UE1),
@@ -46,7 +46,7 @@
         <section class="d-flex">
             <div class="flex-row mx-5">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
-                <h2 class="titre2 my-3">ORGANISATION PÉDAGOGIQUE</h2>
+                <h2 class="titre2 mb-3">ORGANISATION PÉDAGOGIQUE</h2>
                 <p class="mt-2">
                     <strong>Modalités d’enseignement :</strong>
                     <br><br>
@@ -60,11 +60,46 @@
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
             </div>
-            <div class="justify-content-end w-50 flex">
-                <img src="{{ asset('/img/orga_master.png') }}" alt="orga_master" class="border border-5">
-                <a href="{{ asset('/img/orga_master.png') }}" target="_blank"><span class="material-symbols-outlined">visibility</span></a>
-                <a href="{{ asset('/img/orga_master.png') }}" download><span class="material-symbols-outlined">download</span></a>
+            <div class="w-50 d-flex">
+                <img src="{{ asset('/img/orga_master.png') }}" alt="orga_master" class="border border-5 img-fluid">
+                <div class="d-flex flex-column mx-5 justify-content-center">
+                    <a href="{{ asset('/img/orga_master.png') }}" target="_blank" class="mb-5"><span class="material-symbols-outlined color-blue">visibility</span></a>
+                    <a href="{{ asset('/img/orga_master.png') }}" download><span class="material-symbols-outlined color-blue">download</span></a>
+                </div>
             </div>
+        </section>
+        <section>
+            <img src="{{ asset('img/univ_band.png')}}" alt="bandeau université" class="img-fluid w-100 my-10">
+        </section>
+        <section class="d-flex">
+            <section class="d-flex my-5">
+                <div class="mx-5">
+                    <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
+                    <h2 class="titre2 mb-3">ADMISSION</h2>
+                    <p class="mt-2">
+                        [pas encore défini]
+                    </p>
+                    <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
+                </div>
+            </section>
+        </section>
+        <section class="d-flex">
+                <div class="flex-row mx-5">
+                    <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
+                    <h2 class="titre2 mb-3">ORGANISATION PÉDAGOGIQUE</h2>
+                    <p class="mt-2">
+                        <strong>Modalités d’enseignement :</strong>
+                        <br><br>
+                        Formation initiale en présentiel ou en alternance.
+                        <br><br>
+                        <strong>Stages et projets tuteurés :</strong>
+                        <br><br>
+                        En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).
+                        <br><br>
+                        En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).
+                    </p>
+                    <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
+                </div>
         </section>
     </main>
 {% endblock %}
