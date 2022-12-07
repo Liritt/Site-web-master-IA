@@ -17,7 +17,7 @@ class CandidacyType extends AbstractType
             ->add('cv', FileType::class, [
                 'label' => 'File'
             ])
-            ->add('coverLetter', TextType::class)
+            ->add('coverLetter', FileType::class)
         ;
     }
 
