@@ -26,7 +26,7 @@
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
             </div>
-            <img src="{{ asset('img/Unit_enseign.png') }}" alt="image unités enseignement" class="justify-content-end w-50 img-fluid">
+            <img src="{{ asset('img/Unit_enseign.png') }}" alt="image unités enseignement" class="justify-content-end w-50 img-fluid m-sm-5">
         </section>
         <section class="d-flex my-5">
             <div class="mx-5">
@@ -120,10 +120,102 @@
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
                 <h2 class="titre2 mb-3">INFORMATIONS PRATIQUES</h2>
                 <p class="mt-2">
+                    <strong>Pour en savoir plus sur l'orientation et l'insertion professionnelle :</strong>
+                    <br><br>
+                    <a target="_blank" href="https://www.univ-reims.fr/orientation-et-insertion/orientation/presentation/presentation,24014,39507.html">
+                        Mission Orientation du Service d'Accompagnement des Etudiants (SAE)
+                        <span class="material-symbols-outlined">open_in_new</span>
+                    </a>
+                    <br><br>
+                    <strong>Pour tout renseignement sur la scolarité :</strong><br><br>
 
+                    <a target="_blank" href="https://www.univ-reims.fr/formation/scolarite/contacts/contacts,22144,36798.html">
+                        Coordonnées des scolarités de l'URCA
+                        <span class="material-symbols-outlined">open_in_new</span>
+                    </a>
+                        <br><br>
+
+                    <strong>
+                        Pour tout renseignement sur la formation continue et l’insertion professionnelle :
+                    </strong>
+                    <br><br>
+
+                    <a target="_blank" href="{{ path('app_lobby') }}">La formation continue<span class="material-symbols-outlined">open_in_new</span></a><br>
+                    <a target="_blank" href="{{ path('app_lobby') }}">L’insertion professionnelle<span class="material-symbols-outlined">open_in_new</span></a><br>
+                    <a target="_blank" href="{{ path('app_lobby') }}">La Validation des acquis<span class="material-symbols-outlined">open_in_new</span></a><br><br>
+
+                    Vous avez de l'expérience et/ou un parcours de formation à valoriser ?
+                    Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                    à la formation ou pour valider le diplôme.
+                    Pour plus d’informations, vous pouvez envoyer un e-mail à <a href="{{ path('app_lobby') }}">vae@univ-reims.fr</a>.<br><br>
+
+                    <strong>
+                        Pour en savoir plus sur les relations internationales à l'Université :
+                    </strong>
+                    <br><br>
+
+                    <a target="_blank" href="https://www.univ-reims.fr/international/presentation/bienvenue-a-l-urca,19721,33287.html">
+                        Direction des Relations Extérieures et du Développement International (DREDI)
+                        <span class="material-symbols-outlined">open_in_new</span>
+                    </a>
+                    <br><br>
+
+                    <a target="_blank" href="https://www.univ-reims.fr/international/mobilite-des-etudiants/outgoing-students-partir-a-l-etranger/mode-operatoire-pour-un-sejour-d-etudes,19749,39425.html">
+                        Partir à l'étranger
+                        <span class="material-symbols-outlined">open_in_new</span>
+                    </a><br><br>
+
+                    <strong>Lien vers les associations étudiantes :</strong><br><br>
+
+                    <a target="_blank" href="https://www.univ-reims.fr/vie-des-campus/bureau-de-la-vie-etudiante/les-associations-etudiantes/les-associations-etudiantes,11050,19949.html">
+                        Associations étudiantes
+                        <span class="material-symbols-outlined">open_in_new</span>
+                    </a>
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne">
             </div>
         </section>
     </main>
+    <footer class="footer d-flex flex-row mt-5 justify-content-center">
+        <section class="d-flex flex-column m-lg-5">
+            <strong>Composante :</strong>
+            <a target="_blank" href="https://www.univ-reims.fr/minisite_101/" class="text-white">
+                Faculté de Sciences Exactes et Nature
+            </a><br>
+            <div class="d-flex flex-row align-items-center mb-3">
+                <span class="material-symbols-outlined me-3">phone</span>
+                03 26 91 34 19
+            </div>
+            <div class="d-flex flex-row align-items-center mb-3">
+                <span class="material-symbols-outlined  me-3">location_on</span>
+                Moulin de la Housse - BP 1039<br>
+                51687 Reims Cedex 2
+            </div>
+            <div class="d-flex flex-row align-items-center mb-3">
+                <span class="material-symbols-outlined  me-3">mail</span>
+                scolarite.sciences@univ-reims.fr
+            </div>
+        </section>
+        <section class="d-flex flex-column m-lg-5">
+            <strong>
+                Responsable de la formation :<br>
+                Francis ROUSSEAUX
+            </strong><br>
+            <div class="d-flex flex-row align-items-center mb-3">
+                <span class="material-symbols-outlined  me-3">mail</span>
+                francis.rousseaux@univ-reims.fr
+            </div>
+        </section>
+        <section class="d-flex flex-column m-lg-5">
+            <strong>
+                Coordonnées du secrétariat :<br>
+                Département MMI
+            </strong><br>
+            <div class="d-flex flex-row align-items-center mb-3">
+                <span class="material-symbols-outlined  me-3">mail</span>
+                secretariat-doyen-sciences@univ-reims.fr
+            </div>
+        </section>
+
+    </footer>
 {% endblock %}
