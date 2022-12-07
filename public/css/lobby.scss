@@ -1,4 +1,4 @@
-$font = 'Inter', sans-serif;
+$font: 'Inter', sans-serif;
 
 html, body {
   height: 100%;
@@ -81,7 +81,8 @@ body {
 
   .titre2 {
     color: $colorTitle;
-    padding: 1%;
+    padding: 2%;
   }
+
 
 }
