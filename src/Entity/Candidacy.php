@@ -17,7 +17,7 @@ class Candidacy
     #[ORM\Column(type: Types::BLOB)]
     private $cv = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::BLOB)]
     private ?string $coverLetter = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidacies')]
