@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidacy;
 use App\Entity\Internship;
+use App\Form\CandidacyType;
 use App\Form\InternshipType;
+use App\Repository\CandidacyRepository;
 use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -88,15 +91,16 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
-    public function toCandidate(Request $request, Internship $internship, InternshipRepository $service): Response
+    public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
-        $form = $this->createFormBuilder($internship)
+        $candidacy = new Candidacy();
+        $form = $this->createForm(CandidacyType::class, $candidacy)
             ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btn btn-primary']])
-            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
-            ->getForm();
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']]);
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
+            $service->save($candidacy, true);
             return $this->redirectToRoute('app_internship');
         }
 

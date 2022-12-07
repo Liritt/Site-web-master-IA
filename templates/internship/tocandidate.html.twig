@@ -7,8 +7,10 @@
 {% block body %}
     <h1>Test</h1>
     {{ form_start(form) }}
-    {{ form_row(form.validate, {'label': 'Valider'}) }}
-    {{ form_row(form.cancel, {'label': 'Annuler'}) }}
+    {{ form_row(form.cv, {'label': 'File'}) }}
+    {{ form_row(form.coverLetter, {'label': 'myLetter'}) }}
+    {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
+    {{ form_row(form.cancel, {'label': 'Annuler la candidature'}) }}
     {{ form_end(form) }}
 {% endblock %}
 
