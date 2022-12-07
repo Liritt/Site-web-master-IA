@@ -68,6 +68,15 @@ body {
 
   $colorTitle: #37828E;
 
+  .color-blue{
+      color: $colorTitle;
+  }
+
+  .my-10{
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
   .titre {
     color: $colorTitle;
     text-align: center;
@@ -82,6 +91,7 @@ body {
   .titre2 {
     color: $colorTitle;
     padding: 2%;
+    font-weight: bolder;
   }
 
 

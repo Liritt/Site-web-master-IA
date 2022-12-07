@@ -55,6 +55,13 @@ body header .connected-nav-bar .accueil-link {
 body header .connected-nav-bar .accueil-link:hover {
   background-color: #378E64;
 }
+body .color-blue {
+  color: #37828E;
+}
+body .my-10 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 body .titre {
   color: #37828E;
   text-align: center;
@@ -68,6 +75,7 @@ body .titre strong {
 body .titre2 {
   color: #37828E;
   padding: 2%;
+  font-weight: bolder;
 }
 
 /*# sourceMappingURL=lobby.css.map */
