@@ -10,7 +10,7 @@
     {{ form_row(form.cv, {'label': 'File'}) }}
     {{ form_row(form.coverLetter, {'label': 'myLetter'}) }}
     {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
-    {{ form_row(form.cancel, {'label': 'Annuler la candidature'}) }}
+    <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
     {{ form_end(form) }}
 {% endblock %}
 

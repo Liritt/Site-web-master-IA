@@ -11,6 +11,7 @@ use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,8 +96,7 @@ class InternshipController extends AbstractController
     {
         $candidacy = new Candidacy();
         $form = $this->createForm(CandidacyType::class, $candidacy)
-            ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btn btn-primary']])
-            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']]);
+            ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btn btn-primary']]);
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
@@ -108,6 +108,6 @@ class InternshipController extends AbstractController
             return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
         }
 
-        return $this->renderForm('internship/tocandidate.html.twig', ['form' => $form]);
+        return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
     }
 }
