@@ -71,6 +71,14 @@ body {
       color: $colorblue;
   }
 
+  .bg-blue{
+    background-color: $colorblue;
+  }
+
+  .bg-light-blue{
+    background-color: #dde4f1;
+  }
+
   .my-band{
     margin-bottom: 50px;
     margin-top: 200px;
@@ -104,7 +112,7 @@ body {
   }
 
   .footer{
-    background-color: #37828E;
+    background-color: $colorblue;
     color: white;
   }
 

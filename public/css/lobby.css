@@ -58,6 +58,12 @@ body header .connected-nav-bar .accueil-link:hover {
 body .color-blue {
   color: #36818d;
 }
+body .bg-blue {
+  background-color: #36818d;
+}
+body .bg-light-blue {
+  background-color: #dde4f1;
+}
 body .my-band {
   margin-bottom: 50px;
   margin-top: 200px;
@@ -87,7 +93,7 @@ body .titre2 {
   font-weight: bolder;
 }
 body .footer {
-  background-color: #37828E;
+  background-color: #36818d;
   color: white;
 }
 body .btn-general {
