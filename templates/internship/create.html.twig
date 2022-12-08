@@ -5,6 +5,7 @@
 {% block body %}
     <h1 class="titre-no-border">Création</h1>
 
+    <div class=" d-flex justify-content-center">
     {{ include('internship/_form.html.twig', {label_submit: "Créer", form: form}, with_context = false) }}
-
+    </div>
 {% endblock %}

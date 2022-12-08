@@ -1,9 +1,14 @@
-{{ form_start(form) }}
+{{ form_start(form, {
+    'attr': {
+        'class': 'd-flex flex-column w-75 justify-content-center'
+    }
+}
+) }}
 {{ form_widget(form.company, {'label': 'Entreprise'}) }}
 {{ form_row(form.beginDate, {'label': 'Date de début'}) }}
 {{ form_row(form.endDate, {'label': 'Date de fin'}) }}
 {{ form_row(form.city, {'label': 'Ville'}) }}
 {{ form_row(form.studentsNumber, {'label': 'Nombre d\'étudiants'}) }}
-{{ form_row(form.subject, {'label': 'Sujet du stage'}) }}
-<input type="submit" value="{{label_submit}}" class="btn btn-primary" />
+{{ form_row(form.subject, {'label': 'Sujet du stage', 'attr': {'rows': '10'}}) }}
+<input type="submit" value="{{label_submit}}" class="btn btn-general" />
 {{ form_end(form) }}
