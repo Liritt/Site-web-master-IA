@@ -25,7 +25,7 @@ body header .main-nav-bar .navbar-toggler {
   flex-direction: row;
 }
 body header .main-nav-bar .navbar-toggler .header-button {
-  background-color: #37828E;
+  background-color: #36818d;
 }
 body header .disconnected-nav-bar {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -47,7 +47,7 @@ body header .connected-nav-bar .accueil-link {
   padding: 10px 50px;
   gap: 25px;
   color: white;
-  background: #37828E;
+  background: #36818d;
   cursor: pointer;
   border: 1px solid #EEEEEE;
   text-decoration: none;
@@ -56,14 +56,14 @@ body header .connected-nav-bar .accueil-link:hover {
   background-color: #378E64;
 }
 body .color-blue {
-  color: #37828E;
+  color: #36818d;
 }
 body .my-band {
   margin-bottom: 50px;
   margin-top: 200px;
 }
 body .titre {
-  color: #37828E;
+  color: #36818d;
   text-align: center;
   padding: 1%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -73,7 +73,7 @@ body .titre strong {
   text-transform: uppercase;
 }
 body .titre-no-border {
-  color: #37828E;
+  color: #36818d;
   text-align: center;
   padding: 1%;
 }
@@ -82,13 +82,25 @@ body .titre-no-border strong {
   text-transform: uppercase;
 }
 body .titre2 {
-  color: #37828E;
+  color: #36818d;
   padding: 2%;
   font-weight: bolder;
 }
 body .footer {
   background-color: #37828E;
   color: white;
+}
+body .btn-general {
+  background-color: #36818d;
+  color: white;
+  border-radius: 5px;
+}
+body .btn-general:hover {
+  background-color: #36818d;
+  color: white;
+  border: solid thin;
+  border-radius: 5px;
+  filter: brightness(95%);
 }
 
 /*# sourceMappingURL=lobby.css.map */
