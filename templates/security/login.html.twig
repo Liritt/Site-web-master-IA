@@ -14,29 +14,37 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 70vh">
+            <div class="col-md-6">
+                <div class="card">
+                    <header class="card-header d-flex" style="background-color: #37828E">
+                        <img src="{{ asset('img/logo-urca.png') }}" alt="logo" class="mx-auto img-fluid" style="width: 50%;">
+                    </header>
+                    <div class="card-body">
+                        <h5 class="card-title">Connexion</h5>
+                        <div class="form-group mb-3">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inputPassword">Mot de passe</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+                            <label for="remember_me" class="form-check label">
+                                <input type="checkbox" name="remember_me" id="remember_me" class="form-check-input">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button class="btn btn-primary" type="submit" style="background-color: #37828E;">Se connecter</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    </div>
 </form>
 {% endblock %}
