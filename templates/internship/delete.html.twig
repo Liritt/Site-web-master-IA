@@ -2,9 +2,12 @@
 {% block title %}Suppression{% endblock %}
 
 {% block body %}
-    <h1>Suppression</h1>
-    <div class="d-flex">
-        {{ form_start(form)}}
+    <h1 class="titre-no-border">Suppression</h1>
+    <div class="d-flex justify-content-center">
+        {{ form_start(form, {
+           'attr': {'class': 'd-flex'}
+        })
+        }}
         {{ form_row(form.delete, {'label': 'Supprimer'}) }}
         {{ form_row(form.cancel, {'label': 'Annuler'}) }}
         {{ form_end(form) }}

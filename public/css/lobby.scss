@@ -67,9 +67,6 @@ body {
   }
 
   /* Début du contenu de la page */
-
-
-
   .color-blue{
       color: $colorblue;
   }
@@ -84,6 +81,16 @@ body {
     text-align: center;
     padding: 1%;
     border-bottom: 1px solid rgba(0,0,0,20%);
+    strong {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .titre-no-border{
+    color: $colorblue;
+    text-align: center;
+    padding: 1%;
     strong {
       font-size: 2.5rem;
       text-transform: uppercase;

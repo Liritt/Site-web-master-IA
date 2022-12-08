@@ -11,7 +11,6 @@ use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,8 +72,8 @@ class InternshipController extends AbstractController
     public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
         $form = $this->createFormBuilder($internship)
-            ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary']])
-            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
+            ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary btn-lg me-3']])
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary btn-lg']])
             ->getForm();
 
         $form->handleRequest($request);
@@ -101,6 +100,7 @@ class InternshipController extends AbstractController
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
             $service->save($candidacy, true);
+
             return $this->redirectToRoute('app_internship');
         }
 
