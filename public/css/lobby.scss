@@ -1,4 +1,6 @@
+
 $font: 'Inter', sans-serif;
+$colorblue: #37828E;
 
 html, body {
   height: 100%;
@@ -25,7 +27,7 @@ body {
         flex-direction: row;
 
         .header-button {
-          background-color: #37828E;
+          background-color: $colorblue;
         }
       }
     }
@@ -52,7 +54,7 @@ body {
         gap: 25px;
         color: white;
 
-        background: #37828E;
+        background: $colorblue;
         cursor: pointer;
         border: 1px solid #EEEEEE;
         text-decoration: none;
@@ -66,10 +68,19 @@ body {
 
   /* Début du contenu de la page */
 
-  $colorTitle: #37828E;
+
+
+  .color-blue{
+      color: $colorblue;
+  }
+
+  .my-band{
+    margin-bottom: 50px;
+    margin-top: 200px;
+  }
 
   .titre {
-    color: $colorTitle;
+    color: $colorblue;
     text-align: center;
     padding: 1%;
     border-bottom: 1px solid rgba(0,0,0,20%);
@@ -80,8 +91,14 @@ body {
   }
 
   .titre2 {
-    color: $colorTitle;
+    color: $colorblue;
     padding: 2%;
+    font-weight: bolder;
+  }
+
+  .footer{
+    background-color: #37828E;
+    color: white;
   }
 
 
