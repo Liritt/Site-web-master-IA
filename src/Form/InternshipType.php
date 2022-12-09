@@ -17,7 +17,7 @@ class InternshipType extends AbstractType
     {
         $builder
             ->add('beginDate', DateType::class, [
-                'widget' => 'single_text',
+                'widget' => 'choice',
                 'html5' => false,
                 'format' => 'dd/MM/yyyy',
                 'attr' => [
@@ -25,7 +25,7 @@ class InternshipType extends AbstractType
                 ],
             ])
             ->add('endDate', DateType::class, [
-                'widget' => 'single_text',
+                'widget' => 'choice',
                 'html5' => false,
                 'format' => 'dd/MM/yyyy',
                 'attr' => [

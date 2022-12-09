@@ -6,6 +6,11 @@ html, body {
   height: 100%;
   font-family: $font;
   box-sizing: border-box;
+  background-color: #EEEEEE;
+}
+
+textarea{
+  resize: none;
 }
 
 body {
