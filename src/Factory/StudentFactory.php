@@ -50,8 +50,6 @@ final class StudentFactory extends UserFactory
             'degree' => self::faker()->randomElement([1, 2]),
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
-            'cv' => self::faker()->text(100),
-            'certificate' => self::faker()->text(100),
         ];
     }
 
