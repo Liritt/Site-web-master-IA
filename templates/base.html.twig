@@ -37,14 +37,25 @@
                     </li>
                     <div class="dropdown">
                     <span class="dropdown-toggle" type="button" id="dropdownMenuLanguage" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('img/france-flag.png') }}" alt="france flag" class="img-fluid" width="43px" height="27px" data-bs-toggle="tooltip" data-bs-placement="right" title="Langue de la page">
+                        {% if app.request.locale == 'fr' %}
+                        <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" width="43px" height="27px">
+                        {% else %}
+                        <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                        {% endif %}
                     </span>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                            <li>
+                               {% if app.request.locale == 'fr' %}
                                <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}" class="dropdown-item">
                                 <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                    English
                                </a>
+                               {% else %}
+                               <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}" class="dropdown-item">
+                                   <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                   Français
+                               </a>
+                               {% endif %}
                            </li>
                         </ul>
                     </div>
