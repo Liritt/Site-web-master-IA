@@ -62,6 +62,7 @@ class InternshipController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $internship->setCompany($this->getUser());
             $service->save($internship, true);
 
             return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
