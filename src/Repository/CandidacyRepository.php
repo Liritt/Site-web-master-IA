@@ -63,4 +63,26 @@ class CandidacyRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findCandidacyByInternship(int $id): array
+    {
+        return $this->createQueryBuilder('candidacy')
+            ->addSelect('int as internship')
+            ->leftJoin('candidacy.internship', 'int')
+            ->where('int.id = :id')
+            ->setParameter(':id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function search(int $internshipId)
+    {
+        return $this->createQueryBuilder('candidacy')
+            ->addSelect('int as internship')
+            ->leftJoin('candidacy.internship', 'int')
+            ->where('int.id = :id')
+            ->setParameter(':id', $internshipId)
+            ->getQuery()
+            ->getResult();
+    }
 }

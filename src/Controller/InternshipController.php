@@ -93,7 +93,6 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/delete.html.twig', ['contact' => $internship, 'form' => $form]);
     }
 
-
     #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
     #[Security('is_granted("ROLE_STUDENT")')]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
@@ -116,5 +115,12 @@ class InternshipController extends AbstractController
         }
 
         return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
+    }
+
+    #[Route('/internship/{id}/candidacy', name: 'app_internship_showcandidacy', requirements: ['id' => '\d+'])]
+    public function showCandidacy(CandidacyRepository $repository, Internship $internship): Response
+    {
+        $candidacies = $repository->search($internship->getId());
+        return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies]);
     }
 }
