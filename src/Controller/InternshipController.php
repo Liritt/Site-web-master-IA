@@ -10,13 +10,14 @@ use App\Repository\CandidacyRepository;
 use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Security('is_authenticated()', message: 'Vous devez être connecté pour accéder à cette page.')]
 class InternshipController extends AbstractController
 {
     /*
@@ -91,7 +92,9 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/delete.html.twig', ['contact' => $internship, 'form' => $form]);
     }
 
+
     #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
+    #[Security('is_granted("ROLE_STUDENT")')]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
         $candidacy = new Candidacy();
@@ -100,7 +103,10 @@ class InternshipController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
+            $candidacy->setStudent($this->getUser());
+            $candidacy->setInternship($internship);
             $service->save($candidacy, true);
+
             return $this->redirectToRoute('app_internship');
         }
 
