@@ -11,7 +11,6 @@ use App\Repository\InternshipRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +21,7 @@ class InternshipController extends AbstractController
     /*
      * Renvoie la liste des stages à la vue twig
      */
-    #[Route('/internship', name: 'app_internship')]
+    #[Route('/{_locale<%app.supported_locales%>}/internship', name: 'app_internship')]
     public function index(InternshipRepository $service): Response
     {
         $internships = $service->search();
@@ -30,14 +29,14 @@ class InternshipController extends AbstractController
         return $this->render('internship/index.html.twig', ['internships' => $internships]);
     }
 
-    #[Route('/internship/{id}', name: 'app_internship_show', requirements: ['id' => '\d+'])]
+    #[Route('/{_locale<%app.supported_locales%>}/internship/{id}', name: 'app_internship_show', requirements: ['id' => '\d+'])]
     #[Entity('internship', expr: 'repository.findwithCompany(id)')]
     public function show(Internship $internship): Response
     {
         return $this->render('internship/show.html.twig', ['internship' => $internship]);
     }
 
-    #[Route('/internship/{id}/update', name: 'app_internship_update', requirements: ['id' => '\d+'])]
+    #[Route('/{_locale<%app.supported_locales%>}/internship/{id}/update', name: 'app_internship_update', requirements: ['id' => '\d+'])]
     public function update(Request $request, ManagerRegistry $doctrine, Internship $internship): Response
     {
         $entityManager = $doctrine->getManager();
@@ -53,7 +52,7 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/update.html.twig', ['contact' => $internship, 'form' => $form]);
     }
 
-    #[Route('/internship/create', name: 'app_internship_create')]
+    #[Route('/{_locale<%app.supported_locales%>}/internship/create', name: 'app_internship_create')]
     public function create(Request $request, InternshipRepository $service): Response
     {
         $internship = new Internship();
@@ -69,7 +68,7 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/create.html.twig', ['form' => $form]);
     }
 
-    #[Route('/internship/{id}/delete', name: 'app_internship_delete', requirements: ['id' => '\d+'])]
+    #[Route('/{_locale<%app.supported_locales%>}/internship/{id}/delete', name: 'app_internship_delete', requirements: ['id' => '\d+'])]
     public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
         $form = $this->createFormBuilder($internship)
@@ -91,7 +90,7 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/delete.html.twig', ['contact' => $internship, 'form' => $form]);
     }
 
-    #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
+    #[Route('/{_locale<%app.supported_locales%>}/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
         $candidacy = new Candidacy();
@@ -101,6 +100,7 @@ class InternshipController extends AbstractController
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
             $service->save($candidacy, true);
+
             return $this->redirectToRoute('app_internship');
         }
 
