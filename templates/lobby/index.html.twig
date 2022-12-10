@@ -3,5 +3,9 @@
 {% block title %}Hello LobbyController!{% endblock %}
 
 {% block body %}
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<p>Connecté</p>
+    {% else %}
+<p>Pas connecté</p>
+    {% endif %}
 {% endblock %}
