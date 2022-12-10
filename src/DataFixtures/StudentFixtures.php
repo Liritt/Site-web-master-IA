@@ -15,7 +15,7 @@ class StudentFixtures extends Fixture
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
             'firstname' => 'Student',
-            'lastname' => 'Tester'
+            'lastname' => 'Tester',
         ]);
         StudentFactory::createMany(10);
     }
