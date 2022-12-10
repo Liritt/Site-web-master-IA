@@ -106,3 +106,17 @@ Naviguez alors à partir de cette adresse : <http://localhost:8000/>
 
 Le code suit la recommandation [PSR-12](https://www.php-fig.org/psr/psr-12/) :
 - il peut être reformaté automatiquement avec `composer fix:cs`
+### Traduction
+
+Pour ajouter une traduction (en anglais):
+ - ajouter les balises twig `{% trans %}...{% endtrans %}` 
+sur du texte uniquement (pas de balise html) dans les "template" à traduire
+
+ - lancez la commande 
+```bash
+composer translate:en
+``` 
+   pour mettre à jour le fichier de traduction 
+   - enfin accédez au fichier de traduction "translation/messages+intl-icu.en.xlf"
+et modifier le contenu des balises `<target>` avec la traduction du contenu des balises
+`<source>`
