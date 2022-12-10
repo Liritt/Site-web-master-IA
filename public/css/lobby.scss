@@ -1,11 +1,16 @@
 
 $font: 'Inter', sans-serif;
-$colorblue: #37828E;
+$colorblue: #36818d;
 
 html, body {
   height: 100%;
   font-family: $font;
   box-sizing: border-box;
+  background-color: #EEEEEE;
+}
+
+textarea{
+  resize: none;
 }
 
 body {
@@ -67,11 +72,16 @@ body {
   }
 
   /* Début du contenu de la page */
-
-
-
   .color-blue{
       color: $colorblue;
+  }
+
+  .bg-blue{
+    background-color: $colorblue;
+  }
+
+  .bg-light-blue{
+    background-color: #dde4f1;
   }
 
   .my-band{
@@ -90,6 +100,16 @@ body {
     }
   }
 
+  .titre-no-border{
+    color: $colorblue;
+    text-align: center;
+    padding: 1%;
+    strong {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+    }
+  }
+
   .titre2 {
     color: $colorblue;
     padding: 2%;
@@ -97,8 +117,22 @@ body {
   }
 
   .footer{
-    background-color: #37828E;
+    background-color: $colorblue;
     color: white;
+  }
+
+  .btn-general{
+    background-color: $colorblue;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .btn-general:hover{
+    background-color: $colorblue;
+    color: white;
+    border: solid thin;
+    border-radius: 5px;
+    filter: brightness(95%);
   }
 
 
