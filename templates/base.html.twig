@@ -32,7 +32,11 @@
                         </li>
                         <div class="dropdown">
                     <span class="dropdown-toggle" type="button" id="dropdownMenuLanguage" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('img/france-flag.png') }}" alt="france flag" class="img-fluid" width="43px" height="27px">
+                        {% if app.request.locale == 'fr' %}
+                        <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" width="43px" height="27px">
+                        {% else %}
+                        <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                        {% endif %}
                     </span>
                             <!-- <img src="{ asset('img/english-flag.png') }" alt="English flag" class="img-fluid dropdown-menu" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px"> -->
                         </div>

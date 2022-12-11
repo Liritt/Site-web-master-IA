@@ -110,6 +110,9 @@
             "php bin/console doctrine:database:create",
             "php bin/console doctrine:migrations:migrate --no-interaction",
             "php bin/console doctrine:fixtures:load --no-interaction"
+        ],
+        "translate:en": [
+            "symfony console translation:extract en --force --domain=messages"
         ]
     },
     "scripts-descriptions": {
@@ -118,7 +121,8 @@
         "fix:cs": "Fixe les problèmes de syntaxes du projet.",
         "test:codecept": "Regénère une base de donnée de test en y insérant des données puis execute les tests de codeception.",
         "test": "Démarre les tests de codeception et de composer à la suite.",
-        "db": "Génère une base de donnée de test."
+        "db": "Génère une base de donnée de test.",
+        "translate:en": "met a jour le fichier de traduction en anglais 'translation/message+intl-icu.en.xlf'"
     },
     "conflict": {
         "symfony/symfony": "*"

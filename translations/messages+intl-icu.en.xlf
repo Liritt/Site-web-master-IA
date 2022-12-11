@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="PTpIBQV" resname="Master informatique">
+        <source>Master informatique</source>
+        <target>IT Master</target>
+      </trans-unit>
+      <trans-unit id="nr6PC5D" resname="Parcours : intelligence artificielle">
+        <source>Parcours : intelligence artificielle</source>
+        <target>Studies : artificial intelligence</target>
+      </trans-unit>
+      <trans-unit id="zXsEL5n" resname="PRÉSENTATION">
+        <source>PRÉSENTATION</source>
+        <target>PRESENTATION</target>
+      </trans-unit>
+      <trans-unit id="ovvHVLn" resname="Le">
+        <source>Le</source>
+        <target>The</target>
+      </trans-unit>
+      <trans-unit id="3jmNCpg" resname="Master Informatique parcours IA">
+        <source>Master Informatique parcours IA</source>
+        <target>IT Master IA studies</target>
+      </trans-unit>
+      <trans-unit id="IjmJM_m" resname="est un diplôme national,&#10;                        il est organisé en">
+        <source>est un diplôme national,
+                        il est organisé en</source>
+        <target> is a national diploma,
+                        it is organized in</target>
+      </trans-unit>
+      <trans-unit id="z08DCLC" resname="5 Unités d’Enseignement">
+        <source>5 Unités d’Enseignement</source>
+        <target> 5 Teaching Units</target>
+      </trans-unit>
+      <trans-unit id="uQ5zsI7" resname="Les enseignements sont dispensés sous forme de cours magistraux, de travaux dirigés et de travaux pratiques,&#10;                        l’accent étant mis sur les projets individuels et collectifs, les stages, ainsi que sur le contrôle continu.">
+        <source>Les enseignements sont dispensés sous forme de cours magistraux, de travaux dirigés et de travaux pratiques,
+                        l’accent étant mis sur les projets individuels et collectifs, les stages, ainsi que sur le contrôle continu.</source>
+        <target>Lessons are given in the form of lectures, tutorials and practical work,
+          the emphasis being placed on individual and collective projects, internships, as well as on continuous monitoring.</target>
+      </trans-unit>
+      <trans-unit id="9cCSQcW" resname="Un certain nombre d’enseignements sont mutualisés avec d’autres Mentions portées par le Département Mathématiques,&#10;                        Mécanique et Informatique (MMI).">
+        <source>Un certain nombre d’enseignements sont mutualisés avec d’autres Mentions portées par le Département Mathématiques,
+                        Mécanique et Informatique (MMI).</source>
+        <target>A certain number of teachers are pooled with other Mentions carried by the Department of Mathematics,
+                        Mechanics and Computer Science (MMI).</target>
+      </trans-unit>
+      <trans-unit id="OqrM7t1" resname="Les compétences linguistiques et professionnelles (Anglais, Gestion de projets,&#10;                        Communication, Organisation des entreprises) sont largement considérées (UE5).">
+        <source>Les compétences linguistiques et professionnelles (Anglais, Gestion de projets,
+                        Communication, Organisation des entreprises) sont largement considérées (UE5).</source>
+        <target>Linguistic and professional skills (English, Project Management,
+                        Communication, Organization of companies) are widely considered (UE5).</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -3,26 +3,29 @@
 {% block title %}Acceuil{% endblock %}
 
 {% block body %}
-    <div class="titre">
-        <h1><strong>Master informatique</strong></h1>
-        <h2><strong>Parcours : intelligence artificielle</strong></h2>
-    </div>
+        <div class="titre">
+            <h1><strong>{% trans %}Master informatique{% endtrans %}</strong></h1>
+            <h2><strong>{% trans %}Parcours : intelligence artificielle{% endtrans %}</strong></h2>
+        </div>
+
     <main>
         <section class="d-flex flex-row align-items-center mt-5 mb-5">
             <div class="flex-row mx-5">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
-                <h2 class="titre2 mb-3">PRÉSENTATION</h2>
+                <h2 class="titre2 mb-3">{% trans %}PRÉSENTATION{% endtrans %}</h2>
                 <p class="mt-2">
-                    Le <strong>Master Informatique parcours IA</strong> est un diplôme national,
-                    il est organisé en <strong>5 Unités d’Enseignement</strong>.
-                    <br><br>
-                    Les enseignements sont dispensés sous forme de cours magistraux, de travaux dirigés et de travaux pratiques,
-                    l’accent étant mis sur les projets individuels et collectifs, les stages, ainsi que sur le contrôle continu.
-                    <br><br>
-                    Un certain nombre d’enseignements sont mutualisés avec d’autres Mentions portées par le Département Mathématiques,
-                    Mécanique et Informatique (MMI).<br>
-                    Les compétences linguistiques et professionnelles (Anglais, Gestion de projets,
-                    Communication, Organisation des entreprises) sont largement considérées (UE5).
+
+                    {% trans %}Le{% endtrans %} <strong>{% trans %}Master Informatique parcours IA{% endtrans %}</strong>{% trans %} est un diplôme national,
+                        il est organisé en {% endtrans %}<strong>{% trans %}5 Unités d’Enseignement{% endtrans %}</strong>.
+                        <br><br>{% trans %}
+                        Les enseignements sont dispensés sous forme de cours magistraux, de travaux dirigés et de travaux pratiques,
+                        l’accent étant mis sur les projets individuels et collectifs, les stages, ainsi que sur le contrôle continu.
+                    {% endtrans %}<br><br>{% trans %}
+                        Un certain nombre d’enseignements sont mutualisés avec d’autres Mentions portées par le Département Mathématiques,
+                        Mécanique et Informatique (MMI).{% endtrans %}<br>{% trans %}
+                        Les compétences linguistiques et professionnelles (Anglais, Gestion de projets,
+                        Communication, Organisation des entreprises) sont largement considérées (UE5).{% endtrans %}
+
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
             </div>
