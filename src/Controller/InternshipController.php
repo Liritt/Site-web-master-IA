@@ -72,8 +72,8 @@ class InternshipController extends AbstractController
     public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
         $form = $this->createFormBuilder($internship)
-            ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary']])
-            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
+            ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary btn-lg me-3']])
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary btn-lg']])
             ->getForm();
 
         $form->handleRequest($request);
