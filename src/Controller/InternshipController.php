@@ -92,6 +92,7 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
+    #[Security('is_granted("ROLE_STUDENT")')]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
         $candidacy = new Candidacy();
@@ -100,6 +101,8 @@ class InternshipController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
+            $candidacy->setStudent($this->getUser());
+            $candidacy->setInternship($internship);
             $service->save($candidacy, true);
 
             return $this->redirectToRoute('app_internship');
@@ -111,4 +114,12 @@ class InternshipController extends AbstractController
 
         return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
     }
+
+    #[Route('/{_locale<%app.supported_locales%>}/internship/{id}/candidacy', name: 'app_internship_showcandidacy', requirements: ['id' => '\d+'])]
+    public function showCandidacy(CandidacyRepository $repository, Internship $internship): Response
+    {
+        $candidacies = $repository->search($internship->getId());
+        return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies]);
+    }
+
 }
