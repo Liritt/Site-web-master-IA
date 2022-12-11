@@ -19,8 +19,8 @@
 </head>
 <body>
 {% if app.request.get('_route') != 'app_login' %}
-<header>
-    <div class="main-nav-bar fixed-top bg-white">
+<header class="fixed-top">
+    <div class="main-nav-bar bg-white">
         <img src="{{ asset('img/logo-header-urca.png') }}" alt="logo header urca" class="img-fluid" width="513px" height="70px">
         <ul class="navbar-toggler">
             <li>
