@@ -22,7 +22,7 @@
                 <td>{{ candidacy.student.lastname }}</td>
                 <td>{{ candidacy.student.firstname }}</td>
                 <td>{{ candidacy.student.email }}</td>
-                <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
+                <td><a class="btn btn-outline-success" href="{{ path('app_internship_showdownload', {id: candidacy.internship.id, candidacy: candidacy, type: 'cv'}) }}">Télécharger</a></td>
                 <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
                 <td>
                     <a class="btn btn-outline-primary" href="#">Accepter</a>

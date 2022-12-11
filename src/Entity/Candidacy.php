@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\CandidacyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 #[ORM\Entity(repositoryClass: CandidacyRepository::class)]
 class Candidacy
@@ -78,5 +81,21 @@ class Candidacy
         $this->internship = $internship;
 
         return $this;
+    }
+
+    public function downloadFile($type): Response
+    {
+        if ('cv' !== $type && 'coverLetter' !== $type) {
+            throw new \InvalidArgumentException('Invalid file type');
+        }
+
+        $file = $this->$type;
+        $response = new BinaryFileResponse($file);
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            $file->getOriginalFilename()
+        );
+
+        return $response->send();
     }
 }

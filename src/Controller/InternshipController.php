@@ -117,10 +117,17 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
     }
 
-    #[Route('/internship/{id}/candidacy', name: 'app_internship_showcandidacy', requirements: ['id' => '\d+'])]
+    #[Route('/internship/{id}/candidacy/show', name: 'app_internship_showcandidacy', requirements: ['id' => '\d+'])]
     public function showCandidacy(CandidacyRepository $repository, Internship $internship): Response
     {
         $candidacies = $repository->search($internship->getId());
+
         return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies]);
+    }
+
+    #[Route('/internship/{id}/candidacy/show/download/', name: 'app_internship_showdownload', requirements: ['id' => '\d+'])]
+    public function downloadFile(Candidacy $candidacy, $type): Response
+    {
+        return $candidacy->downloadFile($type);
     }
 }
