@@ -19,7 +19,11 @@
 </head>
 <body>
 {% if app.request.get('_route') != 'app_login' %}
-<header class="fixed-top">
+    {% if app.request.get('_route') == 'app_lobby_index' %}
+        <header class="fixed-top">
+    {% else %}
+        <header>
+    {% endif %}
     <div class="main-nav-bar bg-white">
         <img src="{{ asset('img/logo-header-urca.png') }}" alt="logo header urca" class="img-fluid" width="513px" height="70px">
         <ul class="navbar-toggler">
@@ -47,12 +51,12 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li>
                         {% if app.request.locale == 'fr' %}
-                            <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}" class="dropdown-item">
+                            <a href="{{ path('app_lobby_index', {_locale: 'en'}) }}" class="dropdown-item">
                                 <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                 English
                             </a>
                         {% else %}
-                            <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}" class="dropdown-item">
+                            <a href="{{ path('app_lobby_index', {_locale: 'fr'}) }}" class="dropdown-item">
                                 <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                 Français
                             </a>
@@ -64,7 +68,7 @@
     </div>
     {% block header %}
     {% endblock %}
-</header>
+        </header>
 {% endif %}
 {% block body %}
 {% endblock %}
