@@ -18,7 +18,7 @@ class Candidacy
     private $cv = null;
 
     #[ORM\Column(type: Types::BLOB)]
-    private ?string $coverLetter = null;
+    private $coverLetter = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidacies')]
     #[ORM\JoinColumn(nullable: false)]
@@ -44,12 +44,12 @@ class Candidacy
         return $this;
     }
 
-    public function getCoverLetter(): ?string
+    public function getCoverLetter()
     {
         return $this->coverLetter;
     }
 
-    public function setCoverLetter(string $coverLetter): self
+    public function setCoverLetter($coverLetter): self
     {
         $this->coverLetter = $coverLetter;
 

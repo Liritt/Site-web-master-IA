@@ -28,11 +28,11 @@ class Student extends User
     #[ORM\Column]
     private ?int $degree = null;
 
-    #[ORM\Column(type: Types::BLOB)]
+    /*#[ORM\Column(type: Types::BLOB)]
     private $cv = null;
 
     #[ORM\Column(type: Types::BLOB)]
-    private $certificate = null;
+    private $certificate = null;*/
 
     #[ORM\ManyToOne(inversedBy: 'students')]
     private ?Internship $internship = null;

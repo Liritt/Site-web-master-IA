@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Candidatures</h1>
+
+    <h2>Liste des candidats</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Mail</th>
+            <th>CV</th>
+            <th>Lettre de motivation</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for candidacy in candidacies %}
+            <tr>
+                <td>{{ candidacy.student.lastname }}</td>
+                <td>{{ candidacy.student.firstname }}</td>
+                <td>{{ candidacy.student.email }}</td>
+                <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
+                <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
+                <td>
+                    <a class="btn btn-outline-primary" href="#">Accepter</a>
+                    <a class="btn btn-outline-danger" href="#">Refuser</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+{% endblock %}
