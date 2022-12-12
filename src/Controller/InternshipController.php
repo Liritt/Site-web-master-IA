@@ -121,6 +121,7 @@ class InternshipController extends AbstractController
     public function showCandidacy(CandidacyRepository $repository, Internship $internship): Response
     {
         $candidacies = $repository->search($internship->getId());
+
         return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies]);
     }
 }

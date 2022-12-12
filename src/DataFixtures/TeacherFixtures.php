@@ -15,7 +15,7 @@ class TeacherFixtures extends Fixture
             'roles' => ['ROLE_TEACHER'],
             'password' => 'test',
             'firstname' => 'Teacher',
-            'lastname' => 'Tester'
+            'lastname' => 'Tester',
         ]);
         TeacherFactory::createMany(10);
     }
