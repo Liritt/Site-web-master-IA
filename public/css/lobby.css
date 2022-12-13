@@ -6,26 +6,29 @@ details > summary::-webkit-details-marker {
     display: none;
 }
 
-.art1{
+.art1-div{
     display: flex;
     flex-direction: row;
-    flex: 1 1;
-}
-.art1>details {
-    display: flex;
     flex: 1;
-    background-color: #0c4a6e;
+}
+.art1 {
+    display: flex;
+    flex: 0.5;
 }
 
-.art2{
+.art2-div{
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 0.5;
 }
 
-.art3{
+.art3-div{
     display: flex;
     flex-direction: row;
-    flex: 1;
-    background-color: #0dcaf0;
+    flex: 0.5;
+}
+
+.art3, .art4{
+    display: flex;
+    flex: 0.5;
 }
