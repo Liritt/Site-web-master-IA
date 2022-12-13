@@ -2,14 +2,15 @@
 
 namespace App\Tests\Controller\Security;
 
-use App\Factory\UserFactory;
+use App\Entity\Student;
+use App\Factory\StudentFactory;
 use App\Tests\Support\ControllerTester;
 
 class LoginCest
 {
-    public function LoginAdmin(ControllerTester $I)
+    public function LoginAdmin(ControllerTester $I): void
     {
-        $user = UserFactory::createOne([
+        $user = StudentFactory::createOne([
             'email' => 'user@test.com',
             'password' => 'test',
             'roles' => ['ROLE_STUDENT'],
@@ -19,20 +20,20 @@ class LoginCest
 
         $I->amLoggedInAs($realUser);
 
-        $I->amOnPage('/login');
+        $I->amOnPage('/fr/login');
 
         $I->seeInTitle('Log in!');
     }
 
-    public function LoginStudent(ControllerTester $I)
+    public function LoginStudent(ControllerTester $I): void
     {
     }
 
-    public function LoginTeacher(ControllerTester $I)
+    public function LoginTeacher(ControllerTester $I): void
     {
     }
 
-    public function LoginCompany(ControllerTester $I)
+    public function LoginCompany(ControllerTester $I): void
     {
     }
 }
