@@ -11,11 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TeacherRepository::class)]
 class Teacher extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 20)]
     private ?string $firstname = null;
 
@@ -31,11 +26,6 @@ class Teacher extends User
     public function __construct()
     {
         $this->TERs = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getFirstname(): ?string
