@@ -16,7 +16,7 @@ class CompanyFixtures extends Fixture
             'password' => 'test',
             'companyName' => 'Company',
             'supervisor_firstname' => 'Company',
-            'supervisor_lastname' => 'Tester'
+            'supervisor_lastname' => 'Tester',
         ]);
         CompanyFactory::createMany(10);
     }
