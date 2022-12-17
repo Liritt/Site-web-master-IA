@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TERController extends AbstractController
 {
-    #[Route('/t/e/r', name: 'app_t_e_r')]
+    #[Route('/ter', name: 'app_ter')]
     public function index(): Response
     {
         return $this->render('ter/index.html.twig', [
