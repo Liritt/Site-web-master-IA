@@ -47,7 +47,7 @@ final class TERFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'degree' => self::faker()->randomNumber(),
+            'degree' => self::faker()->numberBetween(1, 2),
             'description' => self::faker()->text(),
             'title' => self::faker()->text(100),
         ];
