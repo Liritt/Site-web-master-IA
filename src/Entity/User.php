@@ -36,14 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'admis', targetEntity: CandidacyTER::class)]
-    private Collection $candidacyTERs;
-
-    public function __construct()
-    {
-        $this->candidacyTERs = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -131,35 +123,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    /**
-     * @return Collection<int, CandidacyTER>
-     */
-    public function getCandidacyTERs(): Collection
-    {
-        return $this->candidacyTERs;
-    }
-
-    public function addCandidacyTER(CandidacyTER $candidacyTER): self
-    {
-        if (!$this->candidacyTERs->contains($candidacyTER)) {
-            $this->candidacyTERs->add($candidacyTER);
-            $candidacyTER->setAdmis($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCandidacyTER(CandidacyTER $candidacyTER): self
-    {
-        if ($this->candidacyTERs->removeElement($candidacyTER)) {
-            // set the owning side to null (unless already changed)
-            if ($candidacyTER->getAdmis() === $this) {
-                $candidacyTER->setAdmis(null);
-            }
-        }
-
-        return $this;
     }
 }

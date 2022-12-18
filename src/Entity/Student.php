@@ -23,20 +23,24 @@ class Student extends User
     #[ORM\Column]
     private ?int $degree = null;
 
-    /*#[ORM\Column(type: Types::BLOB)]
-    private $cv = null;
-
-    #[ORM\Column(type: Types::BLOB)]
-    private $certificate = null;*/
-
     #[ORM\ManyToOne(inversedBy: 'students')]
     private ?Internship $internship = null;
 
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Candidacy::class)]
     private Collection $candidacies;
 
+    #[ORM\OneToMany(mappedBy: 'admis', targetEntity: CandidacyTER::class)]
+    private Collection $candidacyTERs;
+
+    /*#[ORM\Column(type: Types::BLOB)]
+    private $cv = null;
+
+    #[ORM\Column(type: Types::BLOB)]
+    private $certificate = null;*/
+
     public function __construct()
     {
+        $this->candidacyTERs = new ArrayCollection();
         $this->candidacies = new ArrayCollection();
     }
 
@@ -148,6 +152,36 @@ class Student extends User
             // set the owning side to null (unless already changed)
             if ($candidacy->getStudent() === $this) {
                 $candidacy->setStudent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CandidacyTER>
+     */
+    public function getCandidacyTERs(): Collection
+    {
+        return $this->candidacyTERs;
+    }
+
+    public function addCandidacyTER(CandidacyTER $candidacyTER): self
+    {
+        if (!$this->candidacyTERs->contains($candidacyTER)) {
+            $this->candidacyTERs->add($candidacyTER);
+            $candidacyTER->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidacyTER(CandidacyTER $candidacyTER): self
+    {
+        if ($this->candidacyTERs->removeElement($candidacyTER)) {
+            // set the owning side to null (unless already changed)
+            if ($candidacyTER->getStudent() === $this) {
+                $candidacyTER->setStudent(null);
             }
         }
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TERRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,14 @@ class TER
 
     #[ORM\ManyToOne(inversedBy: 'TERs')]
     private ?Teacher $teacher = null;
+
+    #[ORM\OneToMany(mappedBy: 'TER', targetEntity: CandidacyTER::class)]
+    private Collection $candidacyTERs;
+
+    public function __construct()
+    {
+        $this->candidacyTERs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +85,36 @@ class TER
     public function setTeacher(?Teacher $teacher): self
     {
         $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CandidacyTER>
+     */
+    public function getCandidacyTERs(): Collection
+    {
+        return $this->candidacyTERs;
+    }
+
+    public function addCandidacyTER(CandidacyTER $candidacyTER): self
+    {
+        if (!$this->candidacyTERs->contains($candidacyTER)) {
+            $this->candidacyTERs->add($candidacyTER);
+            $candidacyTER->setTER($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidacyTER(CandidacyTER $candidacyTER): self
+    {
+        if ($this->candidacyTERs->removeElement($candidacyTER)) {
+            // set the owning side to null (unless already changed)
+            if ($candidacyTER->getTER() === $this) {
+                $candidacyTER->setTER(null);
+            }
+        }
 
         return $this;
     }

@@ -18,7 +18,10 @@ class CandidacyTER
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidacyTERs')]
-    private ?User $admis = null;
+    private ?Student $student = null;
+
+    #[ORM\ManyToOne(inversedBy: 'candidacyTERs')]
+    private ?TER $TER = null;
 
     public function getId(): ?int
     {
@@ -37,14 +40,26 @@ class CandidacyTER
         return $this;
     }
 
-    public function getAdmis(): ?User
+    public function getStudent(): ?User
     {
-        return $this->admis;
+        return $this->student;
     }
 
-    public function setAdmis(?User $admis): self
+    public function setStudent(?User $student): self
     {
-        $this->admis = $admis;
+        $this->student = $student;
+
+        return $this;
+    }
+
+    public function getTER(): ?TER
+    {
+        return $this->TER;
+    }
+
+    public function setTER(?TER $TER): self
+    {
+        $this->TER = $TER;
 
         return $this;
     }
