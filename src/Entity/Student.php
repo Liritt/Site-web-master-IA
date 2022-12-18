@@ -29,7 +29,7 @@ class Student extends User
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Candidacy::class)]
     private Collection $candidacies;
 
-    #[ORM\OneToMany(mappedBy: 'admis', targetEntity: CandidacyTER::class)]
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: CandidacyTER::class)]
     private Collection $candidacyTERs;
 
     /*#[ORM\Column(type: Types::BLOB)]
