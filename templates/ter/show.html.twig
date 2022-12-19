@@ -1,0 +1,14 @@
+{% extends '_connectedNavBar.html.twig' %}
+
+{% block body %}
+    <h1>Professeur référent : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</h1>
+
+    <h2>{{ TER.title }}</h2>
+
+    <p>{{ TER.description }}</p>
+{% endblock %}
+
+{% block title %}
+    Détails du TER n°{{ TER.id }}
+{% endblock %}
+

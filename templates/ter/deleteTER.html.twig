@@ -1,0 +1,18 @@
+{% extends '_connectedNavBar.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Page création de TER{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.degree) }}
+        {{ form_row(form.teacher) }}
+    {{ form_end(form) }}
+
+    {{ form_start(deleteForm, { 'attr': {'class': 'd-flex'} }) }}
+        {{ form_row(deleteForm.delete, {'label' : 'Supprimer'}) }}
+        {{ form_row(deleteForm.cancel, {'label' : 'Annuler', 'attr': {'class': 'btn btn-secondary'} } )}}
+    {{ form_end(deleteForm) }}
+{% endblock %}
