@@ -1,0 +1,7 @@
+{% extends '_connectedNavBar.html.twig' %}
+
+{% block title %}Page création de TER{% endblock %}
+
+{% block body %}
+    {{ include('ter/_formTER.html.twig', {label_submit: "Créer", form: form}, with_context = false) }}
+{% endblock %}

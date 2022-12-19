@@ -4,18 +4,31 @@
 
 {% block body %}
     {% for TER in lstTER %}
-        {% if app.user.degree == TER.degree %}
-        <h1>{{ TER.degree }}</h1>
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ TER.title }}</h5>
+        {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+            {% if app.user.degree == TER.degree %}
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ TER.title }}</h5>
 
-                    <p class="card-text">{{ TER.teacher.lastname }} {{ TER.description }}</p>
-                    <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                            <p class="card-text">{{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
+                            <p class="card-text">{{ TER.description }}</p>
+                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ TER.title }}</h5>
+                        <p class="card-text">{{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
+                        <p class="card-text">{{ TER.description }}</p>
+                        <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endif %}
     {% endfor %}
 {% endblock %}
