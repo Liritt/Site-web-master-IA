@@ -4,10 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Controller\InternshipController;
 use App\Entity\Candidacy;
+use App\Entity\CandidacyTER;
 use App\Entity\Company;
 use App\Entity\Internship;
 use App\Entity\Student;
 use App\Entity\Teacher;
+use App\Entity\TER;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -42,5 +44,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Entreprises', 'fas fa-list', Company::class);
         yield MenuItem::linkToCrud('Stages', 'fas fa-list', Internship::class);
         yield MenuItem::linkToCrud('Candidatures de stage', 'fas fa-list', Candidacy::class);
+        yield MenuItem::linkToCrud('TER', 'fas fa-list', TER::class);
+        yield MenuItem::linkToCrud('Candidatures de TER', 'fas fa-list', CandidacyTER::class);
     }
 }
