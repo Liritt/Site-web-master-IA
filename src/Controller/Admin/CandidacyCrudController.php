@@ -7,8 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class CandidacyCrudController extends AbstractCrudController
 {
@@ -23,8 +23,28 @@ class CandidacyCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm()
                 ->hideOnIndex(),
-            AssociationField::new('student'),
-            AssociationField::new('internship'),
+            AssociationField::new('student')
+                ->setLabel('Candidat')
+                ->setFormTypeOption('choice_label', 'id')
+                ->formatValue(
+                    function ($value, $entity) {
+                        return $entity->getStudent()->getFirstName().' '.$entity->getStudent()->getLastname();
+                    }),
+            AssociationField::new('internship')
+                ->setLabel('Stage candidaté')
+                ->setFormTypeOption('choice_label', 'id')
+                ->formatValue(
+                    function ($value, $entity) {
+                        if (empty($entity?->getIntership())) {
+                            return 'ohoh';
+                        } else {
+                            return 'Stage n°'.$entity?->getInternship()?->getId()
+                                .' Entreprise: '
+                                .$entity->getInternship()?->getCompany()?->getCompanyName()
+                                .' Sujet: '
+                                .substr($entity->getInternship()?->getSubject(), 0, 50).'...';
+                        }
+                    }),
             ];
     }
 
@@ -39,6 +59,6 @@ class CandidacyCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('candidature')
-            ->setPageTitle('index', 'Candidatures');
+            ->setPageTitle('index', 'Candidatures de stage');
     }
 }

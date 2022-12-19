@@ -37,9 +37,10 @@ class InternshipCrudController extends AbstractCrudController
             AssociationField::new('company')
                 ->setLabel('Entreprise')
                 ->setFormTypeOption('choice_label', 'CompanyName')
-                ->formatValue(function ($value, $entity) {
-                    return $entity->getCompany()->getCompanyName();
-                }),
+                ->formatValue(
+                    function ($value, $entity) {
+                        return $entity->getCompany()->getCompanyName();
+                    }),
             TextareaField::new('subject')
                 ->setLabel('Sujet')
                 ->hideOnIndex(),
