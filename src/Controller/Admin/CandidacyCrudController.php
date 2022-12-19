@@ -7,7 +7,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 class CandidacyCrudController extends AbstractCrudController
@@ -35,14 +34,16 @@ class CandidacyCrudController extends AbstractCrudController
                 ->setFormTypeOption('choice_label', 'id')
                 ->formatValue(
                     function ($value, $entity) {
-                        if (empty($entity?->getIntership())) {
-                            return 'ohoh';
-                        } else {
+                        if (empty($entity?->getInternship())) {
+                            return 'pas d\'informations ...';
+                        } elseif (count($entity->getInternship()?->getCompany()->getInternships()) > 1) {
                             return 'Stage n°'.$entity?->getInternship()?->getId()
                                 .' Entreprise: '
                                 .$entity->getInternship()?->getCompany()?->getCompanyName()
                                 .' Sujet: '
                                 .substr($entity->getInternship()?->getSubject(), 0, 50).'...';
+                        } else {
+                            return $entity?->getInternship()?->getCompany()?->getCompanyName();
                         }
                     }),
             ];
