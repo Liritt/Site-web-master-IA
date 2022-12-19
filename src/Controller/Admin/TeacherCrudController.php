@@ -88,7 +88,7 @@ class TeacherCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Prof')
+            ->setEntityLabelInSingular('prof')
             ->setPageTitle('index', 'Enseignants');
     }
 }

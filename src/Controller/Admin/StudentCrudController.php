@@ -101,7 +101,7 @@ class StudentCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Étudiant')
+            ->setEntityLabelInSingular('étudiant')
             ->setPageTitle('index', 'Étudiants');
     }
 }
