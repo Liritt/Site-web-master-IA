@@ -39,6 +39,16 @@ class TERRepository extends ServiceEntityRepository
         }
     }
 
+    public function search(string $researchText = '')
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.title LIKE :searchText')
+            ->orderBy('t.title')
+            ->setParameter('searchText', '%'.$researchText.'%')
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return TER[] Returns an array of TER objects
 //     */
