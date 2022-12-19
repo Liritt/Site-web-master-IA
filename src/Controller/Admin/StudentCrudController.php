@@ -5,8 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Student;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -54,7 +54,17 @@ class StudentCrudController extends AbstractCrudController
             DateField::new('BirthDate')
                 ->setLabel('Date de Naissance'),
             IntegerField::new('degree')
-            ->setLabel('Niveau'),
+            ->setLabel('Niveau')
+                ->formatValue(function ($value, $entity) {
+                    $lvl = $entity->getDegree();
+                    if (1 == $lvl) {
+                        return '<span class="material-icons">looks_one</span>';
+                    } elseif (2 == $lvl) {
+                        return '<span class="material-icons">looks_two</span>';
+                    } else {
+                        return '';
+                    }
+                }),
             TextField::new('password')
                 ->setFormType(PasswordType::class)
                 ->setFormTypeOptions([
@@ -85,5 +95,12 @@ class StudentCrudController extends AbstractCrudController
         return $assets
             ->addCssFile('https://fonts.googleapis.com/icon?family=Material+Icons')
         ;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Étudiant')
+            ->setPageTitle('index', 'Étudiants');
     }
 }
