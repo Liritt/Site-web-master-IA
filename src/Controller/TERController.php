@@ -6,8 +6,8 @@ use App\Entity\TER;
 use App\Form\TERType;
 use App\Repository\TERRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,6 +71,29 @@ class TERController extends AbstractController
             'ter' => $TER,
             'id' => $id,
         ]);
+    }
 
+    #[Route('/ter/{id}/delete', name: 'app_ter_delete')]
+    public function deleteTER(Request $request, TER $TER, TERRepository $service): Response
+    {
+        $form = $this->createForm(TERType::class, $TER, ['disabled' => true]);
+
+        $deleteForm = $this->createFormBuilder($TER)
+            ->add('delete', SubmitType::class, ['label' => 'Supprimer', 'attr' => ['class' => 'btn btn-primary']])
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
+            ->getForm();
+
+        $deleteForm->handleRequest($request);
+        if ($deleteForm->getClickedButton() && 'delete' === $deleteForm->getClickedButton()->getName()) {
+            $service->remove($TER, true);
+
+            return $this->redirectToRoute('app_ter');
+        }
+
+        if ($deleteForm->getClickedButton() && 'cancel' === $deleteForm->getClickedButton()->getName()) {
+            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+        }
+
+        return $this->renderForm('ter/deleteTER.html.twig', ['ter' => $TER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 }
