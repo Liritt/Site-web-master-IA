@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TER;
 use App\Form\TERType;
 use App\Repository\TERRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -49,5 +50,27 @@ class TERController extends AbstractController
         return $this->renderForm('ter/createTER.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/ter/{id}/update', name: 'app_ter_update')]
+    public function updateTER(ManagerRegistry $doctrine, Request $request, TER $TER, int $id): RedirectResponse|Response
+    {
+        $form = $this->createForm(TERType::class, $TER);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_ter_show', ['id' => $id]);
+        }
+
+        return $this->renderForm('ter/updateTER.html.twig', [
+            'form' => $form,
+            'ter' => $TER,
+            'id' => $id,
+        ]);
+
     }
 }
