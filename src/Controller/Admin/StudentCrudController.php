@@ -45,7 +45,8 @@ class StudentCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-                ->hideOnForm(),
+                ->hideOnForm()
+                ->hideOnIndex(),
             TextField::new('lastname')
                 ->setLabel('Nom'),
             TextField::new('firstname')
