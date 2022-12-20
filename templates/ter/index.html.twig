@@ -3,6 +3,7 @@
 {% block title %}Page TER{% endblock %}
 
 {% block body %}
+    <div class="container margin-top-10">
     {% for TER in lstTER %}
         {% if app.user.roles[0] == 'ROLE_STUDENT' %}
             {% if app.user.degree == TER.degree %}
@@ -31,4 +32,5 @@
             </div>
         {% endif %}
     {% endfor %}
+    </div>
 {% endblock %}

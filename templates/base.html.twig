@@ -19,7 +19,7 @@
 </head>
 <body>
 {% if app.request.get('_route') != 'app_login' %}
-    {% if app.request.get('_route') == 'app_lobby_index' %}
+    {% if app.request.get('_route') == 'app_lobby_index' or app.request.get('_route') == 'app_internship' or app.request.get('_route') == 'app_ter' %}
         <header class="fixed-top">
     {% else %}
         <header>
