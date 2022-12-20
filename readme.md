@@ -33,14 +33,13 @@ ____
   - [**Bootstrap**](https://getbootstrap.com/)
 - <abbr title="Syntactically Awesome Style Sheet">**SCSS**</abbr>
 - **Javascript**
-  - [**React**](https://fr.reactjs.org/)
 ___
 ## Installation / Configuration
 ___
 
 ### Installation Symfony
 
-Il faut d'abord installer l'éxecutable "symfony" avec la commande :
+Il faut d'abord installer l'executable "symfony" avec la commande :
 
 ```
 wget https://get.symfony.com/cli/installer -O - | bash
@@ -110,7 +109,7 @@ Le code suit la recommandation [PSR-12](https://www.php-fig.org/psr/psr-12/) :
 
 Pour ajouter une traduction (en anglais):
  - ajouter les balises twig `{% trans %}...{% endtrans %}` 
-sur du texte uniquement (pas de balise html) dans les "template" à traduire
+sur du texte uniquement (pas de balise html) dans les vues à traduire
 
  - lancez la commande 
 ```bash
