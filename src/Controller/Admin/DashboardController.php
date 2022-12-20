@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\InternshipController;
 use App\Entity\Candidacy;
 use App\Entity\CandidacyTER;
 use App\Entity\Company;
@@ -11,6 +10,11 @@ use App\Entity\Student;
 use App\Entity\Teacher;
 use App\Entity\TER;
 use App\Entity\User;
+use App\Repository\AdministratorRepository;
+use App\Repository\CompanyRepository;
+use App\Repository\StudentRepository;
+use App\Repository\TeacherRepository;
+use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -23,10 +27,49 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DashboardController extends AbstractDashboardController
 {
+    protected UserRepository $userRepository;
+    protected StudentRepository $stuRepository;
+    protected TeacherRepository $profRepository;
+    protected CompanyRepository $compRepository;
+    protected AdministratorRepository $adminRepository;
+
+    public function __construct(
+        UserRepository $userRepository,
+        StudentRepository $stuRepository,
+        TeacherRepository $profRepository,
+        CompanyRepository $compRepository,
+        AdministratorRepository $adminRepository
+    ) {
+        $this->userRepository = $userRepository;
+        $this->adminRepository = $adminRepository;
+        $this->compRepository = $compRepository;
+        $this->profRepository = $profRepository;
+        $this->stuRepository = $stuRepository;
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig');
+        $users = $this->userRepository->findAll();
+        $nbUser = count($users);
+        $stus = $this->stuRepository->findAll();
+        $nbStu = count($stus);
+        $profs = $this->profRepository->findAll();
+        $nbProf = count($profs);
+        $comps = $this->compRepository->findAll();
+        $nbComp = count($comps);
+        $admins = $this->adminRepository->findAll();
+        $nbAdmin = count($admins);
+
+        return $this->render('admin/index.html.twig',
+            [
+                'nbUser' => $nbUser,
+                'nbAdmin' => $nbAdmin,
+                'nbStudent' => $nbStu,
+                'nbCompany' => $nbComp,
+                'nbTeacher' => $nbProf,
+            ]
+        );
     }
 
     public function configureDashboard(): Dashboard
