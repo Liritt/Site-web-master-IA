@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Security('is_authenticated()', message: 'Vous devez être connecté pour accéder à cette page.')]
@@ -40,7 +41,6 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/update', name: 'app_internship_update', requirements: ['id' => '\d+'])]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function update(Request $request, ManagerRegistry $doctrine, Internship $internship): Response
     {
         $entityManager = $doctrine->getManager();
@@ -57,7 +57,6 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/create', name: 'app_internship_create')]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function create(Request $request, InternshipRepository $service): Response
     {
         $internship = new Internship();
@@ -75,7 +74,6 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/delete', name: 'app_internship_delete', requirements: ['id' => '\d+'])]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
         $form = $this->createFormBuilder($internship)
@@ -98,7 +96,6 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_STUDENT"])', message: 'Vous devez être connecté en tant qu\'étudiant pour accéder à cette page.')]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
         $candidacy = new Candidacy();
@@ -122,7 +119,6 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/candidacies', name: 'app_internship_candidacies', requirements: ['id' => '\d+'])]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function candidacies(CandidacyRepository $repository, Internship $internship): Response
     {
         $candidacies = $repository->search($internship->getId());
@@ -132,7 +128,6 @@ class InternshipController extends AbstractController
 
     #[Route('/internship/{id}/candidacies/{idCandidacy}/refuse', name: 'app_internship_candidacy_refuse', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
     #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function refuseCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship): Response
     {
         $service->remove($candidacy, true);
@@ -142,7 +137,6 @@ class InternshipController extends AbstractController
 
     #[Route('/internship/{id}/candidacies/{idCandidacy}/accept', name: 'app_internship_candidacy_accept', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
     #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function acceptCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship, StudentRepository $studentService): Response
     {
         $service->remove($candidacy, true);
@@ -152,4 +146,24 @@ class InternshipController extends AbstractController
 
         return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
     }
+
+    #[Route('/internship/{id}/candidacies/{idCandidacy}/download/{type}', name: 'app_internship_candidacy_download', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
+    #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    public function downloadCandidacy(Candidacy $candidacy, Internship $internship, string $type): Response
+    {
+        if ('cv' === $type) {
+            $file = $candidacy->getCv();
+            $filename = $candidacy->getStudent()->getFirstname().'_'.$candidacy->getStudent()->getLastname().'_CV.pdf';
+        } elseif ('coverletter' === $type) {
+            $file = $candidacy->getCoverLetter();
+            $filename = $candidacy->getStudent()->getFirstname().'_'.$candidacy->getStudent()->getLastname().'_Lettre_de_motivation.pdf';
+        } else {
+            throw new NotFoundHttpException('Le fichier demandé n\'existe pas.');
+        }
+        $response = new Response(stream_get_contents($file));
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'"');
+        return $response;
+    }
+
 }
