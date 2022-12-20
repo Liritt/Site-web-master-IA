@@ -65,7 +65,7 @@ body {
         text-decoration: none;
       }
 
-      .accueil-link:hover, .active{
+      .accueil-link:hover{
         background-color: #378E64;
       }
     }
@@ -138,5 +138,9 @@ body {
 
   .margin-top-10{
     margin-top: 10rem;
+  }
+
+  .test{
+    background-color: #378E64;
   }
 }

@@ -3,7 +3,7 @@
 {% block header %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') == true %}
     <div class="connected-nav-bar">
-        <a class="accueil-link active" href="{{ path('app_lobby_index') }}">Accueil</a>
+        <a class="accueil-link test" href="{{ path('app_lobby_index') }}">Accueil</a>
         <a class="accueil-link" href="#">Agenda</a>
         <a class="accueil-link" href="{{ path('app_internship') }}">Stage</a>
         <a class="accueil-link" href="{{ path('app_ter') }}">TER</a>

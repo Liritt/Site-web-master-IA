@@ -57,7 +57,7 @@ body header .connected-nav-bar .accueil-link {
   border: 1px solid #EEEEEE;
   text-decoration: none;
 }
-body header .connected-nav-bar .accueil-link:hover, body header .connected-nav-bar .active {
+body header .connected-nav-bar .accueil-link:hover {
   background-color: #378E64;
 }
 body .color-blue {
@@ -116,6 +116,9 @@ body .btn-general:hover {
 }
 body .margin-top-10 {
   margin-top: 10rem;
+}
+body .test {
+  background-color: #378E64;
 }
 
 /*# sourceMappingURL=lobby.css.map */
