@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Candidacy;
 use App\Entity\Internship;
-use App\Entity\Student;
 use App\Form\CandidacyType;
 use App\Form\InternshipType;
 use App\Repository\CandidacyRepository;
@@ -41,6 +40,7 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/update', name: 'app_internship_update', requirements: ['id' => '\d+'])]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function update(Request $request, ManagerRegistry $doctrine, Internship $internship): Response
     {
         $entityManager = $doctrine->getManager();
@@ -57,6 +57,7 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/create', name: 'app_internship_create')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function create(Request $request, InternshipRepository $service): Response
     {
         $internship = new Internship();
@@ -74,6 +75,7 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/delete', name: 'app_internship_delete', requirements: ['id' => '\d+'])]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function delete(Request $request, Internship $internship, InternshipRepository $service): Response
     {
         $form = $this->createFormBuilder($internship)
@@ -96,7 +98,7 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
-    #[Security('is_granted("ROLE_STUDENT")')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_STUDENT"])', message: 'Vous devez être connecté en tant qu\'étudiant pour accéder à cette page.')]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
         $candidacy = new Candidacy();
@@ -120,6 +122,7 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/candidacies', name: 'app_internship_candidacies', requirements: ['id' => '\d+'])]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function candidacies(CandidacyRepository $repository, Internship $internship): Response
     {
         $candidacies = $repository->search($internship->getId());
@@ -129,6 +132,7 @@ class InternshipController extends AbstractController
 
     #[Route('/internship/{id}/candidacies/{idCandidacy}/refuse', name: 'app_internship_candidacy_refuse', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
     #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function refuseCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship): Response
     {
         $service->remove($candidacy, true);
@@ -138,6 +142,7 @@ class InternshipController extends AbstractController
 
     #[Route('/internship/{id}/candidacies/{idCandidacy}/accept', name: 'app_internship_candidacy_accept', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
     #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_COMPANY"])', message: 'Vous devez être connecté en tant qu\'entreprise pour accéder à cette page.')]
     public function acceptCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship, StudentRepository $studentService): Response
     {
         $service->remove($candidacy, true);
