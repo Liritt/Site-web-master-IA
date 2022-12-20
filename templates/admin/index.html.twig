@@ -1,1 +1,61 @@
-{% extends '@EasyAdmin/page/content.html.twig' %}
+{% extends 'bundles/EasyAdminBundle/page/content.html.twig' %}
+
+
+{% block content_title %}
+    <h1 class="text-center blue2">ADMIN</h1>
+{% endblock %}
+
+{% block page_content %}
+    <style>
+    .bg-blue2{
+        background-color: #36818d;
+    }
+    .blue2{
+        color: #36818d;
+    }
+    .border-blue{
+        border-color: #36818d;
+        border-style: solid;
+    }
+    </style>
+    <div class="d-flex flex-wrap justify-content-center">
+        <a href="https://localhost:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&menuIndex=1&submenuIndex=-1">
+        <div class="card text-center border-5 border-blue m-3" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-blue2"><h5 class="card-title text-white">Nombre d'utilisateurs</h5></li>
+                <li class="list-group-item blue2 fs-1">{{ nbUser }}</li>
+            </ul>
+        </div>
+        </a>
+        <a href="https://localhost:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCompanyCrudController&menuIndex=4&submenuIndex=-1">
+        <div class="card text-center border-5 border-blue m-3" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-blue2"><h5 class="card-title text-white">Nombre enterprises</h5></li>
+                <li class="list-group-item blue2 fs-1">{{ nbCompany }}</li>
+            </ul>
+        </div>
+        </a>
+        <a href="https://localhost:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CTeacherCrudController&menuIndex=3&submenuIndex=-1">
+        <div class="card text-center border-5 border-blue m-3" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-blue2"><h5 class="card-title text-white">Nombre d'enseignants</h5></li>
+                <li class="list-group-item blue2 fs-1">{{ nbTeacher }}</li>
+            </ul>
+        </div>
+        </a>
+        <a href="https://localhost:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CStudentCrudController&menuIndex=2&submenuIndex=-1">
+        <div class="card text-center border-5 border-blue m-3" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-blue2"><h5 class="card-title text-white">Nombre d'étudiants</h5></li>
+                <li class="list-group-item blue2 fs-1">{{ nbStudent }}</li>
+            </ul>
+        </div>
+        </a>
+        <div class="card text-center border-5 border-blue m-3" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-blue2"><h5 class="card-title text-white">Nombre d'administrateurs</h5></li>
+                <li class="list-group-item blue2 fs-1">{{ nbAdmin }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -2,19 +2,20 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\Student;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserCrudController extends AbstractCrudController
+class StudentCrudController extends AbstractCrudController
 {
     private UserPasswordHasherInterface $passwordHasher;
 
@@ -37,15 +38,34 @@ class UserCrudController extends AbstractCrudController
 
     public static function getEntityFqcn(): string
     {
-        return User::class;
+        return Student::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')
+                ->hideOnForm()
                 ->hideOnIndex(),
-            EmailField::new('email'),
+            TextField::new('lastname')
+                ->setLabel('Nom'),
+            TextField::new('firstname')
+                ->setLabel('Prénom'),
+            EmailField::new('Email'),
+            DateField::new('BirthDate')
+                ->setLabel('Date de Naissance'),
+            IntegerField::new('degree')
+            ->setLabel('Niveau')
+                ->formatValue(function ($value, $entity) {
+                    $lvl = $entity->getDegree();
+                    if (1 == $lvl) {
+                        return '<span class="material-icons">looks_one</span>';
+                    } elseif (2 == $lvl) {
+                        return '<span class="material-icons">looks_two</span>';
+                    } else {
+                        return '';
+                    }
+                }),
             TextField::new('password')
                 ->setFormType(PasswordType::class)
                 ->setFormTypeOptions([
@@ -53,19 +73,8 @@ class UserCrudController extends AbstractCrudController
                     'required' => false,
                     'attr' => ['autocomplete' => 'new-password'],
                 ])
+                ->setLabel('Mot de passe')
                 ->hideOnIndex(),
-            ArrayField::new('roles')
-                ->formatValue(function ($value, $entity) {
-                    $roles = $entity->getRoles();
-                    if (in_array('ROLE_ADMIN', $roles)) {
-                        return '<span class="material-icons">manage_accounts</span>';
-                    } elseif (in_array('ROLE_USER', $roles)) {
-                        return '<span class="material-icons">person</span>';
-                    } else {
-                        return '';
-                    }
-                })
-            ->setLabel('Role'),
         ];
     }
 
@@ -75,7 +84,7 @@ class UserCrudController extends AbstractCrudController
             ->getContext()
             ->getRequest()
             ->request
-            ->get('User')['password'];
+            ->get('Student')['password'];
 
         if (!empty($password)) {
             $entityInstance->setPassword($this->passwordHasher->hashPassword($entityInstance, $password));
@@ -92,7 +101,7 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Utilisateur')
-            ->setPageTitle('index', 'Utilisateurs');
+            ->setEntityLabelInSingular('étudiant')
+            ->setPageTitle('index', 'Étudiants');
     }
 }
