@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\CandidacyTER;
 use App\Entity\TER;
+use App\Form\CandidacyTERType;
 use App\Form\TERType;
+use App\Repository\CandidacyTERRepository;
 use App\Repository\TERRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -95,5 +98,24 @@ class TERController extends AbstractController
         }
 
         return $this->renderForm('ter/deleteTER.html.twig', ['ter' => $TER, 'form' => $form, 'deleteForm' => $deleteForm]);
+    }
+
+    #[Route('/ter/create/candidacy', name: 'app_ter_create_candidacy')]
+    public function createCandidacyTER(CandidacyTERRepository $candidacyTERRepository, Request $request): RedirectResponse|Response
+    {
+        $candidacyTER = new CandidacyTER();
+
+        $form = $this->createForm(CandidacyTERType::class, $candidacyTER);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidacyTERRepository->save($candidacyTER, true);
+
+            return $this->redirectToRoute('app_ter_show', ['id' => $candidacyTER->getId()]);
+        }
+
+        return $this->renderForm('ter/createCandidacyTER.html.twig', [
+            'form' => $form,
+        ]);
     }
 }

@@ -1,0 +1,8 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{{ form_start(form) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.student) }}
+    {{ form_row(form.TER) }}
+<input type="submit" value="{{label_submit}}" class="btn btn-primary" />
+{{ form_end(form) }}
