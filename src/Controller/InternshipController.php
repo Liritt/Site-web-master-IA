@@ -117,11 +117,20 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
     }
 
-    #[Route('/internship/{id}/candidacy', name: 'app_internship_showcandidacy', requirements: ['id' => '\d+'])]
-    public function showCandidacy(CandidacyRepository $repository, Internship $internship): Response
+    #[Route('/internship/{id}/candidacies', name: 'app_internship_candidacies', requirements: ['id' => '\d+'])]
+    public function candidacies(CandidacyRepository $repository, Internship $internship): Response
     {
         $candidacies = $repository->search($internship->getId());
 
-        return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies]);
+        return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies, 'internship' => $internship]);
+    }
+
+    #[Route('/internship/{id}/candidacies/{idCandidacy}/refuse', name: 'app_internship_candidacy_refuse', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
+    #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    public function refuseCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship): Response
+    {
+        $service->remove($candidacy, true);
+
+        return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
     }
 }

@@ -26,7 +26,7 @@
                 <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
                 <td>
                     <a class="btn btn-outline-primary" href="#">Accepter</a>
-                    <a class="btn btn-outline-danger" href="#">Refuser</a>
+                    <a class="btn btn-outline-danger" href="{{ path('app_internship_candidacy_refuse', {id: internship.id, idCandidacy: candidacy.id} ) }}">Refuser</a>
                 </td>
             </tr>
         {% endfor %}
