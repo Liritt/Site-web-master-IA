@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Candidacy;
 use App\Entity\Internship;
+use App\Entity\Student;
 use App\Form\CandidacyType;
 use App\Form\InternshipType;
 use App\Repository\CandidacyRepository;
 use App\Repository\InternshipRepository;
+use App\Repository\StudentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -130,6 +132,18 @@ class InternshipController extends AbstractController
     public function refuseCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship): Response
     {
         $service->remove($candidacy, true);
+
+        return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+    }
+
+    #[Route('/internship/{id}/candidacies/{idCandidacy}/accept', name: 'app_internship_candidacy_accept', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
+    #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    public function acceptCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship, StudentRepository $studentService): Response
+    {
+        $service->remove($candidacy, true);
+        $student = $candidacy->getStudent();
+        $student->setInternship($internship);
+        $studentService->save($student, true);
 
         return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
     }
