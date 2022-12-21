@@ -39,6 +39,14 @@ class CandidacyTERRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchCandidacies()
+    {
+        return $this->createQueryBuilder('ct')
+            ->orderBy('ct.date')
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return CandidacyTER[] Returns an array of CandidacyTER objects
 //     */

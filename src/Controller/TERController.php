@@ -23,12 +23,14 @@ class TERController extends AbstractController
      * Affiche la liste des TER.
      */
     #[Route('/ter', name: 'app_ter')]
-    public function index(TERRepository $TERRepository): Response
+    public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository): Response
     {
         $lstTER = $TERRepository->search();
+        $lstCandidacyTER = $candidacyTERRepository->searchCandidacies();
 
         return $this->render('ter/index.html.twig', [
             'lstTER' => $lstTER,
+            'lstCandidacyTER' => $lstCandidacyTER,
         ]);
     }
 
