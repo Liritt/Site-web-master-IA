@@ -28,7 +28,11 @@ class TERController extends AbstractController
     public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository): Response
     {
         $lstTER = $TERRepository->search();
-        $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
+        if ('ROLE_STUDENT' == $this->getUser()->getRoles()[0]) {
+            $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
+        } else {
+            $lstCandidacyTER = $candidacyTERRepository->searchCandidacies();
+        }
 
         return $this->render('ter/index.html.twig', [
             'lstTER' => $lstTER,
