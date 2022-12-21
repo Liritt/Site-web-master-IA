@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\CandidacyTER;
 use App\Entity\TER;
-use App\Form\CandidacyTERType;
 use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
 use App\Repository\TERRepository;
@@ -48,6 +47,7 @@ class TERController extends AbstractController
      * Formulaire de création d'un nouveau TER.
      */
     #[Route('/ter/create', name: 'app_ter_create')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_TEACHER"])', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function createTER(TERRepository $TERRepository, Request $request): RedirectResponse|Response
     {
         $ter = new TER();
@@ -70,6 +70,7 @@ class TERController extends AbstractController
      * Formulaire de modification d'un TER existant.
      */
     #[Route('/ter/{id}/update', name: 'app_ter_update')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_TEACHER"])', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function updateTER(ManagerRegistry $doctrine, Request $request, TER $TER, int $id): RedirectResponse|Response
     {
         $form = $this->createForm(TERType::class, $TER);
@@ -94,6 +95,7 @@ class TERController extends AbstractController
      * Formulaire de deletion d'un TER.
      */
     #[Route('/ter/{id}/delete', name: 'app_ter_delete')]
+    #[Security('is_granted(["ROLE_ADMIN", "ROLE_TEACHER"])', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function deleteTER(Request $request, TER $TER, TERRepository $service): Response
     {
         $form = $this->createForm(TERType::class, $TER, ['disabled' => true]);
@@ -117,24 +119,33 @@ class TERController extends AbstractController
         return $this->renderForm('ter/deleteTER.html.twig', ['ter' => $TER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 
-    #[Route('/ter/create/candidacy', name: 'app_ter_create_candidacy')]
-    public function createCandidacyTER(CandidacyTERRepository $candidacyTERRepository, Request $request): RedirectResponse|Response
+    #[Route('/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
+    public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER): RedirectResponse|Response
     {
         $candidacyTER = new CandidacyTER();
-        $form = $this->createForm(CandidacyTERType::class, $candidacyTER);
+        $form = $this->createFormBuilder($candidacyTER)
+            ->add('add', SubmitType::class, ['label' => 'Créer une candidature', 'attr' => ['class' => 'btn btn-primary']])
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
+            ->getForm();
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->getClickedButton() && 'add' === $form->getClickedButton()->getName()) {
             $date = new DateTimeImmutable('now');
             $candidacyTER->setDate($date);
             $candidacyTER->setStudent($this->getUser());
+            $candidacyTER->setTER($TER);
             $candidacyTERRepository->save($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter_show', ['id' => $candidacyTER->getId()]);
         }
 
+        if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
+            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+        }
+
         return $this->renderForm('ter/createCandidacyTER.html.twig', [
-            'form' => $form,
+        'form' => $form,
+        'id' => $TER->getId(),
         ]);
     }
 }
