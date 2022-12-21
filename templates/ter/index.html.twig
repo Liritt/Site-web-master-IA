@@ -33,18 +33,20 @@
         {% endif %}
     {% endfor %}
     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
-        <h1>Liste de vos candidatures</h1>
-        {% for candidacy in lstCandidacyTER %}
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ candidacy.TER.title }}</h5>
-                        <p class="card-text">Professeur référent : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
-                        <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                        <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
+        {% if lstCandidacyTER|length != 0 %}
+            <h1>Liste de vos candidatures</h1>
+            {% for candidacy in lstCandidacyTER %}
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ candidacy.TER.title }}</h5>
+                            <p class="card-text">Professeur référent : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
+                            <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                            <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     {% endif %}
 {% endblock %}
