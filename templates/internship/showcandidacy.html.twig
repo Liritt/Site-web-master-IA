@@ -22,11 +22,11 @@
                 <td>{{ candidacy.student.lastname }}</td>
                 <td>{{ candidacy.student.firstname }}</td>
                 <td>{{ candidacy.student.email }}</td>
-                <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
-                <td><a class="btn btn-outline-success" href="#">Télécharger</a></td>
+                <td><a class="btn btn-outline-success" href="{{ path('app_internship_candidacy_download', {id: internship.id, idCandidacy: candidacy.id, type: "cv"} ) }}">Télécharger</a></td>
+                <td><a class="btn btn-outline-success" href="{{ path('app_internship_candidacy_download', {id: internship.id, idCandidacy: candidacy.id, type: "coverletter"} ) }}">Télécharger</a></td>
                 <td>
-                    <a class="btn btn-outline-primary" href="#">Accepter</a>
-                    <a class="btn btn-outline-danger" href="#">Refuser</a>
+                    <a class="btn btn-outline-primary" href="{{ path('app_internship_candidacy_accept', {id: internship.id, idCandidacy: candidacy.id} ) }}">Accepter</a>
+                    <a class="btn btn-outline-danger" href="{{ path('app_internship_candidacy_refuse', {id: internship.id, idCandidacy: candidacy.id} ) }}">Refuser</a>
                 </td>
             </tr>
         {% endfor %}
