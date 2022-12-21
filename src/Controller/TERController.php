@@ -12,7 +12,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Monolog\DateTimeImmutable;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +50,7 @@ class TERController extends AbstractController
      * Formulaire de création d'un nouveau TER.
      */
     #[Route('/ter/create', name: 'app_ter_create')]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_TEACHER"])', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
+    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_TEACHER")', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function createTER(TERRepository $TERRepository, Request $request): RedirectResponse|Response
     {
         $ter = new TER();
@@ -74,7 +73,7 @@ class TERController extends AbstractController
      * Formulaire de modification d'un TER existant.
      */
     #[Route('/ter/{id}/update', name: 'app_ter_update')]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_TEACHER"])', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
+    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_TEACHER")', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function updateTER(ManagerRegistry $doctrine, Request $request, TER $TER, int $id): RedirectResponse|Response
     {
         $form = $this->createForm(TERType::class, $TER);
@@ -99,7 +98,7 @@ class TERController extends AbstractController
      * Formulaire de deletion d'un TER.
      */
     #[Route('/ter/{id}/delete', name: 'app_ter_delete')]
-    #[Security('is_granted(["ROLE_ADMIN", "ROLE_TEACHER"])', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
+    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_TEACHER")', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function deleteTER(Request $request, TER $TER, TERRepository $service): Response
     {
         $form = $this->createForm(TERType::class, $TER, ['disabled' => true]);
@@ -123,14 +122,11 @@ class TERController extends AbstractController
         return $this->renderForm('ter/deleteTER.html.twig', ['ter' => $TER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 
-    /** Créé une candidature pour un TER
-     * @param CandidacyTERRepository $candidacyTERRepository
-     * @param Request $request
-     * @param TER $TER
-     * @return RedirectResponse|Response
+    /** Créé une candidature pour un TER.
      * @throws CandidacyException
      */
     #[Route('/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
+    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
     public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER): RedirectResponse|Response
     {
         $candidacyTER = new CandidacyTER();
