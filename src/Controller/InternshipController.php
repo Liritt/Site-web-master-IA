@@ -8,6 +8,7 @@ use App\Form\CandidacyType;
 use App\Form\InternshipType;
 use App\Repository\CandidacyRepository;
 use App\Repository\InternshipRepository;
+use App\Repository\StudentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -15,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Security('is_authenticated()', message: 'Vous devez être connecté pour accéder à cette page.')]
@@ -94,7 +96,6 @@ class InternshipController extends AbstractController
     }
 
     #[Route('/internship/{id}/tocandidate', name: 'app_internship_tocandidate', requirements: ['id' => '\d+'])]
-    #[Security('is_granted("ROLE_STUDENT")')]
     public function toCandidate(Request $request, Internship $internship, CandidacyRepository $service): Response
     {
         $candidacy = new Candidacy();
@@ -117,11 +118,52 @@ class InternshipController extends AbstractController
         return $this->renderForm('internship/tocandidate.html.twig', ['internship' => $internship, 'form' => $form]);
     }
 
-    #[Route('/internship/{id}/candidacy', name: 'app_internship_showcandidacy', requirements: ['id' => '\d+'])]
-    public function showCandidacy(CandidacyRepository $repository, Internship $internship): Response
+    #[Route('/internship/{id}/candidacies', name: 'app_internship_candidacies', requirements: ['id' => '\d+'])]
+    public function candidacies(CandidacyRepository $repository, Internship $internship): Response
     {
         $candidacies = $repository->search($internship->getId());
 
-        return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies]);
+        return $this->render('internship/showcandidacy.html.twig', ['candidacies' => $candidacies, 'internship' => $internship]);
     }
+
+    #[Route('/internship/{id}/candidacies/{idCandidacy}/refuse', name: 'app_internship_candidacy_refuse', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
+    #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    public function refuseCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship): Response
+    {
+        $service->remove($candidacy, true);
+
+        return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+    }
+
+    #[Route('/internship/{id}/candidacies/{idCandidacy}/accept', name: 'app_internship_candidacy_accept', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
+    #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    public function acceptCandidacy(Candidacy $candidacy, CandidacyRepository $service, Internship $internship, StudentRepository $studentService): Response
+    {
+        $service->remove($candidacy, true);
+        $student = $candidacy->getStudent();
+        $student->setInternship($internship);
+        $studentService->save($student, true);
+
+        return $this->redirectToRoute('app_internship_show', ['id' => $internship->getId()]);
+    }
+
+    #[Route('/internship/{id}/candidacies/{idCandidacy}/download/{type}', name: 'app_internship_candidacy_download', requirements: ['id' => '\d+', 'idcandidacy' => '\d+'])]
+    #[Entity('candidacy', expr: 'repository.findwithId(idCandidacy)')]
+    public function downloadCandidacy(Candidacy $candidacy, Internship $internship, string $type): Response
+    {
+        if ('cv' === $type) {
+            $file = $candidacy->getCv();
+            $filename = $candidacy->getStudent()->getFirstname().'_'.$candidacy->getStudent()->getLastname().'_CV.pdf';
+        } elseif ('coverletter' === $type) {
+            $file = $candidacy->getCoverLetter();
+            $filename = $candidacy->getStudent()->getFirstname().'_'.$candidacy->getStudent()->getLastname().'_Lettre_de_motivation.pdf';
+        } else {
+            throw new NotFoundHttpException('Le fichier demandé n\'existe pas.');
+        }
+        $response = new Response(stream_get_contents($file));
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'"');
+        return $response;
+    }
+
 }
