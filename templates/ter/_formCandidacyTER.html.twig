@@ -1,8 +1,9 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {{ form_start(form) }}
-    {{ form_row(form.date) }}
-    {{ form_row(form.student) }}
+    {% if app.user.roles[0] != 'ROLE_STUDENT' %}
+        {{ form_row(form.student) }}
+    {% endif %}
     {{ form_row(form.TER) }}
 <input type="submit" value="{{label_submit}}" class="btn btn-primary" />
 {{ form_end(form) }}

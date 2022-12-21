@@ -9,6 +9,8 @@ use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
 use App\Repository\TERRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Monolog\DateTimeImmutable;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,6 +20,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TERController extends AbstractController
 {
+    /**
+     * Affiche la liste des TER.
+     */
     #[Route('/ter', name: 'app_ter')]
     public function index(TERRepository $TERRepository): Response
     {
@@ -28,6 +33,9 @@ class TERController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche les informations d'un TER.
+     */
     #[Route('/ter/{id}', name: 'app_ter_show', requirements: ['id' => '\d+'])]
     public function show(TER $TER): Response
     {
@@ -36,6 +44,9 @@ class TERController extends AbstractController
         ]);
     }
 
+    /**
+     * Formulaire de création d'un nouveau TER.
+     */
     #[Route('/ter/create', name: 'app_ter_create')]
     public function createTER(TERRepository $TERRepository, Request $request): RedirectResponse|Response
     {
@@ -55,6 +66,9 @@ class TERController extends AbstractController
         ]);
     }
 
+    /**
+     * Formulaire de modification d'un TER existant.
+     */
     #[Route('/ter/{id}/update', name: 'app_ter_update')]
     public function updateTER(ManagerRegistry $doctrine, Request $request, TER $TER, int $id): RedirectResponse|Response
     {
@@ -76,6 +90,9 @@ class TERController extends AbstractController
         ]);
     }
 
+    /**
+     * Formulaire de deletion d'un TER.
+     */
     #[Route('/ter/{id}/delete', name: 'app_ter_delete')]
     public function deleteTER(Request $request, TER $TER, TERRepository $service): Response
     {
@@ -104,11 +121,13 @@ class TERController extends AbstractController
     public function createCandidacyTER(CandidacyTERRepository $candidacyTERRepository, Request $request): RedirectResponse|Response
     {
         $candidacyTER = new CandidacyTER();
-
         $form = $this->createForm(CandidacyTERType::class, $candidacyTER);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $date = new DateTimeImmutable('now');
+            $candidacyTER->setDate($date);
+            $candidacyTER->setStudent($this->getUser());
             $candidacyTERRepository->save($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter_show', ['id' => $candidacyTER->getId()]);

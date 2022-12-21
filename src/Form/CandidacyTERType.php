@@ -17,18 +17,6 @@ class CandidacyTERType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateTimeType::class)
-            ->add('student', EntityType::class, [
-                'class' => Student::class,
-                'query_builder' => function (EntityRepository $entityRepository) {
-                    return $entityRepository->createQueryBuilder('s')
-                                            ->orderBy('s.lastname')
-                                            ->addOrderBy('s.firstname');
-                },
-                'choice_label' => function ($teacher) {
-                    return $teacher->getLastName().' '.$teacher->getFirstName();
-                },
-            ])
             ->add('TER', EntityType::class, [
                 'class' => TER::class,
                 'query_builder' => function (EntityRepository $entityRepository) {
