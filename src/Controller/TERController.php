@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CandidacyTER;
 use App\Entity\TER;
+use App\Exception\CandidacyException;
 use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
 use App\Repository\TERRepository;
@@ -11,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Monolog\DateTimeImmutable;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -121,6 +123,13 @@ class TERController extends AbstractController
         return $this->renderForm('ter/deleteTER.html.twig', ['ter' => $TER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 
+    /** Créé une candidature pour un TER
+     * @param CandidacyTERRepository $candidacyTERRepository
+     * @param Request $request
+     * @param TER $TER
+     * @return RedirectResponse|Response
+     * @throws CandidacyException
+     */
     #[Route('/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
     public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER): RedirectResponse|Response
     {
@@ -136,6 +145,11 @@ class TERController extends AbstractController
             $candidacyTER->setDate($date);
             $candidacyTER->setStudent($this->getUser());
             $candidacyTER->setTER($TER);
+            foreach ($candidacyTERRepository->searchCandidacies() as $candidacy) {
+                if ($candidacy->getId() == $candidacyTER->getTER()->getId()) {
+                    throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
+                }
+            }
             $candidacyTERRepository->save($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter_show', ['id' => $candidacyTER->getId()]);
