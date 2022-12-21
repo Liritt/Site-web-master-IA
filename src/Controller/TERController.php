@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CandidacyTER;
 use App\Entity\TER;
 use App\Exception\CandidacyException;
+use App\Form\CandidacyTERType;
 use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
 use App\Repository\TERRepository;
@@ -27,7 +28,7 @@ class TERController extends AbstractController
     public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository): Response
     {
         $lstTER = $TERRepository->search();
-        $lstCandidacyTER = $candidacyTERRepository->searchCandidacies();
+        $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
 
         return $this->render('ter/index.html.twig', [
             'lstTER' => $lstTER,
@@ -148,7 +149,7 @@ class TERController extends AbstractController
             }
             $candidacyTERRepository->save($candidacyTER, true);
 
-            return $this->redirectToRoute('app_ter_show', ['id' => $candidacyTER->getId()]);
+            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
         }
 
         if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
@@ -159,5 +160,33 @@ class TERController extends AbstractController
         'form' => $form,
         'id' => $TER->getId(),
         ]);
+    }
+
+    /**
+     * Formulaire de deletion d'une candidature de TER.
+     */
+    #[Route('/ter/{id}/deleteCandidacy', name: 'app_ter_delete_candidacy')]
+    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
+    public function deleteCandidacyTER(Request $request, CandidacyTER $candidacyTER, CandidacyTERRepository $candidacyTERRepository): Response
+    {
+        $form = $this->createForm(CandidacyTERType::class, $candidacyTER, ['disabled' => true]);
+
+        $deleteForm = $this->createFormBuilder($candidacyTER)
+            ->add('delete', SubmitType::class, ['label' => 'Supprimer ma candidature', 'attr' => ['class' => 'btn btn-primary']])
+            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
+            ->getForm();
+
+        $deleteForm->handleRequest($request);
+        if ($deleteForm->getClickedButton() && 'delete' === $deleteForm->getClickedButton()->getName()) {
+            $candidacyTERRepository->remove($candidacyTER, true);
+
+            return $this->redirectToRoute('app_ter');
+        }
+
+        if ($deleteForm->getClickedButton() && 'cancel' === $deleteForm->getClickedButton()->getName()) {
+            return $this->redirectToRoute('app_ter');
+        }
+
+        return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 }

@@ -41,6 +41,7 @@
                         <h5 class="card-title">{{ candidacy.TER.title }}</h5>
                         <p class="card-text">Professeur référent : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
                         <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                        <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
                     </div>
                 </div>
             </div>
