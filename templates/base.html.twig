@@ -19,55 +19,51 @@
 </head>
 <body>
 {% if app.request.get('_route') != 'app_login' %}
-    {% if app.request.get('_route') == 'app_lobby_index' or app.request.get('_route') == 'app_internship' or app.request.get('_route') == 'app_ter' %}
-        <header class="fixed-top">
-    {% else %}
         <header>
-    {% endif %}
-    <div class="main-nav-bar bg-white">
-        <img src="{{ asset('img/logo-header-urca.png') }}" alt="logo header urca" class="img-fluid" width="513px" height="70px">
-        <ul class="navbar-toggler">
-            <li>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-                    <button class="btn btn-primary header-button d-flex align-items-center" onclick="self.location.href='{{ path('app_login') }}'">
-                        <span class="material-symbols-outlined me-2">login</span>
-                        Se connecter
-                    </button>
-                {% else %}
-                    <button class="btn btn-danger d-flex align-items-center" onclick="self.location.href='{{ path('app_logout') }}'">
-                        <span class="material-symbols-outlined me-2">logout</span>
-                        Se déconnecter
-                    </button>
-                {% endif %}
-            </li>
-            <div class="dropdown">
-                    <span class="dropdown-toggle" type="button" id="dropdownMenuLanguage" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if app.request.locale == 'fr' %}
-                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" width="43px" height="27px">
-                        {% else %}
-                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
-                        {% endif %}
-                    </span>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="main-nav-bar bg-white">
+                <img src="{{ asset('img/logo-header-urca.png') }}" alt="logo header urca" class="img-fluid" width="513px" height="70px">
+                <ul class="navbar-toggler">
                     <li>
-                        {% if app.request.locale == 'fr' %}
-                            <a href="{{ path('app_lobby_index', {_locale: 'en'}) }}" class="dropdown-item">
-                                <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
-                                English
-                            </a>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                            <button class="btn btn-primary header-button d-flex align-items-center" onclick="self.location.href='{{ path('app_login') }}'">
+                                <span class="material-symbols-outlined me-2">login</span>
+                                Se connecter
+                            </button>
                         {% else %}
-                            <a href="{{ path('app_lobby_index', {_locale: 'fr'}) }}" class="dropdown-item">
-                                <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
-                                Français
-                            </a>
+                            <button class="btn btn-danger d-flex align-items-center" onclick="self.location.href='{{ path('app_logout') }}'">
+                                <span class="material-symbols-outlined me-2">logout</span>
+                                Se déconnecter
+                            </button>
                         {% endif %}
                     </li>
+                    <div class="dropdown">
+                            <span class="dropdown-toggle" type="button" id="dropdownMenuLanguage" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if app.request.locale == 'fr' %}
+                                    <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" width="43px" height="27px">
+                                {% else %}
+                                    <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                {% endif %}
+                            </span>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                {% if app.request.locale == 'fr' %}
+                                    <a href="{{ path('app_lobby_index', {_locale: 'en'}) }}" class="dropdown-item">
+                                        <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                        English
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('app_lobby_index', {_locale: 'fr'}) }}" class="dropdown-item">
+                                        <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                        Français
+                                    </a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
                 </ul>
             </div>
-        </ul>
-    </div>
-    {% block header %}
-    {% endblock %}
+            {% block header %}
+            {% endblock %}
         </header>
 {% endif %}
 {% block body %}
