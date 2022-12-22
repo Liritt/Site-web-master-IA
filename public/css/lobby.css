@@ -114,5 +114,11 @@ body .btn-general:hover {
   border-radius: 5px;
   filter: brightness(95%);
 }
+body .margin-top-10 {
+  margin-top: 10rem;
+}
+body .test {
+  background-color: #378E64;
+}
 
 /*# sourceMappingURL=lobby.css.map */
