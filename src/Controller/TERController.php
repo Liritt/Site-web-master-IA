@@ -52,6 +52,20 @@ class TERController extends AbstractController
     }
 
     /**
+     * Affiche les informations d'un TER.
+     */
+    #[Route('/ter/galery', name: 'app_ter_teacher')]
+    #[Security('is_granted("ROLE_TEACHER")', message: 'Seul un professeur possède des TER.')]
+    public function showTERTeacher(TERRepository $TERRepository): Response
+    {
+        $lstTerTeacher = $TERRepository->searchTeacherTERS($this->getUser());
+
+        return $this->render('ter/galery.html.twig', [
+            'lstTerTeacher' => $lstTerTeacher,
+        ]);
+    }
+
+    /**
      * Formulaire de création d'un nouveau TER.
      */
     #[Route('/ter/create', name: 'app_ter_create')]
