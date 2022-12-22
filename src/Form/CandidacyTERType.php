@@ -18,6 +18,7 @@ class CandidacyTERType extends AbstractType
         $builder
             ->add('date', DateTimeType::class)
             ->add('TER', EntityType::class, [
+                'label' => 'Quel TER voulez-vous choisir ?',
                 'class' => TER::class,
                 'choice_label' => function ($ter) {
                     return $ter->getTitle();

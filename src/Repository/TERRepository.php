@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Teacher;
 use App\Entity\TER;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -45,6 +46,19 @@ class TERRepository extends ServiceEntityRepository
             ->where('t.title LIKE :searchText')
             ->orderBy('t.date')
             ->setParameter('searchText', '%'.$researchText.'%')
+            ->getQuery()
+            ->execute();
+    }
+
+    public function searchTeacherTERS(Teacher $teacher = null)
+    {
+        $id = $teacher->getId();
+        return $this->createQueryBuilder('ter')
+            ->join('ter.teacher', 'teacher')
+            ->addSelect('teacher')
+            ->where('teacher.id LIKE :id')
+            ->orderBy('ter.date')
+            ->setParameter('id', $id)
             ->getQuery()
             ->execute();
     }
