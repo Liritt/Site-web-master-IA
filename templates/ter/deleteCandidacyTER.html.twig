@@ -5,10 +5,8 @@
 
 {% block body %}
     {{ form_start(form) }}
-        {{ form_row(form.title) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.degree) }}
-        {{ form_row(form.teacher) }}
+        {{ form_row(form.TER) }}
+        {{ form_row(form.date) }}
     {{ form_end(form) }}
 
     {{ form_start(deleteForm, { 'attr': {'class': 'd-flex'} }) }}

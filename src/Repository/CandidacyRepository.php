@@ -64,6 +64,15 @@ class CandidacyRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function findwithId($id)
+    {
+        return $this->createQueryBuilder('candidacy')
+            ->where('candidacy.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()[0];
+    }
+
     public function findCandidacyByInternship(int $id): array
     {
         return $this->createQueryBuilder('candidacy')

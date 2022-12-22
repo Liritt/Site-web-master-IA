@@ -71,7 +71,7 @@
     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
         <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btn btn-primary">Candidater</a>
     {% elseif app.user.roles[0] == 'ROLE_COMPANY'%}
-        <a href="{{ path('app_internship_showcandidacy', {id: internship.id}) }}" class="btn btn-primary">Voir les demandes</a>
+        <a href="{{ path('app_internship_candidacies', {id: internship.id}) }}" class="btn btn-primary">Voir les demandes</a>
     {% endif %}
     <a href="{{ path('app_internship') }}" class="btn btn-secondary">Retour à la liste</a>
 
