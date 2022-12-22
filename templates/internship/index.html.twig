@@ -1,4 +1,4 @@
-{% extends '_connectedNavBar.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Hello InternshipController!{% endblock %}
 
@@ -8,7 +8,7 @@
         <a class="btn btn-outline-primary" href={{ path('app_internship_create') }}>Ajouter une offre de stage</a>
     {% endif %}
 
-    <div class="container margin-top-10">
+    <div class="container">
         <div class="row">
             {% for internship in internships %}
 
