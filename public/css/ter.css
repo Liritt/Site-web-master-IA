@@ -1,3 +1,44 @@
+html {
+  overflow-y: hidden;
+}
 
+main {
+  display: flex;
+  margin-top: 1rem;
+}
+main .no-ter {
+  font-size: 3rem;
+  font-weight: bold;
+  color: green;
+}
+main .lst-ter, main .lst-candidacies {
+  overflow-y: scroll;
+  max-height: 80vh;
+}
+main .explanations {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: green;
+  font-size: 2rem;
+  font-weight: bold;
+  flex: 1;
+  margin: 2rem;
+}
+
+.ter-component {
+  flex: 1;
+}
+
+.right-component {
+  flex: 1.2;
+}
+
+.right-component > *, .ter-component > * {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 /*# sourceMappingURL=ter.css.map */

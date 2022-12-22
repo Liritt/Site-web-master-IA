@@ -64,6 +64,8 @@ class TERController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $date = new DateTimeImmutable('now');
+            $ter->setDate($date);
             $TERRepository->save($ter, true);
 
             return $this->redirectToRoute('app_ter_show', ['id' => $ter->getId()]);
@@ -86,7 +88,8 @@ class TERController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
-
+            $date = new DateTimeImmutable('now');
+            $TER->setDate($date);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_ter_show', ['id' => $id]);
@@ -153,7 +156,7 @@ class TERController extends AbstractController
             }
             $candidacyTERRepository->save($candidacyTER, true);
 
-            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+            return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
         }
 
         if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {

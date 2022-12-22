@@ -43,7 +43,7 @@ class TERRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->where('t.title LIKE :searchText')
-            ->orderBy('t.title')
+            ->orderBy('t.date')
             ->setParameter('searchText', '%'.$researchText.'%')
             ->getQuery()
             ->execute();

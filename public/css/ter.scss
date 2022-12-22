@@ -1,0 +1,43 @@
+html {
+  overflow-y: hidden;
+}
+
+main {
+  display: flex;
+  margin-top: 1rem;
+
+  .no-ter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: green;
+  }
+
+  .lst-ter, .lst-candidacies {
+    overflow-y: scroll;
+    max-height: 80vh;
+  }
+
+  .explanations {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: green;
+    font-size: 2rem;
+    font-weight: bold;
+    flex: 1;
+    margin: 2rem;
+  }
+}
+.ter-component {
+  flex: 1;
+}
+.right-component {
+  flex: 1.2;
+}
+
+.right-component > *, .ter-component > * {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

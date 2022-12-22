@@ -1,52 +1,76 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/ter.css') }}">
+{% endblock %}
+
 {% block title %}Page TER{% endblock %}
 
 {% block body %}
-    {% for TER in lstTER %}
-        {% if app.user.roles[0] == 'ROLE_STUDENT' %}
-            {% if app.user.degree == TER.degree %}
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ TER.title }}</h5>
-
-                            <p class="card-text">{{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                            <p class="card-text">{{ TER.description }}</p>
-                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                            <a href="{{ path('app_ter_toCandidate', {id: TER.id}) }}" class="btn btn-secondary">Candidater</a>
+    <main>
+        {% if lstTER|length != 0 %}
+            <div class="ter-component">
+                <h1>Liste des TER</h1>
+                <div class="lst-ter">
+                {% for TER in lstTER %}
+                    {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+                        {% if app.user.degree == TER.degree %}
+                            <div class="col-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ TER.title }}</h5>
+                                        <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
+                                        <p class="card-text">{{ TER.description }}</p>
+                                        <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                        <a href="{{ path('app_ter_toCandidate', {id: TER.id}) }}" class="btn btn-secondary">Candidater</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ TER.title }}</h5>
+                                    <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
+                                    <p class="card-text">{{ TER.description }}</p>
+                                    <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% else %}
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ TER.title }}</h5>
-                        <p class="card-text">{{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                        <p class="card-text">{{ TER.description }}</p>
-                        <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                    </div>
+                    {% endif %}
+                {% endfor %}
                 </div>
             </div>
-        {% endif %}
-    {% endfor %}
-    {% if app.user.roles[0] == 'ROLE_STUDENT' %}
-        {% if lstCandidacyTER|length != 0 %}
-            <h1>Liste de vos candidatures</h1>
-            {% for candidacy in lstCandidacyTER %}
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ candidacy.TER.title }}</h5>
-                            <p class="card-text">Professeur référent : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
-                            <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                            <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
+            {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+                {% if lstCandidacyTER|length != 0 %}
+                <div class="right-component">
+                    <h1>Liste de vos candidatures</h1>
+                    <div class="lst-candidacies">
+                    {% for candidacy in lstCandidacyTER %}
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ candidacy.TER.title }}</h5>
+                                    <p class="card-text">Professeur en charge du projet : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
+                                    <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                    <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
+                                </div>
+                            </div>
                         </div>
+                    {% endfor %}
                     </div>
                 </div>
-            {% endfor %}
+                {% else %}
+                <div class="explanations">
+                    <p>Les TER sont des projets que vous aurez à faire à partir du (date à décider). Choisissez autant de TER que vous voulez et vous aurez le TER disponible le plus haut de votre liste. Si plusieurs élèves choisissent le même sujet, il y aura alors un tirage au sort et le perdant réitérera l'action si son second choix ou plus est choisi par d'autres personnes.</p>
+                </div>
+                {% endif %}
+            {% endif %}
+            {% else %}
+                <div class="no-ter">
+                    <p>Il n'y a actuellement aucun TER de disponible, les professeurs les rajouteront durant l'année.</p>
+                </div>
         {% endif %}
-    {% endif %}
+    </main>
 {% endblock %}
