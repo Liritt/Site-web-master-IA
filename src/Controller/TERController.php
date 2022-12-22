@@ -146,7 +146,7 @@ class TERController extends AbstractController
             $candidacyTER->setDate($date);
             $candidacyTER->setStudent($this->getUser());
             $candidacyTER->setTER($TER);
-            foreach ($candidacyTERRepository->searchCandidacies() as $candidacy) {
+            foreach ($candidacyTERRepository->searchCandidacies($this->getUser()) as $candidacy) {
                 if ($candidacy->getId() == $candidacyTER->getTER()->getId()) {
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
                 }
@@ -157,7 +157,7 @@ class TERController extends AbstractController
         }
 
         if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
-            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+            return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
         }
 
         return $this->renderForm('ter/createCandidacyTER.html.twig', [
