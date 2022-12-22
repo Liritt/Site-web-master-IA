@@ -11,6 +11,7 @@ use App\Repository\CandidacyTERRepository;
 use App\Repository\TERRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Monolog\DateTimeImmutable;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -44,6 +45,7 @@ class TERController extends AbstractController
      * Affiche les informations d'un TER.
      */
     #[Route('/ter/{id}', name: 'app_ter_show', requirements: ['id' => '\d+'])]
+    #[Entity('TER', expr: 'repository.findWithTeacher(id)')]
     public function show(TER $TER): Response
     {
         return $this->render('ter/show.html.twig', [

@@ -16,7 +16,6 @@ class CandidacyTERType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateTimeType::class)
             ->add('TER', EntityType::class, [
                 'class' => TER::class,
                 'choice_label' => function ($ter) {

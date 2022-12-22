@@ -49,6 +49,17 @@ class TERRepository extends ServiceEntityRepository
             ->execute();
     }
 
+    public function findWithTeacher(int $id): ?TER
+    {
+        return $this->createQueryBuilder('ter')
+            ->addSelect('teach as teacher')
+            ->leftJoin('ter.teacher', 'teach')
+            ->where('ter.id = :id')
+            ->setParameter(':id', $id)
+            ->getQuery()
+            ->getResult()[0];
+    }
+
 //    /**
 //     * @return TER[] Returns an array of TER objects
 //     */
