@@ -30,8 +30,10 @@ class TERController extends AbstractController
         $lstTER = $TERRepository->search();
         if ('ROLE_STUDENT' == $this->getUser()->getRoles()[0]) {
             $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
-        } else {
-            $lstCandidacyTER = $candidacyTERRepository->searchCandidacies();
+        }
+
+        if ('ROLE_ADMIN' == $this->getUser()->getRoles()[0]) {
+            $lstCandidacyTER = $candidacyTERRepository->searchCandidaciesAdmin();
         }
 
         return $this->render('ter/index.html.twig', [
@@ -165,7 +167,7 @@ class TERController extends AbstractController
             $candidacyTER->setStudent($this->getUser());
             $candidacyTER->setTER($TER);
             foreach ($candidacyTERRepository->searchCandidacies($this->getUser()) as $candidacy) {
-                if ($candidacy->getId() == $candidacyTER->getTER()->getId()) {
+                if ($candidacy->getTER()->getId() == $candidacyTER->getTER()->getId()) {
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
                 }
             }

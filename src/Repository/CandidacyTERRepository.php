@@ -43,9 +43,24 @@ class CandidacyTERRepository extends ServiceEntityRepository
     public function searchCandidacies(Student $student = null)
     {
         return $this->createQueryBuilder('ct')
+            ->join('ct.student', 'student')
+            ->addSelect('student')
             ->where('ct.student = :student')
-            ->orderBy('ct.date')
+            ->orderBy('student.lastname')
+            ->addOrderBy('student.firstname')
+            ->addOrderBy('ct.date')
             ->setParameter('student', $student)
+            ->getQuery()
+            ->execute();
+    }
+
+    public function searchCandidaciesAdmin()
+    {
+        return $this->createQueryBuilder('ct')
+            ->join('ct.student', 'student')
+            ->addSelect('student')
+            ->orderBy('student.lastname')
+            ->addOrderBy('student.firstname')
             ->getQuery()
             ->execute();
     }
