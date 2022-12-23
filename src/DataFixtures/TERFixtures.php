@@ -12,7 +12,7 @@ class TERFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        TERFactory::createMany(10, function () {
+        TERFactory::createMany(50, function () {
             return [
                 'teacher' => TeacherFactory::random(),
             ];

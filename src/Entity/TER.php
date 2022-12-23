@@ -31,6 +31,9 @@ class TER
     #[ORM\OneToMany(mappedBy: 'TER', targetEntity: CandidacyTER::class)]
     private Collection $candidacyTERs;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     public function __construct()
     {
         $this->candidacyTERs = new ArrayCollection();
@@ -115,6 +118,18 @@ class TER
                 $candidacyTER->setTER(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

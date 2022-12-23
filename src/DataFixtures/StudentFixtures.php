@@ -17,6 +17,13 @@ class StudentFixtures extends Fixture
             'firstname' => 'Student',
             'lastname' => 'Tester',
         ]);
+        StudentFactory::createOne([
+            'email' => 'student2@example.com',
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+            'firstname' => 'THESTUDENT°2',
+            'lastname' => 'Tester',
+        ]);
         StudentFactory::createMany(10);
     }
 }

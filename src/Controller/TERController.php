@@ -31,8 +31,10 @@ class TERController extends AbstractController
         $lstTER = $TERRepository->search();
         if ('ROLE_STUDENT' == $this->getUser()->getRoles()[0]) {
             $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
-        } else {
-            $lstCandidacyTER = $candidacyTERRepository->searchCandidacies();
+        }
+
+        if ('ROLE_ADMIN' == $this->getUser()->getRoles()[0]) {
+            $lstCandidacyTER = $candidacyTERRepository->searchCandidaciesAdmin();
         }
 
         return $this->render('ter/index.html.twig', [
@@ -54,6 +56,21 @@ class TERController extends AbstractController
     }
 
     /**
+     * Affiche les informations d'un TER.
+     */
+    #[Route('/ter/gallery', name: 'app_ter_teacher')]
+    #[Security('is_granted("ROLE_TEACHER")', message: 'Seul un professeur possède des TER.')]
+    public function showTERTeacher(TERRepository $TERRepository): Response
+    {
+        $lstTerTeacher = $TERRepository->searchTeacherTERS($this->getUser());
+
+        return $this->render('ter/gallery.html.twig', [
+            'lstTerTeacher' => $lstTerTeacher,
+            'teacher' => $this->getUser(),
+        ]);
+    }
+
+    /**
      * Formulaire de création d'un nouveau TER.
      */
     #[Route('/ter/create', name: 'app_ter_create')]
@@ -66,6 +83,8 @@ class TERController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $date = new DateTimeImmutable('now');
+            $ter->setDate($date);
             $TERRepository->save($ter, true);
 
             return $this->redirectToRoute('app_ter_show', ['id' => $ter->getId()]);
@@ -88,7 +107,8 @@ class TERController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
-
+            $date = new DateTimeImmutable('now');
+            $TER->setDate($date);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_ter_show', ['id' => $id]);
@@ -148,18 +168,18 @@ class TERController extends AbstractController
             $candidacyTER->setDate($date);
             $candidacyTER->setStudent($this->getUser());
             $candidacyTER->setTER($TER);
-            foreach ($candidacyTERRepository->searchCandidacies() as $candidacy) {
-                if ($candidacy->getId() == $candidacyTER->getTER()->getId()) {
+            foreach ($candidacyTERRepository->searchCandidacies($this->getUser()) as $candidacy) {
+                if ($candidacy->getTER()->getId() == $candidacyTER->getTER()->getId()) {
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
                 }
             }
             $candidacyTERRepository->save($candidacyTER, true);
 
-            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+            return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
         }
 
         if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
-            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+            return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
         }
 
         return $this->renderForm('ter/createCandidacyTER.html.twig', [
