@@ -34,6 +34,9 @@ class TER
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Student $selectedStudent = null;
+
     public function __construct()
     {
         $this->candidacyTERs = new ArrayCollection();
@@ -130,6 +133,18 @@ class TER
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getSelectedStudent(): ?Student
+    {
+        return $this->selectedStudent;
+    }
+
+    public function setSelectedStudent(?Student $selectedStudent): self
+    {
+        $this->selectedStudent = $selectedStudent;
 
         return $this;
     }
