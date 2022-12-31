@@ -175,6 +175,7 @@ class TERController extends AbstractController
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
                 }
             }
+            $this->getUser()->addCandidacyTER($candidacyTER);
             $candidacyTERRepository->save($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
@@ -206,6 +207,7 @@ class TERController extends AbstractController
 
         $deleteForm->handleRequest($request);
         if ($deleteForm->getClickedButton() && 'delete' === $deleteForm->getClickedButton()->getName()) {
+            $candidacyTER->getStudent()->removeCandidacyTER($candidacyTER);
             $candidacyTERRepository->remove($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter');
@@ -217,6 +219,7 @@ class TERController extends AbstractController
 
         return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
+
     /**
      * Permet de trier les candidatures de chaque élève par date avec un tri à bulle.
      */
@@ -236,21 +239,19 @@ class TERController extends AbstractController
     }
 
     /**
+     * Récupère les candidatures de chaque élève et les tries par date.
+     *
      * @throws CandidaciesNullException
      */
-    public function getCandidaciesOrderedByDate(CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository): array
+    public function getCandidaciesOrderedByDate(StudentRepository $studentRepository): array
     {
-        $lstCandid = $candidacyTERRepository->searchCandidaciesAdmin();
-        if (empty($lstCandid)) {
-            throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise.");
-        }
         $lstStudent = $studentRepository->findAll();
-        foreach ($lstCandid as $candid) {
-            $candid->getStudent()->addCandidacyTER($candid);
-        }
         $candid = [];
         foreach ($lstStudent as $student) {
             $candid[] = $student->getCandidacyTERs()->toArray();
+        }
+        if (empty($candid)) {
+            throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise pour le moment.");
         }
         foreach ($candid as $lstCandidacies) {
             $newLst[] = $this->orderCandidaciesByDate($lstCandidacies);
