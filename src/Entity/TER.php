@@ -34,7 +34,7 @@ class TER
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'assignedTER', cascade: ['persist', 'remove'])]
     private ?Student $selectedStudent = null;
 
     public function __construct()
