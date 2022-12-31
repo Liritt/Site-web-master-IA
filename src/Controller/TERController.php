@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\CandidacyTER;
 use App\Entity\TER;
+use App\Exception\CandidaciesNullException;
 use App\Exception\CandidacyException;
 use App\Form\CandidacyTERType;
 use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
+use App\Repository\StudentRepository;
 use App\Repository\TERRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Monolog\DateTimeImmutable;
@@ -215,4 +217,23 @@ class TERController extends AbstractController
 
         return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
+
+    /**
+     * Permet de trier les candidatures de chaque élève par date avec un tri à bulle.
+     */
+    public function orderCandidaciesByDate(array $candidacies): array
+    {
+        for ($I = count($candidacies) - 2; $I >= 0; --$I) {
+            for ($J = 0; $J <= $I; ++$J) {
+                if ($candidacies[$J + 1]->getDate() < $candidacies[$J]->getDate()) {
+                    $t = $candidacies[$J + 1];
+                    $candidacies[$J + 1] = $candidacies[$J];
+                    $candidacies[$J] = $t;
+                }
+            }
+        }
+
+        return $candidacies;
+    }
+
 }
