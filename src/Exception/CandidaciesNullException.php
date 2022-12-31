@@ -2,7 +2,6 @@
 
 namespace App\Exception;
 
-class CandidaciesNullException
+class CandidaciesNullException extends \Exception
 {
-
 }
