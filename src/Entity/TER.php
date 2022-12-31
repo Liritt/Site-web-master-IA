@@ -34,7 +34,7 @@ class TER
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToOne(inversedBy: 'assignedTER', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'assignedTER', cascade: ['persist', 'remove'])]
     private ?Student $selectedStudent = null;
 
     public function __construct()
@@ -144,6 +144,16 @@ class TER
 
     public function setSelectedStudent(?Student $selectedStudent): self
     {
+        // unset the owning side of the relation if necessary
+        if ($selectedStudent === null && $this->selectedStudent !== null) {
+            $this->selectedStudent->setAssignedTER(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($selectedStudent !== null && $selectedStudent->getAssignedTER() !== $this) {
+            $selectedStudent->setAssignedTER($this);
+        }
+
         $this->selectedStudent = $selectedStudent;
 
         return $this;
