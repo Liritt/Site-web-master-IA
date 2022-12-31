@@ -217,7 +217,6 @@ class TERController extends AbstractController
 
         return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
-
     /**
      * Permet de trier les candidatures de chaque élève par date avec un tri à bulle.
      */
@@ -236,4 +235,27 @@ class TERController extends AbstractController
         return $candidacies;
     }
 
+    /**
+     * @throws CandidaciesNullException
+     */
+    public function getCandidaciesOrderedByDate(CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository): array
+    {
+        $lstCandid = $candidacyTERRepository->searchCandidaciesAdmin();
+        if (empty($lstCandid)) {
+            throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise.");
+        }
+        $lstStudent = $studentRepository->findAll();
+        foreach ($lstCandid as $candid) {
+            $candid->getStudent()->addCandidacyTER($candid);
+        }
+        $candid = [];
+        foreach ($lstStudent as $student) {
+            $candid[] = $student->getCandidacyTERs()->toArray();
+        }
+        foreach ($candid as $lstCandidacies) {
+            $newLst[] = $this->orderCandidaciesByDate($lstCandidacies);
+        }
+
+        return $newLst;
+    }
 }
