@@ -259,4 +259,16 @@ class TERController extends AbstractController
 
         return $newLst;
     }
+
+    public function checkIfStudentsHaveAssignedTER(StudentRepository $studentRepository): bool
+    {
+        $lstStudent = $studentRepository->findAll();
+        foreach ($lstStudent as $student) {
+            if (empty($student->getAssignedTER())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
