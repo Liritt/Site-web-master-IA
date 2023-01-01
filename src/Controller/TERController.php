@@ -221,6 +221,58 @@ class TERController extends AbstractController
     }
 
     /**
+     * @throws CandidaciesNullException
+     */
+    #[Route('/ter/algo', name: 'app_ter_algo')]
+    public function assignTER(CandidacyTERRepository $candidacyTERRepository, TERRepository $TERRepository, StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
+    {
+        try {
+            $lstStudentCandidacies = $this->getCandidaciesOrderedByDate($studentRepository);
+        } catch (CandidaciesNullException) {
+            throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise pour le moment.");
+        }
+        dump($lstStudentCandidacies);
+        do {
+            foreach ($lstStudentCandidacies as $lstCandidacy) {
+                $lstFirstCandid[] = $lstCandidacy[0];
+            }
+            dump($lstFirstCandid);
+            $tailleTab = count($lstFirstCandid);
+            $i = 0;
+            while (0 != count($lstFirstCandid)) {
+                ++$i;
+                $candidCompared = reset($lstFirstCandid);
+                dump($lstFirstCandid);
+                dump($candidCompared);
+                for ($j = $i; $j < $tailleTab - 1; ++$j) {
+                    if ($lstFirstCandid[$j]->getTER() == $candidCompared->getTER()) {
+                        if ($lstFirstCandid[$j]->getDate() < $candidCompared->getDate()) {
+                            unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
+                            $candidCompared = $lstFirstCandid[$j];
+                        }
+                    }
+                    echo 'test';
+                }
+                echo ' Count lstFirstCandid : '.count($lstFirstCandid);
+                echo '<br>';
+                dump($candidCompared->getTER());
+                /*
+                if (empty($candidCompared->getStudent()->getAssignedTER())) {
+                    $manager = $managerRegistry->getManager();
+                    $candidCompared->getStudent()->setAssignedTER($candidCompared->getTER());
+                    $manager->flush();
+                }
+                */
+                unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
+            }
+            foreach ($lstFirstCandid as $firstCandid) {
+                unset($lstStudentCandidacies[array_search($firstCandid, $lstStudentCandidacies)]);
+            }
+        } while (0 == count($lstStudentCandidacies) && !$this->checkIfStudentsHaveAssignedTER($studentRepository));
+        dd($lstFirstCandid);
+    }
+
+    /**
      * Permet de trier les candidatures de chaque élève par date avec un tri à bulle.
      */
     public function orderCandidaciesByDate(array $candidacies): array
@@ -239,7 +291,7 @@ class TERController extends AbstractController
     }
 
     /**
-     * Récupère les candidatures de chaque élève et les tries par date.
+     * Récupère les candidatures de chaque élève et les trie par date.
      *
      * @throws CandidaciesNullException
      */
@@ -260,6 +312,9 @@ class TERController extends AbstractController
         return $newLst;
     }
 
+    /**
+     * Vérifie si chaque étudiant à un TER d'assigné, renvoie true si tel est le cas.
+     */
     public function checkIfStudentsHaveAssignedTER(StudentRepository $studentRepository): bool
     {
         $lstStudent = $studentRepository->findAll();
