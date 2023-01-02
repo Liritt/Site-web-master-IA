@@ -233,11 +233,8 @@ class TERController extends AbstractController
             unset($test[array_search($testing, $test)][0]);
         }
         dd($test);*/
-        try {
-            $lstStudentCandidacies = $this->getCandidaciesOrderedByDate($studentRepository);
-        } catch (CandidaciesNullException) {
-            throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise pour le moment.");
-        }
+        $lstStudentCandidacies = $this->getCandidaciesOrderedByDate($studentRepository);
+
         dump($lstStudentCandidacies);
         do {
             if (is_array($lstStudentCandidacies[0])) {
@@ -254,10 +251,7 @@ class TERController extends AbstractController
 
             while (0 != count($lstFirstCandid)) {
                 $candidCompared = reset($lstFirstCandid);
-                dump($candidCompared);
-                for ($j = 0; $j < count($lstFirstCandid); ++$j) {
-                    dump($j);
-                    dump($lstFirstCandid);
+                for ($j = 1; $j < count($lstFirstCandid) - 1; ++$j) {
                     if ($lstFirstCandid[$j]->getTER()->getId() == $candidCompared->getTER()->getId()) {
                         if ($lstFirstCandid[$j]->getDate() < $candidCompared->getDate()) {
                             unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
@@ -277,10 +271,7 @@ class TERController extends AbstractController
                 unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
                 $lstFirstCandid = array_values($lstFirstCandid);
             }
-            dump(count($lstStudentCandidacies));
-            dump($this->checkIfStudentsHaveAssignedTER($studentRepository));
         } while (0 != count($lstStudentCandidacies) && !$this->checkIfStudentsHaveAssignedTER($studentRepository));
-        echo 'coucou';
     }
 
     /**
@@ -299,27 +290,6 @@ class TERController extends AbstractController
         }
 
         return $candidacies;
-    }
-
-    public function deleteCandidaciesAndStudents(array $lstStudentCandidacies, array $lstFirstCandid): array
-    {
-        foreach ($lstStudentCandidacies as $studentCandidacies) {
-            foreach ($studentCandidacies as $candidacy) {
-                if (null != $candidacy->getStudent()->getAssignedTER()) {
-                    unset($lstStudentCandidacies[array_search($studentCandidacies, $lstStudentCandidacies)]);
-                    $lstStudentCandidacies = array_values($lstStudentCandidacies);
-                    break;
-                }
-                if (in_array($candidacy, $lstFirstCandid)) {
-                    unset($studentCandidacies[array_search($candidacy, $studentCandidacies)]);
-                    dump($lstStudentCandidacies);
-                    $newStudentCandidacies = array_values($studentCandidacies);
-                    $lstStudentCandidacies = array_replace($studentCandidacies, $newStudentCandidacies);
-                }
-            }
-        }
-
-        return $lstStudentCandidacies;
     }
 
     /**
@@ -357,5 +327,27 @@ class TERController extends AbstractController
         }
 
         return true;
+    }
+
+    /**
+     * Permet de retirer les candidatures des étudiants ayant déjà un TER et les candidatures qui viennent de passe dans l'algo.
+     */
+    public function deleteCandidaciesAndStudents(array $lstStudentCandidacies, array $lstFirstCandid): array
+    {
+        foreach ($lstStudentCandidacies as $studentCandidacies) {
+            foreach ($studentCandidacies as $candidacy) {
+                if (null != $candidacy->getStudent()->getAssignedTER()) {
+                    unset($lstStudentCandidacies[array_search($studentCandidacies, $lstStudentCandidacies)]);
+                    $lstStudentCandidacies = array_values($lstStudentCandidacies);
+                    break;
+                }
+                if (in_array($candidacy, $lstFirstCandid)) {
+                    unset($studentCandidacies[array_search($candidacy, $studentCandidacies)]);
+                    $lstStudentCandidacies = array_values(array_replace($studentCandidacies, array_values($studentCandidacies)));
+                }
+            }
+        }
+
+        return $lstStudentCandidacies;
     }
 }
