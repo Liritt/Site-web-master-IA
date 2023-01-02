@@ -226,6 +226,13 @@ class TERController extends AbstractController
     #[Route('/ter/algo', name: 'app_ter_algo')]
     public function assignTER(CandidacyTERRepository $candidacyTERRepository, TERRepository $TERRepository, StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
     {
+        /*
+        $test = [['yes', 'no'], ['yes', 'no'], ['yes', 'no']];
+        foreach ($test as $testing) {
+            dump($test[array_search($testing, $test)]);
+            unset($test[array_search($testing, $test)][0]);
+        }
+        dd($test);*/
         try {
             $lstStudentCandidacies = $this->getCandidaciesOrderedByDate($studentRepository);
         } catch (CandidaciesNullException) {
@@ -233,43 +240,47 @@ class TERController extends AbstractController
         }
         dump($lstStudentCandidacies);
         do {
-            foreach ($lstStudentCandidacies as $lstCandidacy) {
-                $lstFirstCandid[] = $lstCandidacy[0];
+            if (is_array($lstStudentCandidacies[0])) {
+                foreach ($lstStudentCandidacies as $lstCandidacy) {
+                    $lstFirstCandid[] = $lstCandidacy[0];
+                }
+            } else {
+                $manager = $managerRegistry->getManager();
+                $lstStudentCandidacies[0]->getStudent()->setAssignedTER($lstStudentCandidacies[0]->getTER());
+                $manager->flush();
+                unset($lstStudentCandidacies);
+                break;
             }
-            dump($lstFirstCandid);
-            $tailleTab = count($lstFirstCandid);
-            $i = 0;
+
             while (0 != count($lstFirstCandid)) {
-                ++$i;
                 $candidCompared = reset($lstFirstCandid);
-                dump($lstFirstCandid);
                 dump($candidCompared);
-                for ($j = $i; $j < $tailleTab - 1; ++$j) {
-                    if ($lstFirstCandid[$j]->getTER() == $candidCompared->getTER()) {
+                for ($j = 0; $j < count($lstFirstCandid); ++$j) {
+                    dump($j);
+                    dump($lstFirstCandid);
+                    if ($lstFirstCandid[$j]->getTER()->getId() == $candidCompared->getTER()->getId()) {
                         if ($lstFirstCandid[$j]->getDate() < $candidCompared->getDate()) {
                             unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
                             $candidCompared = $lstFirstCandid[$j];
+                        } else {
+                            unset($lstFirstCandid[array_search($lstFirstCandid[$j], $lstFirstCandid)]);
                         }
+                        $lstFirstCandid = array_values($lstFirstCandid);
                     }
-                    echo 'test';
                 }
-                echo ' Count lstFirstCandid : '.count($lstFirstCandid);
-                echo '<br>';
-                dump($candidCompared->getTER());
-                /*
+                $lstStudentCandidacies = $this->deleteCandidaciesAndStudents($lstStudentCandidacies, $lstFirstCandid);
                 if (empty($candidCompared->getStudent()->getAssignedTER())) {
                     $manager = $managerRegistry->getManager();
                     $candidCompared->getStudent()->setAssignedTER($candidCompared->getTER());
                     $manager->flush();
                 }
-                */
                 unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
+                $lstFirstCandid = array_values($lstFirstCandid);
             }
-            foreach ($lstFirstCandid as $firstCandid) {
-                unset($lstStudentCandidacies[array_search($firstCandid, $lstStudentCandidacies)]);
-            }
-        } while (0 == count($lstStudentCandidacies) && !$this->checkIfStudentsHaveAssignedTER($studentRepository));
-        dd($lstFirstCandid);
+            dump(count($lstStudentCandidacies));
+            dump($this->checkIfStudentsHaveAssignedTER($studentRepository));
+        } while (0 != count($lstStudentCandidacies) && !$this->checkIfStudentsHaveAssignedTER($studentRepository));
+        echo 'coucou';
     }
 
     /**
@@ -288,6 +299,27 @@ class TERController extends AbstractController
         }
 
         return $candidacies;
+    }
+
+    public function deleteCandidaciesAndStudents(array $lstStudentCandidacies, array $lstFirstCandid): array
+    {
+        foreach ($lstStudentCandidacies as $studentCandidacies) {
+            foreach ($studentCandidacies as $candidacy) {
+                if (null != $candidacy->getStudent()->getAssignedTER()) {
+                    unset($lstStudentCandidacies[array_search($studentCandidacies, $lstStudentCandidacies)]);
+                    $lstStudentCandidacies = array_values($lstStudentCandidacies);
+                    break;
+                }
+                if (in_array($candidacy, $lstFirstCandid)) {
+                    unset($studentCandidacies[array_search($candidacy, $studentCandidacies)]);
+                    dump($lstStudentCandidacies);
+                    $newStudentCandidacies = array_values($studentCandidacies);
+                    $lstStudentCandidacies = array_replace($studentCandidacies, $newStudentCandidacies);
+                }
+            }
+        }
+
+        return $lstStudentCandidacies;
     }
 
     /**
