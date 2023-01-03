@@ -2,8 +2,52 @@
 
 {% block title %}Accueil{% endblock %}
 
+{% block stylesheets%}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <link rel="stylesheet" href="{{ asset('css/lobbyConnected.css') }}" />
+    {% endif %}
+{% endblock %}
+
 {% block body %}
-        <div class="titre">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>FIL D'ACTUALITE</h1>
+        <div class="art1-div">
+            <details class="art1">
+                <summary>
+                    <img src="{{ asset('img/Article1.jfif') }}">
+                    <h3>News #1 : Title</h3>
+                </summary>
+                Description de l'article 1
+            </details>
+            <div class="art2-div">
+                <details class="art2">
+                    <summary>
+                        <img src="{{ asset('img/Article2.jpg') }}">
+                        <h3>News #2 : Title</h3>
+                    </summary>
+                    Description de l'article 2
+                </details>
+                <div class="art3-div">
+                    <details class="art3">
+                        <summary>
+                            <img src="{{ asset('img/Article3.jfif') }}">
+                            <h3>News #3 : Title</h3>
+                        </summary>
+                        Description de l'article 3
+                    </details>
+                    <details class="art4">
+                        <summary>
+                            <img src="{{ asset('img/Article4.jfif') }}">
+                            <h3>News #4 : Title</h3>
+                        </summary>
+                        Description de l'article 4
+                    </details>
+                </div>
+            </div>
+        </div>
+    {% else %}
+
+    <div class="titre">
             <h1><strong>{% trans %}Master informatique{% endtrans %}</strong></h1>
             <h2><strong>{% trans %}Parcours : intelligence artificielle{% endtrans %}</strong></h2>
         </div>
@@ -226,4 +270,5 @@
             </div>
         </section>
     </footer>
+    {% endif %}
 {% endblock %}
