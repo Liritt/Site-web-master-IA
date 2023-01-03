@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\CandidacyTER;
 use App\Entity\TER;
+use App\Exception\CandidaciesNullException;
 use App\Exception\CandidacyException;
 use App\Form\CandidacyTERType;
 use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
+use App\Repository\StudentRepository;
 use App\Repository\TERRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Monolog\DateTimeImmutable;
@@ -173,6 +175,7 @@ class TERController extends AbstractController
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
                 }
             }
+            $this->getUser()->addCandidacyTER($candidacyTER);
             $candidacyTERRepository->save($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
@@ -204,6 +207,7 @@ class TERController extends AbstractController
 
         $deleteForm->handleRequest($request);
         if ($deleteForm->getClickedButton() && 'delete' === $deleteForm->getClickedButton()->getName()) {
+            $candidacyTER->getStudent()->removeCandidacyTER($candidacyTER);
             $candidacyTERRepository->remove($candidacyTER, true);
 
             return $this->redirectToRoute('app_ter');
@@ -214,5 +218,136 @@ class TERController extends AbstractController
         }
 
         return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
+    }
+
+    /**
+     * @throws CandidaciesNullException
+     */
+    #[Route('/ter/algo', name: 'app_ter_algo')]
+    public function assignTER(CandidacyTERRepository $candidacyTERRepository, TERRepository $TERRepository, StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
+    {
+        /*
+        $test = [['yes', 'no'], ['yes', 'no'], ['yes', 'no']];
+        foreach ($test as $testing) {
+            dump($test[array_search($testing, $test)]);
+            unset($test[array_search($testing, $test)][0]);
+        }
+        dd($test);*/
+        $lstStudentCandidacies = $this->getCandidaciesOrderedByDate($studentRepository);
+
+        dump($lstStudentCandidacies);
+        do {
+            if (is_array($lstStudentCandidacies[0])) {
+                foreach ($lstStudentCandidacies as $lstCandidacy) {
+                    $lstFirstCandid[] = $lstCandidacy[0];
+                }
+            } else {
+                $manager = $managerRegistry->getManager();
+                $lstStudentCandidacies[0]->getStudent()->setAssignedTER($lstStudentCandidacies[0]->getTER());
+                $manager->flush();
+                unset($lstStudentCandidacies);
+                break;
+            }
+
+            while (0 != count($lstFirstCandid)) {
+                $candidCompared = reset($lstFirstCandid);
+                for ($j = 1; $j < count($lstFirstCandid) - 1; ++$j) {
+                    if ($lstFirstCandid[$j]->getTER()->getId() == $candidCompared->getTER()->getId()) {
+                        if ($lstFirstCandid[$j]->getDate() < $candidCompared->getDate()) {
+                            unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
+                            $candidCompared = $lstFirstCandid[$j];
+                        } else {
+                            unset($lstFirstCandid[array_search($lstFirstCandid[$j], $lstFirstCandid)]);
+                        }
+                        $lstFirstCandid = array_values($lstFirstCandid);
+                    }
+                }
+                $lstStudentCandidacies = $this->deleteCandidaciesAndStudents($lstStudentCandidacies, $lstFirstCandid);
+                if (empty($candidCompared->getStudent()->getAssignedTER())) {
+                    $manager = $managerRegistry->getManager();
+                    $candidCompared->getStudent()->setAssignedTER($candidCompared->getTER());
+                    $manager->flush();
+                }
+                unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
+                $lstFirstCandid = array_values($lstFirstCandid);
+            }
+        } while (0 != count($lstStudentCandidacies) && !$this->checkIfStudentsHaveAssignedTER($studentRepository));
+    }
+
+    /**
+     * Permet de trier les candidatures de chaque élève par date avec un tri à bulle.
+     */
+    public function orderCandidaciesByDate(array $candidacies): array
+    {
+        for ($I = count($candidacies) - 2; $I >= 0; --$I) {
+            for ($J = 0; $J <= $I; ++$J) {
+                if ($candidacies[$J + 1]->getDate() < $candidacies[$J]->getDate()) {
+                    $t = $candidacies[$J + 1];
+                    $candidacies[$J + 1] = $candidacies[$J];
+                    $candidacies[$J] = $t;
+                }
+            }
+        }
+
+        return $candidacies;
+    }
+
+    /**
+     * Récupère les candidatures de chaque élève et les trie par date.
+     *
+     * @throws CandidaciesNullException
+     */
+    public function getCandidaciesOrderedByDate(StudentRepository $studentRepository): array
+    {
+        $lstStudent = $studentRepository->findAll();
+        $candid = [];
+        foreach ($lstStudent as $student) {
+            $candid[] = $student->getCandidacyTERs()->toArray();
+        }
+        if (empty($candid)) {
+            throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise pour le moment.");
+        }
+        foreach ($candid as $lstCandidacies) {
+            $newLst[] = $this->orderCandidaciesByDate($lstCandidacies);
+        }
+
+        return $newLst;
+    }
+
+    /**
+     * Vérifie si chaque étudiant à un TER d'assigné, renvoie true si tel est le cas.
+     */
+    public function checkIfStudentsHaveAssignedTER(StudentRepository $studentRepository): bool
+    {
+        $lstStudent = $studentRepository->findAll();
+        foreach ($lstStudent as $student) {
+            if (empty($student->getAssignedTER())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Permet de retirer les candidatures des étudiants ayant déjà un TER et les candidatures qui viennent de passe dans l'algo.
+     */
+    public function deleteCandidaciesAndStudents(array $lstStudentCandidacies, array $lstFirstCandid): array
+    {
+        foreach ($lstStudentCandidacies as $studentCandidacies) {
+            foreach ($studentCandidacies as $candidacy) {
+                if (null != $candidacy->getStudent()->getAssignedTER()) {
+                    unset($lstStudentCandidacies[array_search($studentCandidacies, $lstStudentCandidacies)]);
+                    $lstStudentCandidacies = array_values($lstStudentCandidacies);
+                    break;
+                }
+                if (in_array($candidacy, $lstFirstCandid)) {
+                    unset($studentCandidacies[array_search($candidacy, $studentCandidacies)]);
+                    $lstStudentCandidacies = array_values(array_replace($studentCandidacies, array_values($studentCandidacies)));
+                }
+            }
+        }
+
+        return $lstStudentCandidacies;
     }
 }

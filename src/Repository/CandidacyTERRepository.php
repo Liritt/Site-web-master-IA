@@ -61,6 +61,7 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->addSelect('student')
             ->orderBy('student.lastname')
             ->addOrderBy('student.firstname')
+            ->addOrderBy('ct.date')
             ->getQuery()
             ->execute();
     }

@@ -53,6 +53,7 @@ class TERRepository extends ServiceEntityRepository
     public function searchTeacherTERS(Teacher $teacher = null)
     {
         $id = $teacher->getId();
+
         return $this->createQueryBuilder('ter')
             ->join('ter.teacher', 'teacher')
             ->addSelect('teacher')
