@@ -2,11 +2,9 @@
 
 namespace App\Tests\Controller\TER;
 
-use App\Entity\CandidacyTER;
 use App\Factory\CandidacyTERFactory;
 use App\Factory\StudentFactory;
 use App\Factory\TERFactory;
-use App\Factory\UserFactory;
 use App\Tests\Support\ControllerTester;
 
 class CandidacyCest
@@ -38,7 +36,8 @@ class CandidacyCest
         $I->seeNumberOfElements('.lst-candidacies', 1);
     }
 
-    public function DeleteCandidate(ControllerTester $I): void{
+    public function DeleteCandidate(ControllerTester $I): void
+    {
         $user = StudentFactory::createOne([
             'email' => 'user@test.com',
             'password' => 'test',
@@ -51,5 +50,7 @@ class CandidacyCest
         $I->amLoggedInAs($realUser);
         $I->amOnPage('/ter');
         $I->seeNumberOfElements('.right-component > .lst-candidacies > div', 5);
+        $I->click('');
+        $I->seeCurrentRouteIs('app_ter_delete_candidacy');
     }
 }
