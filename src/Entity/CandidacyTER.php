@@ -23,6 +23,9 @@ class CandidacyTER
     #[ORM\ManyToOne(inversedBy: 'candidacyTERs')]
     private ?TER $TER = null;
 
+    #[ORM\Column]
+    private ?int $orderNumber = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class CandidacyTER
     public function setTER(?TER $TER): self
     {
         $this->TER = $TER;
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?int
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(int $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }
