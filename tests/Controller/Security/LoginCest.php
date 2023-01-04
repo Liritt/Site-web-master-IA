@@ -2,16 +2,21 @@
 
 namespace App\Tests\Controller\Security;
 
-use App\Entity\Student;
+use App\Entity\Administrator;
+use App\Entity\Company;
+use App\Factory\AdministratorFactory;
+use App\Factory\CompanyFactory;
 use App\Factory\StudentFactory;
+use App\Factory\TeacherFactory;
+use App\Factory\UserFactory;
 use App\Tests\Support\ControllerTester;
 
 class LoginCest
 {
     public function LoginAdmin(ControllerTester $I): void
     {
-        $user = StudentFactory::createOne([
-            'email' => 'user@test.com',
+        $user = AdministratorFactory::createOne([
+            'email' => 'User@test.com',
             'password' => 'test',
             'roles' => ['ROLE_ADMIN'],
         ]);
@@ -47,7 +52,7 @@ class LoginCest
 
     public function LoginTeacher(ControllerTester $I): void
     {
-        $user = StudentFactory::createOne([
+        $user = TeacherFactory::createOne([
             'email' => 'user@test.com',
             'password' => 'test',
             'roles' => ['ROLE_TEACHER'],
@@ -65,7 +70,7 @@ class LoginCest
 
     public function LoginCompany(ControllerTester $I): void
     {
-        $user = StudentFactory::createOne([
+        $user = CompanyFactory::createOne([
             'email' => 'user@test.com',
             'password' => 'test',
             'roles' => ['ROLE_COMPANY'],
