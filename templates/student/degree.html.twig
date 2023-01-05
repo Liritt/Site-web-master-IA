@@ -1,0 +1,21 @@
+{% extends '_connectedNavBar.html.twig' %}
+
+{% block title %}Hello StudentController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            {% for student in students %}
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="{{ asset('img/default_profile_picture.png') }}">
+                            {{ student.firstname }} {{ student.lastname }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
