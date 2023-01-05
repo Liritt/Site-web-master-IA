@@ -39,6 +39,17 @@ class StudentRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByDegree(int $degree):array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.degree = :degree')
+            ->setParameter('degree', $degree)
+            ->orderBy('s.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Student[] Returns an array of Student objects
 //     */
