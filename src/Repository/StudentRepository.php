@@ -50,6 +50,20 @@ class StudentRepository extends ServiceEntityRepository
         ;
     }
 
+    public function search(string $text = ''): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.lastname LIKE :text')
+            ->orWhere('c.firstname LIKE :text')
+            ->setParameter('text', '%'.$text.'%')
+            ->orderBy('c.lastname', 'ASC')
+            ->addOrderBy('c.firstname', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 //    /**
 //     * @return Student[] Returns an array of Student objects
 //     */
