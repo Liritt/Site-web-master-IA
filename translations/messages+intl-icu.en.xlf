@@ -101,157 +101,161 @@
       </trans-unit>
       <trans-unit id="b.ct.eX" resname="ADMISSION">
         <source>ADMISSION</source>
-        <target>__ADMISSION</target>
+        <target>ADMISSION</target>
       </trans-unit>
       <trans-unit id="bo09TDb" resname="POURSUITES D’ÉTUDES ET DÉBOUCHÉS">
         <source>POURSUITES D’ÉTUDES ET DÉBOUCHÉS</source>
-        <target>__POURSUITES D’ÉTUDES ET DÉBOUCHÉS</target>
+        <target>PURSUING STUDIES AND JOB OPENING</target>
       </trans-unit>
       <trans-unit id="TYPn1Gl" resname="Poursuites d’études envisageables :">
         <source>Poursuites d’études envisageables :</source>
-        <target>__Poursuites d’études envisageables :</target>
+        <target>Possible further studies :</target>
       </trans-unit>
       <trans-unit id="iGzuWob" resname="Les étudiants motivés pourront compléter leur formation par un doctorat.">
         <source>Les étudiants motivés pourront compléter leur formation par un doctorat.</source>
-        <target>__Les étudiants motivés pourront compléter leur formation par un doctorat.</target>
+        <target>Motivated students can complete their training with a doctorate.</target>
       </trans-unit>
       <trans-unit id="Rse29EQ" resname="Débouchés :">
         <source>Débouchés :</source>
-        <target>__Débouchés :</target>
+        <target>Job opening</target>
       </trans-unit>
       <trans-unit id="Z4ZsBhQ" resname="Code ROME :">
         <source>Code ROME :</source>
-        <target>__Code ROME :</target>
+        <target>Code ROME</target>
       </trans-unit>
       <trans-unit id="KWQxdHC" resname="Ingénieur en Systèmes d’information et de télécommunication : M1804,">
         <source>Ingénieur en Systèmes d’information et de télécommunication : M1804,</source>
-        <target>__Ingénieur en Systèmes d’information et de télécommunication : M1804,</target>
+        <target>Information Systems and telecommunications engineer: M1804,</target>
       </trans-unit>
       <trans-unit id="msChe9T" resname="Management et ingénierie études, recherche et développement industriel : H1206,">
         <source>Management et ingénierie études, recherche et développement industriel : H1206,</source>
-        <target>__Management et ingénierie études, recherche et développement industriel : H1206,</target>
+        <target>Management and engineering studies, research and industrial development : H1206,</target>
       </trans-unit>
       <trans-unit id="0KyG5YB" resname="Data scientist / Études et prospectives socio-économiques : M1403,">
         <source>Data scientist / Études et prospectives socio-économiques : M1403,</source>
-        <target>__Data scientist / Études et prospectives socio-économiques : M1403,</target>
+        <target>Data scientist / Socio-economic studies and forecasts : M1403,</target>
       </trans-unit>
       <trans-unit id="kwsZgJv" resname="Conseil en organisation et management d’entreprise : M1402,">
         <source>Conseil en organisation et management d’entreprise : M1402,</source>
-        <target>__Conseil en organisation et management d’entreprise : M1402,</target>
+        <target>Consulting in organization and business management : M1402,</target>
       </trans-unit>
       <trans-unit id="TRsiQ5n" resname="Direction de petite ou moyenne entreprise : M1302,">
         <source>Direction de petite ou moyenne entreprise : M1302,</source>
-        <target>__Direction de petite ou moyenne entreprise : M1302,</target>
+        <target>Small or medium-sized company management : M1302,</target>
       </trans-unit>
       <trans-unit id="UBK5NYx" resname="Réalisateur de contenus multimédias : E1205.">
         <source>Réalisateur de contenus multimédias : E1205.</source>
-        <target>__Réalisateur de contenus multimédias : E1205.</target>
+        <target>Multimedia content producer : E1205.</target>
       </trans-unit>
       <trans-unit id="CJ.evyh" resname="Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.">
         <source>Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</source>
-        <target>__Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</target>
+        <target>ROME is Pôle Emploi's directory of trades and jobs.</target>
       </trans-unit>
       <trans-unit id="RVQJLrY" resname="Insertion professionnelle :">
         <source>Insertion professionnelle :</source>
-        <target>__Insertion professionnelle :</target>
+        <target>Occupational integration :</target>
       </trans-unit>
       <trans-unit id="45eCkmL" resname="Devenir à 6 mois :">
         <source>Devenir à 6 mois :</source>
-        <target>__Devenir à 6 mois :</target>
+        <target>Becoming at 6 months :</target>
       </trans-unit>
       <trans-unit id="rEEh2CC" resname="Résultats par diplôme">
         <source>Résultats par diplôme</source>
-        <target>__Résultats par diplôme</target>
+        <target>Results by degree</target>
       </trans-unit>
       <trans-unit id="r8SMvit" resname="Insertion professionnelle à 30 mois :">
         <source>Insertion professionnelle à 30 mois :</source>
-        <target>__Insertion professionnelle à 30 mois :</target>
+        <target>Occupational integration at 30 month :</target>
       </trans-unit>
       <trans-unit id="DLNJqdp" resname="INFORMATIONS PRATIQUES">
         <source>INFORMATIONS PRATIQUES</source>
-        <target>__INFORMATIONS PRATIQUES</target>
+        <target>PRACTICAL INFORMATIONS</target>
       </trans-unit>
       <trans-unit id=".Y5usMx" resname="Pour en savoir plus sur l'orientation et l'insertion professionnelle :">
         <source>Pour en savoir plus sur l'orientation et l'insertion professionnelle :</source>
-        <target>__Pour en savoir plus sur l'orientation et l'insertion professionnelle :</target>
+        <target>To find out more about vocational guidance and occupational integration:</target>
       </trans-unit>
       <trans-unit id="QP4ey.9" resname="Mission Orientation du Service d'Accompagnement des Étudiants (SAE)">
         <source>Mission Orientation du Service d'Accompagnement des Étudiants (SAE)</source>
-        <target>__Mission Orientation du Service d'Accompagnement des Étudiants (SAE)</target>
+        <target>Orientation Mission of the Student Support Service (SAE)</target>
       </trans-unit>
       <trans-unit id="WKpJfd5" resname="Pour tout renseignement sur la scolarité :">
         <source>Pour tout renseignement sur la scolarité :</source>
-        <target>__Pour tout renseignement sur la scolarité :</target>
+        <target>For any information on education :</target>
       </trans-unit>
       <trans-unit id="jhPcyoU" resname="Coordonnées des scolarités de l'URCA">
         <source>Coordonnées des scolarités de l'URCA</source>
-        <target>__Coordonnées des scolarités de l'URCA</target>
+        <target>Contact details for URCA schools</target>
       </trans-unit>
       <trans-unit id="PSLHnJV" resname="Pour tout renseignement sur la formation continue et l’insertion professionnelle :">
         <source>Pour tout renseignement sur la formation continue et l’insertion professionnelle :</source>
-        <target>__Pour tout renseignement sur la formation continue et l’insertion professionnelle :</target>
+        <target>For any information on continuing education and occupational integration :</target>
       </trans-unit>
       <trans-unit id="bW6Ktfj" resname="La formation continue">
         <source>La formation continue</source>
-        <target>__La formation continue</target>
+        <target>Continuing education</target>
       </trans-unit>
       <trans-unit id="MrWJ_5i" resname="L’insertion professionnelle">
         <source>L’insertion professionnelle</source>
-        <target>__L’insertion professionnelle</target>
+        <target>Occupational integration</target>
       </trans-unit>
       <trans-unit id="2A5Winq" resname="La Validation des acquis">
         <source>La Validation des acquis</source>
-        <target>__La Validation des acquis</target>
+        <target>Validation of acquired knowledge</target>
       </trans-unit>
       <trans-unit id="3KfsvGE" resname="Vous avez de l'expérience et/ou un parcours de formation à valoriser ?">
         <source>Vous avez de l'expérience et/ou un parcours de formation à valoriser ?</source>
-        <target>__Vous avez de l'expérience et/ou un parcours de formation à valoriser ?</target>
+        <target>Do you have experience and/or a training course to enhance?</target>
       </trans-unit>
       <trans-unit id="4P9zyRN" resname="Des procédures de validation des acquis sont possibles pour vous permettre d'accéder&#10;                à la formation ou pour valider le diplôme.">
         <source>Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
                 à la formation ou pour valider le diplôme.</source>
-        <target>__Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
-                à la formation ou pour valider le diplôme.</target>
+        <target>Acquired validation procedures are possible to enable you to access
+                training or to validate the diploma.</target>
       </trans-unit>
       <trans-unit id="Rpx0fv_" resname="Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr">
         <source>Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr</source>
-        <target>__Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr</target>
+        <target>For more information, you can send an e-mail to vae@univ-reims.fr</target>
       </trans-unit>
       <trans-unit id="TGBmJwm" resname="Pour en savoir plus sur les relations internationales à l'Université :">
         <source>Pour en savoir plus sur les relations internationales à l'Université :</source>
-        <target>__Pour en savoir plus sur les relations internationales à l'Université :</target>
+        <target>To find out more about international relations at the University:</target>
       </trans-unit>
       <trans-unit id="Q4txJWg" resname="Direction des Relations Extérieures et du Développement International (DREDI)">
         <source>Direction des Relations Extérieures et du Développement International (DREDI)</source>
-        <target>__Direction des Relations Extérieures et du Développement International (DREDI)</target>
+        <target>Department of External Relations and International Development (DREDI)</target>
       </trans-unit>
       <trans-unit id="0ZvXMIX" resname="Partir à l'étranger">
         <source>Partir à l'étranger</source>
-        <target>__Partir à l'étranger</target>
+        <target>Go abroad</target>
       </trans-unit>
       <trans-unit id="kbV19BA" resname="Lien vers les associations étudiantes :">
         <source>Lien vers les associations étudiantes :</source>
-        <target>__Lien vers les associations étudiantes :</target>
+        <target>Link to student associations :</target>
       </trans-unit>
       <trans-unit id="ETJH7j7" resname="Associations étudiantes">
         <source>Associations étudiantes</source>
-        <target>__Associations étudiantes</target>
+        <target>Student associations</target>
       </trans-unit>
       <trans-unit id="9EAnamE" resname="Composante :">
         <source>Composante :</source>
-        <target>__Composante :</target>
+        <target>Component :</target>
       </trans-unit>
       <trans-unit id="yfQ6hud" resname="Faculté de Sciences Exactes et Nature">
         <source>Faculté de Sciences Exactes et Nature</source>
-        <target>__Faculté de Sciences Exactes et Nature</target>
+        <target>Faculty of Exact Sciences and Nature</target>
       </trans-unit>
       <trans-unit id="FueQr_N" resname="Responsable de la formation :">
         <source>Responsable de la formation :</source>
-        <target>__Responsable de la formation :</target>
+        <target>Training manager :</target>
       </trans-unit>
       <trans-unit id="SKUMgSl" resname="Coordonnées du secrétariat :">
         <source>Coordonnées du secrétariat :</source>
-        <target>__Coordonnées du secrétariat :</target>
+        <target>Secretariat contact details :</target>
+      </trans-unit>
+      <trans-unit id="ZTpeubp" resname="Département MMI">
+        <source>Département MMI</source>
+        <target>MMI Department</target>
       </trans-unit>
     </body>
   </file>
