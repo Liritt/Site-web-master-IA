@@ -36,6 +36,14 @@
                             </button>
                         {% endif %}
                     </li>
+                    <li>
+                        {% if is_granted('ROLE_ADMIN') == true %}
+                            <button class="btn btn-danger d-flex align-items-center" onclick="self.location.href='{{ path('admin') }}'">
+                                <span class="material-symbols-outlined me-2">undo</span>
+                                Retourner sur l'interface Administrateur
+                            </button>
+                        {% endif %}
+                    </li>
                     <div class="dropdown">
                             <span class="dropdown-toggle" type="button" id="dropdownMenuLanguage" data-bs-toggle="dropdown" aria-expanded="false">
                                 {% if app.request.locale == 'fr' %}
