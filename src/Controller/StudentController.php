@@ -16,4 +16,12 @@ class StudentController extends AbstractController
 
         return $this->render('student/index.html.twig', ['students' => $students]);
     }
+
+    #[Route('/student/{degree}', name: 'app_student_degree')]
+    public function show(StudentRepository $repository, int $degree): Response
+    {
+        $students = $repository->findByDegree($degree);
+        return $this->render('student/degree.html.twig', ['students' => $students]);
+
+    }
 }
