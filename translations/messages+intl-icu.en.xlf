@@ -55,11 +55,11 @@
       </trans-unit>
       <trans-unit id="gDyvQ82" resname="FIL D'ACTUALITE">
         <source>FIL D'ACTUALITE</source>
-        <target>__FIL D'ACTUALITE</target>
+        <target>NEWS</target>
       </trans-unit>
       <trans-unit id="ElmcmIc" resname="COMPÉTENCES ACQUISES">
         <source>COMPÉTENCES ACQUISES</source>
-        <target>__COMPÉTENCES ACQUISES</target>
+        <target>ACQUIRED SKILLS</target>
       </trans-unit>
       <trans-unit id="B31buuD" resname="Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,&#10;                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),&#10;                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,&#10;                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,&#10;                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),&#10;                    la programmation, la visualisation et les interactions personnes-machines (UE4).">
         <source>Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
@@ -68,36 +68,36 @@
                     appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,
                     la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),
                     la programmation, la visualisation et les interactions personnes-machines (UE4).</source>
-        <target>__Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
-                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),
-                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,
-                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,
-                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),
-                    la programmation, la visualisation et les interactions personnes-machines (UE4).</target>
+        <target>The disciplinary skills acquired focus on artificial intelligence,
+                  digital humanities, decision support and data mining (UE1),
+                  data collection, analysis, management and fusion/correlation, Big Data and machine learning,
+                  applied for example to connected cities/transport/agriculture (UE2), deep learning, classification,
+                  complexity and statistics, applied for example to bio-inspired modeling and situated cognition (UE3),
+                  programming, visualization and human-machine interactions (UE4).</target>
       </trans-unit>
       <trans-unit id="DEz2ki." resname="ORGANISATION PÉDAGOGIQUE">
         <source>ORGANISATION PÉDAGOGIQUE</source>
-        <target>__ORGANISATION PÉDAGOGIQUE</target>
+        <target>EDUCATIONAL ORGANIZATION</target>
       </trans-unit>
       <trans-unit id="5CbBlGd" resname="Modalités d’enseignement :">
         <source>Modalités d’enseignement :</source>
-        <target>__Modalités d’enseignement :</target>
+        <target>Teaching terms</target>
       </trans-unit>
       <trans-unit id="rfgFm4q" resname="Formation initiale en présentiel ou en alternance.">
         <source>Formation initiale en présentiel ou en alternance.</source>
-        <target>__Formation initiale en présentiel ou en alternance.</target>
+        <target>Initial face-to-face or block release training.</target>
       </trans-unit>
       <trans-unit id="lV3jA2l" resname="Stages et projets tuteurés :">
         <source>Stages et projets tuteurés :</source>
-        <target>__Stages et projets tuteurés :</target>
+        <target>Internships and tutored projects:</target>
       </trans-unit>
       <trans-unit id="wM9qViL" resname="En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).">
         <source>En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).</source>
-        <target>__En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).</target>
+        <target>In M1, a tutored project and a compulsory internship of at least two months are planned for the second semester (S2).</target>
       </trans-unit>
       <trans-unit id="F5fO3RI" resname="En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).">
         <source>En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</source>
-        <target>__En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</target>
+        <target>In M2, a tutored project and a compulsory internship of at least four months are planned for the second semester (S4).</target>
       </trans-unit>
       <trans-unit id="b.ct.eX" resname="ADMISSION">
         <source>ADMISSION</source>
