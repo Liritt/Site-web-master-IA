@@ -6,6 +6,7 @@ details > summary::-webkit-details-marker {
     display: none;
 }
 
+
 .art1-div{
     display: flex;
     flex-direction: row;

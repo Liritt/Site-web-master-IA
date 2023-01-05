@@ -10,37 +10,37 @@
 
 {% block body %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <h1>{% trans %}FIL D'ACTUALITÉ{% endtrans %}</h1>
-        <div class="art1-div">
-            <details class="art1">
+        <h1 class="titre-no-border">{% trans %}FIL D'ACTUALITÉ{% endtrans %}</h1>
+        <div class="art1-div m-2">
+            <details class="art1 m-2">
                 <summary>
-                    <img src="{{ asset('img/Article1.jfif') }}">
-                    <h3>News #1 : Title</h3>
+                    <img class="img-fluid shadow-lg rounded-1" src="{{ asset('img/Article1.jfif') }}">
+                    <h3 class="titre-no-border">News #1 : Title</h3>
                 </summary>
-                Description de l'article 1
+                <div class="card"><div class="card-body bg-light-blue">Description de l'article 1</div></div>
             </details>
             <div class="art2-div">
-                <details class="art2">
+                <details class="art2 m-2">
                     <summary>
-                        <img src="{{ asset('img/Article2.jpg') }}">
-                        <h3>News #2 : Title</h3>
+                        <img class="img-fluid shadow-lg rounded-1" src="{{ asset('img/Article2.jpg') }}">
+                        <h3 class="titre-no-border">News #2 : Title</h3>
                     </summary>
-                    Description de l'article 2
+                    <div class="card"><div class="card-body bg-light-blue">Description de l'article 2</div></div>
                 </details>
                 <div class="art3-div">
-                    <details class="art3">
+                    <details class="art3 m-2">
                         <summary>
-                            <img src="{{ asset('img/Article3.jfif') }}">
-                            <h3>News #3 : Title</h3>
+                            <img class="img-fluid shadow-lg rounded-1" src="{{ asset('img/Article3.jfif') }}">
+                            <h3 class="titre-no-border">News #3 : Title</h3>
                         </summary>
-                        Description de l'article 3
+                        <div class="card"><div class="card-body bg-light-blue">Description de l'article 3</div></div>
                     </details>
-                    <details class="art4">
+                    <details class="art4 m-2">
                         <summary>
-                            <img src="{{ asset('img/Article4.jfif') }}">
-                            <h3>News #4 : Title</h3>
+                            <img class="img-fluid shadow-lg rounded-1" src="{{ asset('img/Article4.jfif') }}">
+                            <h3 class="titre-no-border">News #4 : Title</h3>
                         </summary>
-                        Description de l'article 4
+                        <div class="card"><div class="card-body bg-light-blue">Description de l'article 4</div></div>
                     </details>
                 </div>
             </div>
