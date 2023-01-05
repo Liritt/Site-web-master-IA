@@ -53,6 +53,206 @@
         <target>Linguistic and professional skills (English, Project Management,
                         Communication, Organization of companies) are widely considered (UE5).</target>
       </trans-unit>
+      <trans-unit id="gDyvQ82" resname="FIL D'ACTUALITE">
+        <source>FIL D'ACTUALITE</source>
+        <target>__FIL D'ACTUALITE</target>
+      </trans-unit>
+      <trans-unit id="ElmcmIc" resname="COMPÉTENCES ACQUISES">
+        <source>COMPÉTENCES ACQUISES</source>
+        <target>__COMPÉTENCES ACQUISES</target>
+      </trans-unit>
+      <trans-unit id="B31buuD" resname="Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,&#10;                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),&#10;                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,&#10;                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,&#10;                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),&#10;                    la programmation, la visualisation et les interactions personnes-machines (UE4).">
+        <source>Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
+                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),
+                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,
+                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,
+                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),
+                    la programmation, la visualisation et les interactions personnes-machines (UE4).</source>
+        <target>__Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
+                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),
+                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,
+                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,
+                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),
+                    la programmation, la visualisation et les interactions personnes-machines (UE4).</target>
+      </trans-unit>
+      <trans-unit id="DEz2ki." resname="ORGANISATION PÉDAGOGIQUE">
+        <source>ORGANISATION PÉDAGOGIQUE</source>
+        <target>__ORGANISATION PÉDAGOGIQUE</target>
+      </trans-unit>
+      <trans-unit id="5CbBlGd" resname="Modalités d’enseignement :">
+        <source>Modalités d’enseignement :</source>
+        <target>__Modalités d’enseignement :</target>
+      </trans-unit>
+      <trans-unit id="rfgFm4q" resname="Formation initiale en présentiel ou en alternance.">
+        <source>Formation initiale en présentiel ou en alternance.</source>
+        <target>__Formation initiale en présentiel ou en alternance.</target>
+      </trans-unit>
+      <trans-unit id="lV3jA2l" resname="Stages et projets tuteurés :">
+        <source>Stages et projets tuteurés :</source>
+        <target>__Stages et projets tuteurés :</target>
+      </trans-unit>
+      <trans-unit id="wM9qViL" resname="En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).">
+        <source>En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).</source>
+        <target>__En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).</target>
+      </trans-unit>
+      <trans-unit id="F5fO3RI" resname="En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).">
+        <source>En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</source>
+        <target>__En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</target>
+      </trans-unit>
+      <trans-unit id="b.ct.eX" resname="ADMISSION">
+        <source>ADMISSION</source>
+        <target>__ADMISSION</target>
+      </trans-unit>
+      <trans-unit id="bo09TDb" resname="POURSUITES D’ÉTUDES ET DÉBOUCHÉS">
+        <source>POURSUITES D’ÉTUDES ET DÉBOUCHÉS</source>
+        <target>__POURSUITES D’ÉTUDES ET DÉBOUCHÉS</target>
+      </trans-unit>
+      <trans-unit id="TYPn1Gl" resname="Poursuites d’études envisageables :">
+        <source>Poursuites d’études envisageables :</source>
+        <target>__Poursuites d’études envisageables :</target>
+      </trans-unit>
+      <trans-unit id="iGzuWob" resname="Les étudiants motivés pourront compléter leur formation par un doctorat.">
+        <source>Les étudiants motivés pourront compléter leur formation par un doctorat.</source>
+        <target>__Les étudiants motivés pourront compléter leur formation par un doctorat.</target>
+      </trans-unit>
+      <trans-unit id="Rse29EQ" resname="Débouchés :">
+        <source>Débouchés :</source>
+        <target>__Débouchés :</target>
+      </trans-unit>
+      <trans-unit id="Z4ZsBhQ" resname="Code ROME :">
+        <source>Code ROME :</source>
+        <target>__Code ROME :</target>
+      </trans-unit>
+      <trans-unit id="KWQxdHC" resname="Ingénieur en Systèmes d’information et de télécommunication : M1804,">
+        <source>Ingénieur en Systèmes d’information et de télécommunication : M1804,</source>
+        <target>__Ingénieur en Systèmes d’information et de télécommunication : M1804,</target>
+      </trans-unit>
+      <trans-unit id="msChe9T" resname="Management et ingénierie études, recherche et développement industriel : H1206,">
+        <source>Management et ingénierie études, recherche et développement industriel : H1206,</source>
+        <target>__Management et ingénierie études, recherche et développement industriel : H1206,</target>
+      </trans-unit>
+      <trans-unit id="0KyG5YB" resname="Data scientist / Études et prospectives socio-économiques : M1403,">
+        <source>Data scientist / Études et prospectives socio-économiques : M1403,</source>
+        <target>__Data scientist / Études et prospectives socio-économiques : M1403,</target>
+      </trans-unit>
+      <trans-unit id="kwsZgJv" resname="Conseil en organisation et management d’entreprise : M1402,">
+        <source>Conseil en organisation et management d’entreprise : M1402,</source>
+        <target>__Conseil en organisation et management d’entreprise : M1402,</target>
+      </trans-unit>
+      <trans-unit id="TRsiQ5n" resname="Direction de petite ou moyenne entreprise : M1302,">
+        <source>Direction de petite ou moyenne entreprise : M1302,</source>
+        <target>__Direction de petite ou moyenne entreprise : M1302,</target>
+      </trans-unit>
+      <trans-unit id="UBK5NYx" resname="Réalisateur de contenus multimédias : E1205.">
+        <source>Réalisateur de contenus multimédias : E1205.</source>
+        <target>__Réalisateur de contenus multimédias : E1205.</target>
+      </trans-unit>
+      <trans-unit id="CJ.evyh" resname="Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.">
+        <source>Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</source>
+        <target>__Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</target>
+      </trans-unit>
+      <trans-unit id="RVQJLrY" resname="Insertion professionnelle :">
+        <source>Insertion professionnelle :</source>
+        <target>__Insertion professionnelle :</target>
+      </trans-unit>
+      <trans-unit id="45eCkmL" resname="Devenir à 6 mois :">
+        <source>Devenir à 6 mois :</source>
+        <target>__Devenir à 6 mois :</target>
+      </trans-unit>
+      <trans-unit id="rEEh2CC" resname="Résultats par diplôme">
+        <source>Résultats par diplôme</source>
+        <target>__Résultats par diplôme</target>
+      </trans-unit>
+      <trans-unit id="r8SMvit" resname="Insertion professionnelle à 30 mois :">
+        <source>Insertion professionnelle à 30 mois :</source>
+        <target>__Insertion professionnelle à 30 mois :</target>
+      </trans-unit>
+      <trans-unit id="DLNJqdp" resname="INFORMATIONS PRATIQUES">
+        <source>INFORMATIONS PRATIQUES</source>
+        <target>__INFORMATIONS PRATIQUES</target>
+      </trans-unit>
+      <trans-unit id=".Y5usMx" resname="Pour en savoir plus sur l'orientation et l'insertion professionnelle :">
+        <source>Pour en savoir plus sur l'orientation et l'insertion professionnelle :</source>
+        <target>__Pour en savoir plus sur l'orientation et l'insertion professionnelle :</target>
+      </trans-unit>
+      <trans-unit id="QP4ey.9" resname="Mission Orientation du Service d'Accompagnement des Étudiants (SAE)">
+        <source>Mission Orientation du Service d'Accompagnement des Étudiants (SAE)</source>
+        <target>__Mission Orientation du Service d'Accompagnement des Étudiants (SAE)</target>
+      </trans-unit>
+      <trans-unit id="WKpJfd5" resname="Pour tout renseignement sur la scolarité :">
+        <source>Pour tout renseignement sur la scolarité :</source>
+        <target>__Pour tout renseignement sur la scolarité :</target>
+      </trans-unit>
+      <trans-unit id="jhPcyoU" resname="Coordonnées des scolarités de l'URCA">
+        <source>Coordonnées des scolarités de l'URCA</source>
+        <target>__Coordonnées des scolarités de l'URCA</target>
+      </trans-unit>
+      <trans-unit id="PSLHnJV" resname="Pour tout renseignement sur la formation continue et l’insertion professionnelle :">
+        <source>Pour tout renseignement sur la formation continue et l’insertion professionnelle :</source>
+        <target>__Pour tout renseignement sur la formation continue et l’insertion professionnelle :</target>
+      </trans-unit>
+      <trans-unit id="bW6Ktfj" resname="La formation continue">
+        <source>La formation continue</source>
+        <target>__La formation continue</target>
+      </trans-unit>
+      <trans-unit id="MrWJ_5i" resname="L’insertion professionnelle">
+        <source>L’insertion professionnelle</source>
+        <target>__L’insertion professionnelle</target>
+      </trans-unit>
+      <trans-unit id="2A5Winq" resname="La Validation des acquis">
+        <source>La Validation des acquis</source>
+        <target>__La Validation des acquis</target>
+      </trans-unit>
+      <trans-unit id="3KfsvGE" resname="Vous avez de l'expérience et/ou un parcours de formation à valoriser ?">
+        <source>Vous avez de l'expérience et/ou un parcours de formation à valoriser ?</source>
+        <target>__Vous avez de l'expérience et/ou un parcours de formation à valoriser ?</target>
+      </trans-unit>
+      <trans-unit id="4P9zyRN" resname="Des procédures de validation des acquis sont possibles pour vous permettre d'accéder&#10;                à la formation ou pour valider le diplôme.">
+        <source>Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                à la formation ou pour valider le diplôme.</source>
+        <target>__Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                à la formation ou pour valider le diplôme.</target>
+      </trans-unit>
+      <trans-unit id="Rpx0fv_" resname="Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr">
+        <source>Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr</source>
+        <target>__Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr</target>
+      </trans-unit>
+      <trans-unit id="TGBmJwm" resname="Pour en savoir plus sur les relations internationales à l'Université :">
+        <source>Pour en savoir plus sur les relations internationales à l'Université :</source>
+        <target>__Pour en savoir plus sur les relations internationales à l'Université :</target>
+      </trans-unit>
+      <trans-unit id="Q4txJWg" resname="Direction des Relations Extérieures et du Développement International (DREDI)">
+        <source>Direction des Relations Extérieures et du Développement International (DREDI)</source>
+        <target>__Direction des Relations Extérieures et du Développement International (DREDI)</target>
+      </trans-unit>
+      <trans-unit id="0ZvXMIX" resname="Partir à l'étranger">
+        <source>Partir à l'étranger</source>
+        <target>__Partir à l'étranger</target>
+      </trans-unit>
+      <trans-unit id="kbV19BA" resname="Lien vers les associations étudiantes :">
+        <source>Lien vers les associations étudiantes :</source>
+        <target>__Lien vers les associations étudiantes :</target>
+      </trans-unit>
+      <trans-unit id="ETJH7j7" resname="Associations étudiantes">
+        <source>Associations étudiantes</source>
+        <target>__Associations étudiantes</target>
+      </trans-unit>
+      <trans-unit id="9EAnamE" resname="Composante :">
+        <source>Composante :</source>
+        <target>__Composante :</target>
+      </trans-unit>
+      <trans-unit id="yfQ6hud" resname="Faculté de Sciences Exactes et Nature">
+        <source>Faculté de Sciences Exactes et Nature</source>
+        <target>__Faculté de Sciences Exactes et Nature</target>
+      </trans-unit>
+      <trans-unit id="FueQr_N" resname="Responsable de la formation :">
+        <source>Responsable de la formation :</source>
+        <target>__Responsable de la formation :</target>
+      </trans-unit>
+      <trans-unit id="SKUMgSl" resname="Coordonnées du secrétariat :">
+        <source>Coordonnées du secrétariat :</source>
+        <target>__Coordonnées du secrétariat :</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
