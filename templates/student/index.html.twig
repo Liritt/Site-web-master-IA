@@ -25,17 +25,19 @@
         <div class="row">
             {% for student in students %}
                 <div class="col-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="{{ asset('img/default_profile_picture.png') }}">
-                            {{ student.firstname }} {{ student.lastname }}
-                            {% if student.degree == 1%}
-                                1 er année
-                            {% else %}
-                                2 ème année
-                            {% endif %}
+                    <a href="{{ path('app_student_profil', {id: student.id}) }}">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{ asset('img/default_profile_picture.png') }}">
+                                {{ student.firstname }} {{ student.lastname }}
+                                {% if student.degree == 1%}
+                                    1 er année
+                                {% else %}
+                                    2 ème année
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>
