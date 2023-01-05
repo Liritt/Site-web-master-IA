@@ -13,6 +13,10 @@
                     </ul>
                 </li>
             </ul>
+            <form class="d-flex" role="search" action="{{ path('app_student') }}">
+                <input name="search" class="form-control me-2" type="search" placeholder="{{ search|default('') }}" aria-label="rechercher">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
         </div>
     </div>
 </nav>
