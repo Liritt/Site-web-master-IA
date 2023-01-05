@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\CandidacyTER;
+use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,32 @@ class CandidacyTERRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function searchCandidacies(Student $student = null)
+    {
+        return $this->createQueryBuilder('ct')
+            ->join('ct.student', 'student')
+            ->addSelect('student')
+            ->where('ct.student = :student')
+            ->orderBy('student.lastname')
+            ->addOrderBy('student.firstname')
+            ->addOrderBy('ct.date')
+            ->setParameter('student', $student)
+            ->getQuery()
+            ->execute();
+    }
+
+    public function searchCandidaciesAdmin()
+    {
+        return $this->createQueryBuilder('ct')
+            ->join('ct.student', 'student')
+            ->addSelect('student')
+            ->orderBy('student.lastname')
+            ->addOrderBy('student.firstname')
+            ->addOrderBy('ct.date')
+            ->getQuery()
+            ->execute();
     }
 
 //    /**

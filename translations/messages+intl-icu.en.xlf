@@ -53,6 +53,210 @@
         <target>Linguistic and professional skills (English, Project Management,
                         Communication, Organization of companies) are widely considered (UE5).</target>
       </trans-unit>
+      <trans-unit id="gDyvQ82" resname="FIL D'ACTUALITE">
+        <source>FIL D'ACTUALITE</source>
+        <target>NEWS</target>
+      </trans-unit>
+      <trans-unit id="ElmcmIc" resname="COMPÉTENCES ACQUISES">
+        <source>COMPÉTENCES ACQUISES</source>
+        <target>ACQUIRED SKILLS</target>
+      </trans-unit>
+      <trans-unit id="B31buuD" resname="Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,&#10;                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),&#10;                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,&#10;                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,&#10;                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),&#10;                    la programmation, la visualisation et les interactions personnes-machines (UE4).">
+        <source>Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
+                    les humanités numériques, l’aide à la décision et la fouille de données (UE1),
+                    la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,
+                    appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,
+                    la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),
+                    la programmation, la visualisation et les interactions personnes-machines (UE4).</source>
+        <target>The disciplinary skills acquired focus on artificial intelligence,
+                  digital humanities, decision support and data mining (UE1),
+                  data collection, analysis, management and fusion/correlation, Big Data and machine learning,
+                  applied for example to connected cities/transport/agriculture (UE2), deep learning, classification,
+                  complexity and statistics, applied for example to bio-inspired modeling and situated cognition (UE3),
+                  programming, visualization and human-machine interactions (UE4).</target>
+      </trans-unit>
+      <trans-unit id="DEz2ki." resname="ORGANISATION PÉDAGOGIQUE">
+        <source>ORGANISATION PÉDAGOGIQUE</source>
+        <target>EDUCATIONAL ORGANIZATION</target>
+      </trans-unit>
+      <trans-unit id="5CbBlGd" resname="Modalités d’enseignement :">
+        <source>Modalités d’enseignement :</source>
+        <target>Teaching terms</target>
+      </trans-unit>
+      <trans-unit id="rfgFm4q" resname="Formation initiale en présentiel ou en alternance.">
+        <source>Formation initiale en présentiel ou en alternance.</source>
+        <target>Initial face-to-face or block release training.</target>
+      </trans-unit>
+      <trans-unit id="lV3jA2l" resname="Stages et projets tuteurés :">
+        <source>Stages et projets tuteurés :</source>
+        <target>Internships and tutored projects:</target>
+      </trans-unit>
+      <trans-unit id="wM9qViL" resname="En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).">
+        <source>En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).</source>
+        <target>In M1, a tutored project and a compulsory internship of at least two months are planned for the second semester (S2).</target>
+      </trans-unit>
+      <trans-unit id="F5fO3RI" resname="En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).">
+        <source>En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).</source>
+        <target>In M2, a tutored project and a compulsory internship of at least four months are planned for the second semester (S4).</target>
+      </trans-unit>
+      <trans-unit id="b.ct.eX" resname="ADMISSION">
+        <source>ADMISSION</source>
+        <target>ADMISSION</target>
+      </trans-unit>
+      <trans-unit id="bo09TDb" resname="POURSUITES D’ÉTUDES ET DÉBOUCHÉS">
+        <source>POURSUITES D’ÉTUDES ET DÉBOUCHÉS</source>
+        <target>PURSUING STUDIES AND JOB OPENING</target>
+      </trans-unit>
+      <trans-unit id="TYPn1Gl" resname="Poursuites d’études envisageables :">
+        <source>Poursuites d’études envisageables :</source>
+        <target>Possible further studies :</target>
+      </trans-unit>
+      <trans-unit id="iGzuWob" resname="Les étudiants motivés pourront compléter leur formation par un doctorat.">
+        <source>Les étudiants motivés pourront compléter leur formation par un doctorat.</source>
+        <target>Motivated students can complete their training with a doctorate.</target>
+      </trans-unit>
+      <trans-unit id="Rse29EQ" resname="Débouchés :">
+        <source>Débouchés :</source>
+        <target>Job opening</target>
+      </trans-unit>
+      <trans-unit id="Z4ZsBhQ" resname="Code ROME :">
+        <source>Code ROME :</source>
+        <target>Code ROME</target>
+      </trans-unit>
+      <trans-unit id="KWQxdHC" resname="Ingénieur en Systèmes d’information et de télécommunication : M1804,">
+        <source>Ingénieur en Systèmes d’information et de télécommunication : M1804,</source>
+        <target>Information Systems and telecommunications engineer: M1804,</target>
+      </trans-unit>
+      <trans-unit id="msChe9T" resname="Management et ingénierie études, recherche et développement industriel : H1206,">
+        <source>Management et ingénierie études, recherche et développement industriel : H1206,</source>
+        <target>Management and engineering studies, research and industrial development : H1206,</target>
+      </trans-unit>
+      <trans-unit id="0KyG5YB" resname="Data scientist / Études et prospectives socio-économiques : M1403,">
+        <source>Data scientist / Études et prospectives socio-économiques : M1403,</source>
+        <target>Data scientist / Socio-economic studies and forecasts : M1403,</target>
+      </trans-unit>
+      <trans-unit id="kwsZgJv" resname="Conseil en organisation et management d’entreprise : M1402,">
+        <source>Conseil en organisation et management d’entreprise : M1402,</source>
+        <target>Consulting in organization and business management : M1402,</target>
+      </trans-unit>
+      <trans-unit id="TRsiQ5n" resname="Direction de petite ou moyenne entreprise : M1302,">
+        <source>Direction de petite ou moyenne entreprise : M1302,</source>
+        <target>Small or medium-sized company management : M1302,</target>
+      </trans-unit>
+      <trans-unit id="UBK5NYx" resname="Réalisateur de contenus multimédias : E1205.">
+        <source>Réalisateur de contenus multimédias : E1205.</source>
+        <target>Multimedia content producer : E1205.</target>
+      </trans-unit>
+      <trans-unit id="CJ.evyh" resname="Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.">
+        <source>Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</source>
+        <target>ROME is Pôle Emploi's directory of trades and jobs.</target>
+      </trans-unit>
+      <trans-unit id="RVQJLrY" resname="Insertion professionnelle :">
+        <source>Insertion professionnelle :</source>
+        <target>Occupational integration :</target>
+      </trans-unit>
+      <trans-unit id="45eCkmL" resname="Devenir à 6 mois :">
+        <source>Devenir à 6 mois :</source>
+        <target>Becoming at 6 months :</target>
+      </trans-unit>
+      <trans-unit id="rEEh2CC" resname="Résultats par diplôme">
+        <source>Résultats par diplôme</source>
+        <target>Results by degree</target>
+      </trans-unit>
+      <trans-unit id="r8SMvit" resname="Insertion professionnelle à 30 mois :">
+        <source>Insertion professionnelle à 30 mois :</source>
+        <target>Occupational integration at 30 month :</target>
+      </trans-unit>
+      <trans-unit id="DLNJqdp" resname="INFORMATIONS PRATIQUES">
+        <source>INFORMATIONS PRATIQUES</source>
+        <target>PRACTICAL INFORMATIONS</target>
+      </trans-unit>
+      <trans-unit id=".Y5usMx" resname="Pour en savoir plus sur l'orientation et l'insertion professionnelle :">
+        <source>Pour en savoir plus sur l'orientation et l'insertion professionnelle :</source>
+        <target>To find out more about vocational guidance and occupational integration:</target>
+      </trans-unit>
+      <trans-unit id="QP4ey.9" resname="Mission Orientation du Service d'Accompagnement des Étudiants (SAE)">
+        <source>Mission Orientation du Service d'Accompagnement des Étudiants (SAE)</source>
+        <target>Orientation Mission of the Student Support Service (SAE)</target>
+      </trans-unit>
+      <trans-unit id="WKpJfd5" resname="Pour tout renseignement sur la scolarité :">
+        <source>Pour tout renseignement sur la scolarité :</source>
+        <target>For any information on education :</target>
+      </trans-unit>
+      <trans-unit id="jhPcyoU" resname="Coordonnées des scolarités de l'URCA">
+        <source>Coordonnées des scolarités de l'URCA</source>
+        <target>Contact details for URCA schools</target>
+      </trans-unit>
+      <trans-unit id="PSLHnJV" resname="Pour tout renseignement sur la formation continue et l’insertion professionnelle :">
+        <source>Pour tout renseignement sur la formation continue et l’insertion professionnelle :</source>
+        <target>For any information on continuing education and occupational integration :</target>
+      </trans-unit>
+      <trans-unit id="bW6Ktfj" resname="La formation continue">
+        <source>La formation continue</source>
+        <target>Continuing education</target>
+      </trans-unit>
+      <trans-unit id="MrWJ_5i" resname="L’insertion professionnelle">
+        <source>L’insertion professionnelle</source>
+        <target>Occupational integration</target>
+      </trans-unit>
+      <trans-unit id="2A5Winq" resname="La Validation des acquis">
+        <source>La Validation des acquis</source>
+        <target>Validation of acquired knowledge</target>
+      </trans-unit>
+      <trans-unit id="3KfsvGE" resname="Vous avez de l'expérience et/ou un parcours de formation à valoriser ?">
+        <source>Vous avez de l'expérience et/ou un parcours de formation à valoriser ?</source>
+        <target>Do you have experience and/or a training course to enhance?</target>
+      </trans-unit>
+      <trans-unit id="4P9zyRN" resname="Des procédures de validation des acquis sont possibles pour vous permettre d'accéder&#10;                à la formation ou pour valider le diplôme.">
+        <source>Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                à la formation ou pour valider le diplôme.</source>
+        <target>Acquired validation procedures are possible to enable you to access
+                training or to validate the diploma.</target>
+      </trans-unit>
+      <trans-unit id="Rpx0fv_" resname="Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr">
+        <source>Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr</source>
+        <target>For more information, you can send an e-mail to vae@univ-reims.fr</target>
+      </trans-unit>
+      <trans-unit id="TGBmJwm" resname="Pour en savoir plus sur les relations internationales à l'Université :">
+        <source>Pour en savoir plus sur les relations internationales à l'Université :</source>
+        <target>To find out more about international relations at the University:</target>
+      </trans-unit>
+      <trans-unit id="Q4txJWg" resname="Direction des Relations Extérieures et du Développement International (DREDI)">
+        <source>Direction des Relations Extérieures et du Développement International (DREDI)</source>
+        <target>Department of External Relations and International Development (DREDI)</target>
+      </trans-unit>
+      <trans-unit id="0ZvXMIX" resname="Partir à l'étranger">
+        <source>Partir à l'étranger</source>
+        <target>Go abroad</target>
+      </trans-unit>
+      <trans-unit id="kbV19BA" resname="Lien vers les associations étudiantes :">
+        <source>Lien vers les associations étudiantes :</source>
+        <target>Link to student associations :</target>
+      </trans-unit>
+      <trans-unit id="ETJH7j7" resname="Associations étudiantes">
+        <source>Associations étudiantes</source>
+        <target>Student associations</target>
+      </trans-unit>
+      <trans-unit id="9EAnamE" resname="Composante :">
+        <source>Composante :</source>
+        <target>Component :</target>
+      </trans-unit>
+      <trans-unit id="yfQ6hud" resname="Faculté de Sciences Exactes et Nature">
+        <source>Faculté de Sciences Exactes et Nature</source>
+        <target>Faculty of Exact Sciences and Nature</target>
+      </trans-unit>
+      <trans-unit id="FueQr_N" resname="Responsable de la formation :">
+        <source>Responsable de la formation :</source>
+        <target>Training manager :</target>
+      </trans-unit>
+      <trans-unit id="SKUMgSl" resname="Coordonnées du secrétariat :">
+        <source>Coordonnées du secrétariat :</source>
+        <target>Secretariat contact details :</target>
+      </trans-unit>
+      <trans-unit id="ZTpeubp" resname="Département MMI">
+        <source>Département MMI</source>
+        <target>MMI Department</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

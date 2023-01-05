@@ -32,6 +32,9 @@ class Student extends User
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: CandidacyTER::class)]
     private Collection $candidacyTERs;
 
+    #[ORM\OneToOne(inversedBy: 'selectedStudent', cascade: ['persist', 'remove'])]
+    private ?TER $assignedTER = null;
+
     /*#[ORM\Column(type: Types::BLOB)]
     private $cv = null;
 
@@ -184,6 +187,18 @@ class Student extends User
                 $candidacyTER->setStudent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAssignedTER(): ?TER
+    {
+        return $this->assignedTER;
+    }
+
+    public function setAssignedTER(?TER $assignedTER): self
+    {
+        $this->assignedTER = $assignedTER;
 
         return $this;
     }

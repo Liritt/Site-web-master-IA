@@ -2,8 +2,52 @@
 
 {% block title %}Accueil{% endblock %}
 
+{% block stylesheets%}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <link rel="stylesheet" href="{{ asset('css/lobbyConnected.css') }}" />
+    {% endif %}
+{% endblock %}
+
 {% block body %}
-        <div class="titre">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>{% trans %}FIL D'ACTUALITÉ{% endtrans %}</h1>
+        <div class="art1-div">
+            <details class="art1">
+                <summary>
+                    <img src="{{ asset('img/Article1.jfif') }}">
+                    <h3>News #1 : Title</h3>
+                </summary>
+                Description de l'article 1
+            </details>
+            <div class="art2-div">
+                <details class="art2">
+                    <summary>
+                        <img src="{{ asset('img/Article2.jpg') }}">
+                        <h3>News #2 : Title</h3>
+                    </summary>
+                    Description de l'article 2
+                </details>
+                <div class="art3-div">
+                    <details class="art3">
+                        <summary>
+                            <img src="{{ asset('img/Article3.jfif') }}">
+                            <h3>News #3 : Title</h3>
+                        </summary>
+                        Description de l'article 3
+                    </details>
+                    <details class="art4">
+                        <summary>
+                            <img src="{{ asset('img/Article4.jfif') }}">
+                            <h3>News #4 : Title</h3>
+                        </summary>
+                        Description de l'article 4
+                    </details>
+                </div>
+            </div>
+        </div>
+    {% else %}
+
+    <div class="titre">
             <h1><strong>{% trans %}Master informatique{% endtrans %}</strong></h1>
             <h2><strong>{% trans %}Parcours : intelligence artificielle{% endtrans %}</strong></h2>
         </div>
@@ -29,19 +73,23 @@
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
             </div>
-            <img src="{{ asset('img/Unit_enseign.png') }}" alt="image unités enseignement" class="justify-content-end w-50 img-fluid m-sm-5">
-        </section>
+            {% if app.request.locale == 'fr' %}
+                <img src="{{ asset('img/Unit_enseign.png') }}" alt="image unités enseignement" class="justify-content-end w-50 img-fluid m-sm-5">
+            {% else %}
+                <img src="{{ asset('img/Unit_enseign_en.png') }}" alt="image unités enseignement en" class="justify-content-end w-50 img-fluid m-sm-5">
+            {% endif %}
+                </section>
         <section class="d-flex my-5 justify-content-end">
             <div class="d-flex mx-5 flex-column align-items-end w-50">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
-                <h2 class="titre2 mb-3">COMPÉTENCES ACQUISES</h2>
+                <h2 class="titre2 mb-3">{% trans %}COMPÉTENCES ACQUISES{% endtrans %}</h2>
                 <p class="mt-2">
-                    Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
+                    {% trans %}Les compétences disciplinaires acquises se concentrent sur l’intelligence artificielle,
                     les humanités numériques, l’aide à la décision et la fouille de données (UE1),
                     la collecte, l’analyse, la gestion et la fusion/corrélation de données, le Big Data et l’apprentissage machine,
                     appliqués par exemple aux villes/transport/agriculture connectés (UE2), l’apprentissage profond, la classification,
                     la complexité et les statistiques, appliqués par exemple à la modélisation bio-inspirée et à la cognition située (UE3),
-                    la programmation, la visualisation et les interactions personnes-machines (UE4).
+                    la programmation, la visualisation et les interactions personnes-machines (UE4).{% endtrans %}
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
             </div>
@@ -49,17 +97,17 @@
         <section class="d-flex">
             <div class="flex-row mx-5">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
-                <h2 class="titre2 mb-3">ORGANISATION PÉDAGOGIQUE</h2>
+                <h2 class="titre2 mb-3">{% trans %}ORGANISATION PÉDAGOGIQUE{% endtrans %}</h2>
                 <p class="mt-2">
-                    <strong>Modalités d’enseignement :</strong>
+                    <strong>{% trans %}Modalités d’enseignement :{% endtrans %}</strong>
                     <br><br>
-                    Formation initiale en présentiel ou en alternance.
+                    {% trans %}Formation initiale en présentiel ou en alternance.{% endtrans %}
                     <br><br>
-                    <strong>Stages et projets tuteurés :</strong>
+                    <strong>{% trans %}Stages et projets tuteurés :{% endtrans %}</strong>
                     <br><br>
-                    En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).
+                    {% trans %}En M1, un projet tutoré et un stage obligatoire de deux mois minimum sont prévus au second semestre (S2).{% endtrans %}
                     <br><br>
-                    En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).
+                    {% trans %}En M2, un projet tutoré et un stage obligatoire de quatre mois minimum sont prévus au second semestre (S4).{% endtrans %}
                 </p>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
             </div>
@@ -77,7 +125,7 @@
         <section class="d-flex justify-content-end my-5">
                 <div class="mx-5 d-flex flex-column align-items-end w-50">
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
-                    <h2 class="titre2 mb-3">ADMISSION</h2>
+                    <h2 class="titre2 mb-3">{% trans %}ADMISSION{% endtrans %}</h2>
                     <p class="mt-2">
                         [pas encore défini]
                     </p>
@@ -87,31 +135,31 @@
         <section class="d-flex">
                 <div class="flex-row mx-5">
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
-                    <h2 class="titre2 mb-3">POURSUITES D’ÉTUDES ET DÉBOUCHÉS</h2>
+                    <h2 class="titre2 mb-3">{% trans %}POURSUITES D’ÉTUDES ET DÉBOUCHÉS{% endtrans %}</h2>
                     <p class="mt-2">
-                        <strong>Poursuites d’études envisageables :</strong>
+                        <strong>{% trans %}Poursuites d’études envisageables :{% endtrans %}</strong>
                         <br><br>
-                        Les étudiants motivés pourront compléter leur formation par un doctorat.
+                        {% trans %}Les étudiants motivés pourront compléter leur formation par un doctorat.{% endtrans %}
                         <br><br>
-                        <strong>Débouchés :</strong>
+                        <strong>{% trans %}Débouchés :{% endtrans %}</strong>
                         <br><br>
-                        Code ROME :
+                        {% trans %}Code ROME :{% endtrans %}
                         <br><br>
-                        Ingénieur en Systèmes d’information et de télécommunication : M1804,<br>
-                        Management et ingénierie études, recherche et développement industriel : H1206,<br>
-                        Data scientist / Études et prospectives socio-économiques : M1403,<br>
-                        Conseil en organisation et management d’entreprise : M1402,<br>
-                        Direction de petite ou moyenne entreprise : M1302,<br>
-                        Réalisateur de contenus multimédias : E1205.<br>
-                        <i class="opacity-50">Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.</i>
+                        {% trans %}Ingénieur en Systèmes d’information et de télécommunication : M1804,{% endtrans %}<br>
+                        {% trans %}Management et ingénierie études, recherche et développement industriel : H1206,{% endtrans %}<br>
+                        {% trans %}Data scientist / Études et prospectives socio-économiques : M1403,{% endtrans %}<br>
+                        {% trans %}Conseil en organisation et management d’entreprise : M1402,{% endtrans %}<br>
+                        {% trans %}Direction de petite ou moyenne entreprise : M1302,{% endtrans %}<br>
+                        {% trans %}Réalisateur de contenus multimédias : E1205.{% endtrans %}<br>
+                        <i class="opacity-50">{% trans %}Le ROME est le répertoire des métiers et d’emplois de Pôle Emploi.{% endtrans %}</i>
                         <br><br>
-                    <strong>Insertion professionnelle :</strong>
+                    <strong>{% trans %}Insertion professionnelle :{% endtrans %}</strong>
                         <br><br>
-                        Devenir à 6 mois :<br>
-                        Résultats par diplôme
+                        {% trans %}Devenir à 6 mois :{% endtrans %}<br>
+                        {% trans %}Résultats par diplôme{% endtrans %}
                         <br><br>
-                        Insertion professionnelle à 30 mois :<br>
-                        Résultats par diplôme
+                        {% trans %}Insertion professionnelle à 30 mois :{% endtrans %}<br>
+                        {% trans %}Résultats par diplôme{% endtrans %}
                     </p>
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                 </div>
@@ -119,66 +167,66 @@
         <section class="d-flex justify-content-end my-5">
             <div class="mx-5 d-flex flex-column align-items-end w-50">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
-                <h2 class="titre2 mb-3">INFORMATIONS PRATIQUES</h2>
-                <strong>Pour en savoir plus sur l'orientation et l'insertion professionnelle :</strong>
+                <h2 class="titre2 mb-3">{% trans %}INFORMATIONS PRATIQUES{% endtrans %}</h2>
+                <strong>{% trans %}Pour en savoir plus sur l'orientation et l'insertion professionnelle :{% endtrans %}</strong>
                 <br>
                 <a target="_blank" href="https://www.univ-reims.fr/orientation-et-insertion/orientation/presentation/presentation,24014,39507.html">
-                    Mission Orientation du Service d'Accompagnement des Étudiants (SAE)
+                    {% trans %}Mission Orientation du Service d'Accompagnement des Étudiants (SAE){% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a>
                 <br><br>
-                <strong>Pour tout renseignement sur la scolarité :</strong><br>
+                <strong>{% trans %}Pour tout renseignement sur la scolarité :{% endtrans %}</strong><br>
 
                 <a target="_blank" href="https://www.univ-reims.fr/formation/scolarite/contacts/contacts,22144,36798.html">
-                    Coordonnées des scolarités de l'URCA
+                    {% trans %}Coordonnées des scolarités de l'URCA{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a>
                     <br><br>
 
                 <strong>
-                    Pour tout renseignement sur la formation continue et l’insertion professionnelle :
+                    {% trans %}Pour tout renseignement sur la formation continue et l’insertion professionnelle :{% endtrans %}
                 </strong>
                 <br>
 
                 <a target="_blank" href="https://www.univ-reims.fr/formation/formation-continue/formation-continue/la-formation-continue-a-l-universite-de-reims-champagne-ardenne,8218,15688.html">
-                    La formation continue
+                    {% trans %}La formation continue{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a>
                 <a target="_blank" href="https://www.univ-reims.fr/orientation-et-insertion/bureau-d-aide-a-l-insertion-professionnelle-baip/accueil/presentation-du-service-insertion-professionnelle,8618,16226.html">
-                    L’insertion professionnelle
+                    {% trans %}L’insertion professionnelle{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a>
                 <a target="_blank" href="https://www.univ-reims.fr/formation/la-validation-des-acquis-vae-vap/la-validation-des-acquis,10331,18683.html">
-                    La Validation des acquis
+                    {% trans %}La Validation des acquis{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a><br>
 
 
-                Vous avez de l'expérience et/ou un parcours de formation à valoriser ? <br>
-                Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
-                à la formation ou pour valider le diplôme.<br>
-                Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr<br><br>
+                {% trans %}Vous avez de l'expérience et/ou un parcours de formation à valoriser ? {% endtrans %}<br>
+                {% trans %}Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                à la formation ou pour valider le diplôme.{% endtrans %}<br>
+                {% trans %}Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr{% endtrans %}<br><br>
 
                 <strong>
-                    Pour en savoir plus sur les relations internationales à l'Université :
+                    {% trans %}Pour en savoir plus sur les relations internationales à l'Université :{% endtrans %}
                 </strong>
                 <br>
 
                 <a target="_blank" href="https://www.univ-reims.fr/international/presentation/bienvenue-a-l-urca,19721,33287.html">
-                    Direction des Relations Extérieures et du Développement International (DREDI)
+                    {% trans %}Direction des Relations Extérieures et du Développement International (DREDI){% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a>
                 <br>
 
                 <a target="_blank" href="https://www.univ-reims.fr/international/mobilite-des-etudiants/outgoing-students-partir-a-l-etranger/mode-operatoire-pour-un-sejour-d-etudes,19749,39425.html">
-                    Partir à l'étranger
+                    {% trans %}Partir à l'étranger{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a><br><br>
 
-                <strong>Lien vers les associations étudiantes :</strong><br>
+                <strong>{% trans %}Lien vers les associations étudiantes :{% endtrans %}</strong><br>
 
                 <a target="_blank" href="https://www.univ-reims.fr/vie-des-campus/bureau-de-la-vie-etudiante/les-associations-etudiantes/les-associations-etudiantes,11050,19949.html">
-                    Associations étudiantes
+                    {% trans %}Associations étudiantes{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a>
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3 mt-5">
@@ -187,9 +235,9 @@
     </main>
     <footer class="footer d-flex flex-row mt-5 justify-content-center">
         <section class="d-flex flex-column m-lg-5">
-            <strong>Composante :</strong>
+            <strong>{% trans %}Composante :{% endtrans %}</strong>
             <a target="_blank" href="https://www.univ-reims.fr/minisite_101/" class="text-white">
-                Faculté de Sciences Exactes et Nature
+                {% trans %}Faculté de Sciences Exactes et Nature{% endtrans %}
             </a><br>
             <div class="d-flex flex-row align-items-center mb-3">
                 <span class="material-symbols-outlined me-3">phone</span>
@@ -207,7 +255,7 @@
         </section>
         <section class="d-flex flex-column m-lg-5">
             <strong>
-                Responsable de la formation :<br>
+                {% trans %}Responsable de la formation :{% endtrans %}<br>
                 Francis ROUSSEAUX
             </strong><br>
             <div class="d-flex flex-row align-items-center mb-3">
@@ -217,8 +265,8 @@
         </section>
         <section class="d-flex flex-column m-lg-5">
             <strong>
-                Coordonnées du secrétariat :<br>
-                Département MMI
+                {% trans %}Coordonnées du secrétariat :{% endtrans %}<br>
+                {% trans %}Département MMI{% endtrans %}
             </strong><br>
             <div class="d-flex flex-row align-items-center mb-3">
                 <span class="material-symbols-outlined  me-3">mail</span>
@@ -226,4 +274,5 @@
             </div>
         </section>
     </footer>
+    {% endif %}
 {% endblock %}

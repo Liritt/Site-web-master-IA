@@ -1,0 +1,20 @@
+{% extends '_connectedNavBar.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_student') }}" class="btn btn-primary">Retour</a>
+    <img src="{{ asset('img/default_profile_picture.png') }}">
+    <dl>
+        <dt>Nom :</dt>
+            <dd>{{ student.lastname }}</dd>
+        <dt>Prenom :</dt>
+            <dd>{{ student.firstname }}</dd>
+        <dt>Date de naissance :</dt>
+            <dd>{{ student.birthDate|date('d/m/y') }}</dd>
+        <dt>Niveau :</dt>
+            <dd>{{ student.degree }}</dd>
+    </dl>
+
+{% endblock %}
+

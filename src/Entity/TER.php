@@ -31,6 +31,12 @@ class TER
     #[ORM\OneToMany(mappedBy: 'TER', targetEntity: CandidacyTER::class)]
     private Collection $candidacyTERs;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
+    #[ORM\OneToOne(mappedBy: 'assignedTER', cascade: ['persist', 'remove'])]
+    private ?Student $selectedStudent = null;
+
     public function __construct()
     {
         $this->candidacyTERs = new ArrayCollection();
@@ -115,6 +121,40 @@ class TER
                 $candidacyTER->setTER(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getSelectedStudent(): ?Student
+    {
+        return $this->selectedStudent;
+    }
+
+    public function setSelectedStudent(?Student $selectedStudent): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($selectedStudent === null && $this->selectedStudent !== null) {
+            $this->selectedStudent->setAssignedTER(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($selectedStudent !== null && $selectedStudent->getAssignedTER() !== $this) {
+            $selectedStudent->setAssignedTER($this);
+        }
+
+        $this->selectedStudent = $selectedStudent;
 
         return $this;
     }

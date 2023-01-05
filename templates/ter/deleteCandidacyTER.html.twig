@@ -1,0 +1,15 @@
+{% extends '_connectedNavBar.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Page suppression de TER{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.TER) }}
+    {{ form_end(form) }}
+
+    {{ form_start(deleteForm, { 'attr': {'class': 'd-flex'} }) }}
+        {{ form_row(deleteForm.delete, {'label' : 'Supprimer'}) }}
+        {{ form_row(deleteForm.cancel, {'label' : 'Annuler', 'attr': {'class': 'btn btn-secondary'} } )}}
+    {{ form_end(deleteForm) }}
+{% endblock %}

@@ -78,7 +78,6 @@ body .titre {
   text-align: center;
   padding: 1%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-top: 10rem;
 }
 body .titre strong {
   font-size: 2.5rem;
@@ -113,6 +112,12 @@ body .btn-general:hover {
   border: solid thin;
   border-radius: 5px;
   filter: brightness(95%);
+}
+body .margin-top-10 {
+  margin-top: 10rem;
+}
+body .test {
+  background-color: #378E64;
 }
 
 /*# sourceMappingURL=lobby.css.map */
