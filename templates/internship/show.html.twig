@@ -76,7 +76,7 @@
                             <td>{{ student.firstname }}</td>
                             <td>{{ student.email }}</td>
                             <td>
-                                <a href="#">Voir</a>
+                                <a href="{{ path('app_student_profil', {'id': student.id}) }}" class="btn btn-primary">Voir</a>
                             </td>
                         </tr>
                     {% endfor %}
