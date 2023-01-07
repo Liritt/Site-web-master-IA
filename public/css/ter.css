@@ -17,7 +17,7 @@ main .lst-ter, main .lst-candidacies {
   max-height: 80vh;
 }
 main .lst-ter .drag-target {
-  cursor: pointer;
+  cursor: move;
 }
 main .explanations {
   justify-content: center;

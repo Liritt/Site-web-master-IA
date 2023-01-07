@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function handleDrop(e) {
-        e.stopPropagation(); // stops the browser from redirecting.
+        e.stopPropagation();
 
         if (dragSrcEl !== this) {
             dragSrcEl.innerHTML = this.innerHTML;
@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // Récupérez l'ID de la candidature à laquelle l'élément a été déplacé
             let targetId = this.getAttribute('id');
             console.log(targetId);
-
+            let abort = new AbortController();
             // Envoyez une requête Ajax à votre contrôleur pour mettre à jour les champs orderNumber des candidatures concernées
             fetch('/ter/update-order-number', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: 'candidacyId=' + encodeURIComponent(candidacyId) + '&targetId=' + encodeURIComponent(targetId)
+                body: 'candidacyId=' + encodeURIComponent(candidacyId) + '&targetId=' + encodeURIComponent(targetId),
             }).then();
         }
 
