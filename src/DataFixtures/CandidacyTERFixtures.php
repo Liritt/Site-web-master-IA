@@ -18,14 +18,11 @@ class CandidacyTERFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        // récupérez une liste de tous les students
         $students = $manager->getRepository(Student::class)->findAll();
 
         foreach ($students as $student) {
-            // générez un nombre aléatoire de CandidacyTER pour chaque student
             $numCandidacyTERs = $faker->numberBetween(5, 10);
             for ($i = 1; $i <= $numCandidacyTERs; ++$i) {
-                // utilisez votre factory pour générer un objet CandidacyTER avec une date aléatoire
                 CandidacyTERFactory::createOne([
                     'student' => $student,
                     'TER' => TERFactory::random(),
