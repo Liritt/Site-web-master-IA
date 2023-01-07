@@ -69,7 +69,11 @@
                         {% endif %}
                     {% else %}
                         <div class="col-8">
-                            <div class="card">
+                            {% if days < 7 %}
+                            <div class="card border-success text-success mb-3">
+                                {% else %}
+                                <div class="card">
+                                    {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title">{{ TER.title }}</h5>
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
