@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+}
+
+.top__informations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.top__informations a {
+    width: 30%;
+}
+
+.top__informations__title {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
