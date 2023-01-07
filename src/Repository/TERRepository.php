@@ -105,6 +105,14 @@ class TERRepository extends ServiceEntityRepository
         return $notInCandidatures;
     }
 
+    public function countNumberOfTER()
+    {
+        return $this->createQueryBuilder('ct')
+            ->select('COUNT(ct.id)')
+            ->getQuery()
+            ->getResult()[0][1];
+    }
+
 //    /**
 //     * @return TER[] Returns an array of TER objects
 //     */
