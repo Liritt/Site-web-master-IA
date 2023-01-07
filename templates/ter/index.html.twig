@@ -79,18 +79,20 @@
                     </div>
                 {% endif %}
             {% elseif app.user.roles[0] == 'ROLE_ADMIN' %}
-                {% if lstCandidacyTER|length != 0 %}
+                {% if lstStudentCandidaciesNotEqualToNumberCandidacies|length != 0 %}
                     <div class="right-component">
-                        <h1>Liste des candidatures envoyées par les élèves</h1>
                         <div class="lst-candidacies">
-                            {% for candidacy in lstCandidacyTER %}
+                            <h1 class="text-center col-8">Liste des élèves n'ayant pas encore candidaté à tout les TER : {{ lstStudentCandidaciesNotEqualToNumberCandidacies|length }}/{{ nbEleves }}</h1>
+                            {% for student in lstStudentCandidaciesNotEqualToNumberCandidacies %}
                                 <div class="col-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ candidacy.TER.title }}</h5>
-                                            <p class="card-text">Professeur en charge du projet : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
-                                            <p class="card-text">Élève candidatant pour le projet : {{ candidacy.student.lastname }} {{ candidacy.student.firstname }}</p>
-                                            <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                            <p class="card-text">Élève : {{ student.lastname }} {{ student.firstname }}</p>
+                                        {% if student.degree == 1 %}
+                                            <p class="card-text">Niveau : {{ student.degree }}ère année</p>
+                                        {% else %}
+                                            <p class="card-text">Niveau : {{ student.degree }}e année</p>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>
