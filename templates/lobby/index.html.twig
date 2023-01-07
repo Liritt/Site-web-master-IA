@@ -127,7 +127,23 @@
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                     <h2 class="titre2 mb-3">{% trans %}ADMISSION{% endtrans %}</h2>
                     <p class="mt-2">
-                        [pas encore défini]
+                    <div class="trait-cote d-flex flex-column align-items-end pe-2">
+                        <h5><strong>{% trans %}Comment s'inscrire ?{% endtrans %}</strong></h5>
+                        <br>
+                        <strong>La procédure française :</strong>
+                        <div>
+                            Vous pouvez candidater au Master IA via la plateforme
+                            <a href="https://www.trouvermonmaster.gouv.fr/">
+                                trouvermonmaster
+                                <span class="material-symbols-outlined">open_in_new</span>
+                            </a>
+                        </div><br>
+                        <strong>La procédure internationale :</strong>
+                        <br>
+                    </div>
+                        <strong>Modalités d'admission :</strong>
+                        <br>
+                    <div>Les admissions au Master IA se déroulent sur dossier</div>
                     </p>
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                 </div>
@@ -165,7 +181,7 @@
                 </div>
         </section>
         <section class="d-flex justify-content-end my-5">
-            <div class="mx-5 d-flex flex-column align-items-end w-50">
+            <div class="mx-5 d-flex flex-column align-items-end w-60">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                 <h2 class="titre2 mb-3">{% trans %}INFORMATIONS PRATIQUES{% endtrans %}</h2>
                 <strong>{% trans %}Pour en savoir plus sur l'orientation et l'insertion professionnelle :{% endtrans %}</strong>
@@ -200,12 +216,10 @@
                     {% trans %}La Validation des acquis{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a><br>
-
-
-                {% trans %}Vous avez de l'expérience et/ou un parcours de formation à valoriser ? {% endtrans %}<br>
-                {% trans %}Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
-                à la formation ou pour valider le diplôme.{% endtrans %}<br>
-                {% trans %}Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr{% endtrans %}<br><br>
+                <div>{% trans %}Vous avez de l'expérience et/ou un parcours de formation à valoriser ? {% endtrans %}</div>
+                <div>{% trans %}Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                        à la formation ou pour valider le diplôme.{% endtrans %}</div>
+                <div>{% trans %}Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr{% endtrans %}</div>
 
                 <strong>
                     {% trans %}Pour en savoir plus sur les relations internationales à l'Université :{% endtrans %}
@@ -233,6 +247,7 @@
             </div>
         </section>
     </main>
+    {% endif %}
     <footer class="footer d-flex flex-row mt-5 justify-content-center">
         <section class="d-flex flex-column m-lg-5">
             <strong>{% trans %}Composante :{% endtrans %}</strong>
@@ -274,5 +289,5 @@
             </div>
         </section>
     </footer>
-    {% endif %}
+
 {% endblock %}

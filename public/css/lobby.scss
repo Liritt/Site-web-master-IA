@@ -141,4 +141,12 @@ body {
   .test{
     background-color: #378E64;
   }
+
+  .w-60{
+    width: 60%!important;
+  }
+
+  .trait-cote{
+    border-right: thin $colorblue solid;
+  }
 }
