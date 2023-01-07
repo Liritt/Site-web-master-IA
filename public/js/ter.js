@@ -16,5 +16,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             item.classList.remove('over');
         });
     }
-    
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        return false;
+    }
 });
