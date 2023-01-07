@@ -47,18 +47,19 @@
     <p>{{ internship.subject }}</p>
 
 
-    <h2>Etudiants Acceptés</h2>
+    <div class="show__accepted_students">
+        <h2>Etudiants Acceptés</h2>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Mail</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {% for student in internship.students %}
                 <tr>
                     <td>{{ student.lastname }}</td>
@@ -69,9 +70,10 @@
                     </td>
                 </tr>
             {% endfor %}
-        </tbody>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
 
     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
         <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btn btn-primary">Candidater</a>
