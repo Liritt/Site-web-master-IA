@@ -12,6 +12,9 @@
             <div class="ter-component">
                 <h1>Liste des TER</h1>
                 <div class="lst-ter">
+                {% if app.user.roles[0] != 'ROLE_STUDENT' %}
+                    <a href="{{ path('app_ter_create') }}" class="btn btn-primary col-8">Ajouter un nouveau TER</a>
+                {% endif %}
                 {% for TER in lstTER %}
                     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
                         {% if app.user.degree == TER.degree %}
@@ -40,7 +43,6 @@
                                     {% if app.user.roles[0] == 'ROLE_ADMIN' %}
                                         <a href="{{ path('app_ter_update', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">edit</a>
                                         <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
-                                        <a href="{{ path('app_ter_create') }}" class="btn btn-primary material-symbols-outlined">add</a>
                                     {% endif %}
                                 </div>
                             </div>
