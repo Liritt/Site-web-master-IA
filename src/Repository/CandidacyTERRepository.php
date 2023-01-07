@@ -76,6 +76,24 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->getResult()[0][1];
     }
 
+    /**
+     * Récupère les étudiants qui n'ont pas candidaté à tout les TER.
+     *
+     * @return array
+     */
+    public function studentCandidaciesNotEqualToNumberCandidacies(StudentRepository $studentRepository, TERRepository $TERRepository): array
+    {
+        $lstStudent = $studentRepository->findAll();
+        $lstFinishedCandidaciesStudents = [];
+        foreach ($lstStudent as $student) {
+            if ($this->countNumberOfCandidacies($student) < $TERRepository->countNumberOfTER()) {
+                $lstFinishedCandidaciesStudents[] = $student;
+            }
+        }
+
+        return $lstFinishedCandidaciesStudents;
+    }
+
 //    /**
 //     * @return CandidacyTER[] Returns an array of CandidacyTER objects
 //     */
