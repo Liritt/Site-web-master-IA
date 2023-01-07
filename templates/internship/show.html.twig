@@ -1,8 +1,13 @@
 {% extends '_connectedNavBar.html.twig' %}
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/internship.css') }}" />
+{% endblock %}
 
 {% block body %}
 
-    <h1>Stage</h1>
+    <div class="top__informations">
+        <h1 class="show__company_name">{{ internship.company.companyName }}</h1>
+    </div>
 
     <table class="table">
         <tbody>
