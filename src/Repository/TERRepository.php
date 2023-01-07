@@ -45,7 +45,7 @@ class TERRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->where('t.title != :searchText')
-            ->orderBy('t.date')
+            ->orderBy('t.date', 'DESC')
             ->setParameter('searchText', '%'.$researchText.'%')
             ->getQuery()
             ->execute();
@@ -78,7 +78,7 @@ class TERRepository extends ServiceEntityRepository
 
     public function findAllNotInCandidatures(Student $student, CandidacyTERRepository $candidacyTERRepository): array
     {
-        $allTER = $this->findAll();
+        $allTER = $this->search();
         $candidatures = $candidacyTERRepository->searchCandidacies($student);
         $notInCandidatures = [];
 
