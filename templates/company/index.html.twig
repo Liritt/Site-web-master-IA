@@ -1,0 +1,48 @@
+{% extends '_connectedNavBar.html.twig' %}
+
+{% block title %}Page trombinoscope{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Choix de l'année des étudiants
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ path('app_student') }}">Tous</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_student_degree',{degree: 1}) }}">1 er année</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_student_degree',{degree: 2}) }}">2 ème année</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_teacher') }}">Professeurs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_company') }}">Entreprises</a></li>
+                </ul>
+                <form class="d-flex" role="search" action="{{ path('app_company') }}">
+                    <input name="search" class="form-control me-2" type="search" placeholder="{{ search|default('') }}" aria-label="rechercher">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            {% for company in companys %}
+                <div class="col-4">
+                    <a href="{{ path('app_company_profil', {id: company.id}) }}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="company_name">{{ company.companyName }}</h2>
+                                <img src="{{ asset('img/default_profile_picture.png') }}">
+                                {{ company.supervisorFirstname }} {{ company.supervisorLastname }}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

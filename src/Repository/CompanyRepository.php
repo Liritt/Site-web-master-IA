@@ -39,6 +39,20 @@ class CompanyRepository extends ServiceEntityRepository
         }
     }
 
+    public function search(string $text = ''): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.companyName LIKE :text')
+            ->orWhere('c.supervisorFirstname LIKE :text')
+            ->orWhere('c.supervisorLastname LIKE :text')
+            ->setParameter('text', '%'.$text.'%')
+            ->orderBy('c.companyName', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 //    /**
 //     * @return Company[] Returns an array of Company objects
 //     */
