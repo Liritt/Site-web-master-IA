@@ -17,6 +17,12 @@ main {
     max-height: 80vh;
   }
 
+  .lst-ter {
+    .drag-target {
+      cursor: pointer;
+    }
+  }
+
   .explanations {
     justify-content: center;
     align-items: center;

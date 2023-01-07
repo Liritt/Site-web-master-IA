@@ -16,6 +16,9 @@ main .lst-ter, main .lst-candidacies {
   overflow-y: scroll;
   max-height: 80vh;
 }
+main .lst-ter .drag-target {
+  cursor: pointer;
+}
 main .explanations {
   justify-content: center;
   align-items: center;
