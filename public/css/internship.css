@@ -42,3 +42,19 @@ html, body {
     align-items: center;
     width: 30%;
 }
+
+.show__container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.show__internship {
+    flex: 1;
+    padding-left: 10em;
+}
+
+.show__company_informations {
+    flex: 1;
+    padding-right: 10em;
+    margin-bottom: 3em;
+}
