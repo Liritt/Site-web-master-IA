@@ -1,7 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends '_connectedNavBar.html.twig' %}
 
-{% block title %}Hello CompanyController!{% endblock %}
+{% block title %}Page entreprises{% endblock %}
 
 {% block body %}
-
+    <div class="container">
+        <div class="row">
+            {% for company in companys %}
+                <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="company_name">{{ company.companyName }}</h2>
+                                <img src="{{ asset('img/default_profile_picture.png') }}">
+                                {{ company.supervisorFirstname }} {{ company.supervisorLastname }}
+                            </div>
+                        </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
