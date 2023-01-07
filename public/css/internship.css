@@ -35,3 +35,10 @@ html, body {
 .card-title {
     font-weight: bold;
 }
+
+.show__accepted_students {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
