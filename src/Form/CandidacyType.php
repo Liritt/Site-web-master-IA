@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class CandidacyType extends AbstractType
 {
@@ -14,9 +15,36 @@ class CandidacyType extends AbstractType
     {
         $builder
             ->add('cv', FileType::class, [
-                'label' => 'File',
+                'label' => 'CV (PDF)',
+                'mapped' => true,
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ]),
+                ],
             ])
-            ->add('coverLetter', FileType::class)
+            // ->add('coverLetter', FileType::class)
+            ->add('coverLetter', FileType::class, [
+                'label' => 'Lettre de motivation (PDF)',
+                'mapped' => true,
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ]),
+                ],
+            ])
         ;
     }
 

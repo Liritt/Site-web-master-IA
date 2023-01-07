@@ -1,0 +1,146 @@
+html, body {
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+}
+
+.top__informations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.top__informations a {
+    width: 30%;
+}
+
+.top__informations__title {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.index__row {
+    gap: 3em;
+    justify-content: space-evenly
+}
+
+.index__card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.index__card-title {
+    font-weight: bold;
+}
+
+.show__accepted_students {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    background-color: #fff;
+    border: #C0C0C0 solid 1px;
+    border-radius: 10px;
+    margin-left: 3em;
+    padding: 1em 1em 1px 1em;
+    height: fit-content;
+}
+
+.show__accepted_students table {
+    border-color: #fff;
+}
+
+.show__container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.show__internship {
+    flex: 1;
+    padding-left: 10em;
+    margin-right: 2em;
+}
+
+.show__company_informations {
+    flex: 1;
+    padding: 1em 1em 1px 1em;
+    margin-bottom: 3em;
+    background-color: #fff;
+    border: #C0C0C0 solid 1px;
+    border-radius: 10px;
+}
+
+.show__company_informations table {
+    border-color: #fff;
+}
+
+.btnStyle {
+    background-color: #36818d;
+    color: #EEEEEE
+}
+
+.btnStyle:hover {
+    background-color: #378E64;
+    color: #EEEEEE
+}
+
+.show__subject {
+    background-color: #fff;
+    border: #C0C0C0 solid 1px;
+    padding: 1em 1em 1px 1em;
+    border-radius: 10px;
+}
+
+.show__subject p {
+    background-color: #eee;
+    border: #C0C0C0 solid 1px;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.show__bottom_informations {
+    margin-left: 3em;
+    margin-top: 3em;
+}
+
+.showCandidacy__container {
+    margin: 3em;
+}
+
+.showCandidacy__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.showCandidacy__card-title {
+    width: 100%;
+}
+
+.showCandidacy__lastname {
+    font-weight: bold;
+}
+
+.showCandidacy__download {
+    margin-bottom: 1em;
+    display: flex;
+    gap: 5px;
+}
+
+.showCandidacy__download a {
+    flex: 1;
+}
+
+.showCandidacy__decision {
+    display: flex;
+    gap: 5px;
+}
+
+.showCandidacy__decision a {
+    flex: 1;
+}
+

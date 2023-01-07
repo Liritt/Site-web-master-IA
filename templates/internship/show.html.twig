@@ -1,79 +1,99 @@
 {% extends '_connectedNavBar.html.twig' %}
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/internship.css') }}" />
+{% endblock %}
 
 {% block body %}
 
-    <h1>Stage</h1>
+    <div class="top__informations">
+        <h1 class="show__company_name">{{ internship.company.companyName }}</h1>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Entreprise</th>
-                <td>{{ internship.company.companyName }}</td>
-            </tr>
-            <tr>
-                <th>Superviseur</th>
-                <td>{{ internship.company.supervisorFirstname }} {{ internship.company.supervisorLastname }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ internship.city }}</td>
-            </tr>
-            <tr>
-                <th>Début de stage</th>
-                <td>{% if internship.beginDate %}{{ internship.beginDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fin du stage</th>
-                <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Nombre de places</th>
-                <td>{{ internship.studentsNumber }}</td>
-            </tr>
-            <tr>
-                <th>Nombre de places restantes</th>
-                <td>{{ internship.studentsNumber - internship.students|length }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="show__container">
+        <div class="show__internship">
+            <div class="show__company_informations">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Superviseur</th>
+                        <td>{{ internship.company.supervisorFirstname }} {{ internship.company.supervisorLastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <td>{{ internship.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Début de stage</th>
+                        <td>{% if internship.beginDate %}{{ internship.beginDate|date('Y-m-d') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Fin du stage</th>
+                        <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d') }}{% endif %}</td>
+                    </tr>
+                    {% set duration = internship.endDate|date('U') - internship.beginDate|date('U') %}
+                    {% set duration = duration / 86400 %}
+                    {% set duration = duration|number_format(0, '.', '') %}
+                    <tr>
+                        <th>Durée du stage</th>
+                        <td>{{ duration }} jours</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de places</th>
+                        <td>{{ internship.studentsNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de places restantes</th>
+                        <td>{{ internship.studentsNumber - internship.students|length }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <div class="show__subject">
+                <h2>Sujet du stage</h2>
+                <p>{{ internship.subject }}</p>
+            </div>
+        </div>
 
-    <h2>Sujet du stage</h2>
-    <p>{{ internship.subject }}</p>
+        <div class="show__accepted_students">
+            <h2>Etudiants Acceptés</h2>
+            {% if internship.students is empty %}
+                <p>Aucun étudiant n'a encore été accepté pour ce stage.</p>
+            {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Mail</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for student in internship.students %}
+                        <tr>
+                            <td>{{ student.lastname }}</td>
+                            <td>{{ student.firstname }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>
+                                <a href="{{ path('app_student_profil', {'id': student.id}) }}" class="btnStyle btn">Voir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
 
-
-    <h2>Etudiants Acceptés</h2>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Mail</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for student in internship.students %}
-                <tr>
-                    <td>{{ student.lastname }}</td>
-                    <td>{{ student.firstname }}</td>
-                    <td>{{ student.email }}</td>
-                    <td>
-                        <a href="#">Voir</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-
-    </table>
-
-    {% if app.user.roles[0] == 'ROLE_STUDENT' %}
-        <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btn btn-primary">Candidater</a>
-    {% elseif app.user.roles[0] == 'ROLE_COMPANY'%}
-        <a href="{{ path('app_internship_candidacies', {id: internship.id}) }}" class="btn btn-primary">Voir les demandes</a>
-    {% endif %}
-    <a href="{{ path('app_internship') }}" class="btn btn-secondary">Retour à la liste</a>
+    <div class="show__bottom_informations">
+        {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+            <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btnStyle btn">Candidater</a>
+        {% elseif app.user.roles[0] == 'ROLE_COMPANY' or app.user.roles[0] == 'ROLE_ADMIN'%}
+            <a href="{{ path('app_internship_candidacies', {id: internship.id}) }}" class="btnStyle btn">Voir les demandes</a>
+        {% endif %}
+        <a href="{{ path('app_internship') }}" class="btn btn-secondary">Retour à la liste</a>
+    </div>
 
 
 
