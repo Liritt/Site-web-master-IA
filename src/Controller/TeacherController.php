@@ -13,6 +13,15 @@ class TeacherController extends AbstractController
     public function index(TeacherRepository $repository): Response
     {
         $teachers = $repository->findAll();
+
         return $this->render('teacher/index.html.twig', ['teachers' => $teachers]);
+    }
+
+    #[Route('/teacher/{id}', name: 'app_teacher_profil')]
+    public function profil(TeacherRepository $repository, int $id): Response
+    {
+        $teacher = $repository->find($id);
+
+        return $this->render('teacher/profil.html.twig', ['teacher' => $teacher]);
     }
 }
