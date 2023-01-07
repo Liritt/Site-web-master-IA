@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: 'candidacyId=' + encodeURIComponent(candidacyId) + '&targetId=' + encodeURIComponent(targetId)
-            }).then((r) => {return 'Candidatures échangées de place'});
+            }).then();
         }
 
         return false;
