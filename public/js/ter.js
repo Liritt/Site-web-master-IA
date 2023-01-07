@@ -55,4 +55,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         return false;
     }
+
+    let items = document.querySelectorAll('.drag-target');
+    items.forEach(function(item) {
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('dragenter', handleDragEnter);
+        item.addEventListener('dragleave', handleDragLeave);
+        item.addEventListener('dragend', handleDragEnd);
+        item.addEventListener('drop', handleDrop);
+    });
 });
