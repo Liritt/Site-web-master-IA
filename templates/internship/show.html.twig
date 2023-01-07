@@ -49,30 +49,34 @@
 
     <div class="show__accepted_students">
         <h2>Etudiants Acceptés</h2>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Mail</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for student in internship.students %}
+        {% if internship.students is empty %}
+            <p>Aucun étudiant n'a encore été accepté pour ce stage.</p>
+        {% else %}
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>{{ student.lastname }}</td>
-                    <td>{{ student.firstname }}</td>
-                    <td>{{ student.email }}</td>
-                    <td>
-                        <a href="#">Voir</a>
-                    </td>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Mail</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-            </tbody>
+                </thead>
+                <tbody>
+                {% for student in internship.students %}
+                    <tr>
+                        <td>{{ student.lastname }}</td>
+                        <td>{{ student.firstname }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>
+                            <a href="#">Voir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
 
-        </table>
+            </table>
+        {% endif %}
+
     </div>
 
     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
