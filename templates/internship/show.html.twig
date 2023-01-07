@@ -10,44 +10,46 @@
     </div>
 
     <div class="show__container">
-        <div class="show__company_informations">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th>Entreprise</th>
-                    <td>{{ internship.company.companyName }}</td>
-                </tr>
-                <tr>
-                    <th>Superviseur</th>
-                    <td>{{ internship.company.supervisorFirstname }} {{ internship.company.supervisorLastname }}</td>
-                </tr>
-                <tr>
-                    <th>Ville</th>
-                    <td>{{ internship.city }}</td>
-                </tr>
-                <tr>
-                    <th>Début de stage</th>
-                    <td>{% if internship.beginDate %}{{ internship.beginDate|date('Y-m-d') }}{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Fin du stage</th>
-                    <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d') }}{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Nombre de places</th>
-                    <td>{{ internship.studentsNumber }}</td>
-                </tr>
-                <tr>
-                    <th>Nombre de places restantes</th>
-                    <td>{{ internship.studentsNumber - internship.students|length }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="show__internship">
+            <div class="show__company_informations">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Entreprise</th>
+                        <td>{{ internship.company.companyName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Superviseur</th>
+                        <td>{{ internship.company.supervisorFirstname }} {{ internship.company.supervisorLastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <td>{{ internship.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Début de stage</th>
+                        <td>{% if internship.beginDate %}{{ internship.beginDate|date('Y-m-d') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Fin du stage</th>
+                        <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de places</th>
+                        <td>{{ internship.studentsNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de places restantes</th>
+                        <td>{{ internship.studentsNumber - internship.students|length }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="show__subject">
-            <h2>Sujet du stage</h2>
-            <p>{{ internship.subject }}</p>
+            <div class="show__subject">
+                <h2>Sujet du stage</h2>
+                <p>{{ internship.subject }}</p>
+            </div>
         </div>
 
         <div class="show__accepted_students">
