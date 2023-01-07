@@ -58,3 +58,8 @@ html, body {
     padding-right: 10em;
     margin-bottom: 3em;
 }
+
+.show__seeStudent {
+    background-color: #36818d;
+    color: #EEEEEE
+}
