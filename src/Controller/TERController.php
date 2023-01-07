@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class TERController extends AbstractController
 {
@@ -183,6 +184,7 @@ class TERController extends AbstractController
             $this->getUser()->addCandidacyTER($candidacyTER);
             $candidacyTERRepository->save($candidacyTER, true);
         }
+
         return $this->redirectToRoute('app_ter');
     }
 
@@ -215,8 +217,28 @@ class TERController extends AbstractController
         return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 
-    public function updateCandidacyOrderNumber(CandidacyTER $candidacyTER) {
+    #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
+    public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry, UserInterface $user): Response
+    {
+        $candidacyId = $request->request->get('candidacyId');
+        $targetId = $request->request->get('targetId');
 
+        // Récupérez les candidatures correspondant aux IDs spécifiés
+        $candidacy = $candidacyTERRepository->find($candidacyId);
+        $target = $candidacyTERRepository->find($targetId);
+
+        // Échangez les valeurs des champs orderNumber des candidatures
+        $temp = $candidacy->getOrderNumber();
+        $candidacy->setOrderNumber($target->getOrderNumber());
+        $target->setOrderNumber($temp);
+
+        // Enregistrez les modifications dans la base de données
+        $entityManager = $managerRegistry->getManager();
+        $entityManager->persist($candidacy);
+        $entityManager->persist($target);
+        $entityManager->flush();
+
+        return new Response();
     }
 
     /**
