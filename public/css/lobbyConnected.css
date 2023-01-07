@@ -38,4 +38,5 @@ details > summary::-webkit-details-marker {
 summary{
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 }
