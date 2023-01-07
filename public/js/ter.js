@@ -21,4 +21,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         e.preventDefault();
         return false;
     }
+
+    function handleDragEnter(e) {
+        this.classList.add('over');
+    }
 });
