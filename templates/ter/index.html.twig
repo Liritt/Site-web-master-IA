@@ -61,8 +61,11 @@
                                             <small style="color: grey"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
                                         </form>
                                     </div>
+                                    {% if days < 7 %}
+                                    <p class="ribbon left-bottom right-top text-center" style="color: white">Nouveau TER</p>
+                                    {% endif %}
                                 </div>
-                            </div>
+                                </div>
                         {% endif %}
                     {% else %}
                         <div class="col-8">

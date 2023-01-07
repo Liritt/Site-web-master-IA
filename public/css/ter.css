@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   overflow-y: hidden;
 }
@@ -27,6 +28,41 @@ main .explanations {
 }
 main form {
   text-align: right;
+}
+main p.ribbon {
+  position: relative; /* pour servir de référent */
+  margin: 1em -10px; /* pour décaler les bords */
+  background: green; /* pour visualiser */
+}
+main p.ribbon::before,
+main p.ribbon::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+main p.left-top::before {
+  left: 0;
+  bottom: 100%;
+  border-color: transparent #800000;
+  border-width: 10px 10px 0 0;
+}
+main p.left-bottom::before {
+  left: 0;
+  top: 100%;
+  border-color: transparent #800000;
+  border-width: 0 10px 10px 0;
+}
+main p.right-top::after {
+  right: 0;
+  bottom: 100%;
+  border-color: #800000 transparent;
+  border-width: 0 10px 10px 0;
+}
+main p.right-bottom::after {
+  right: 0;
+  top: 100%;
+  border-color: #800000 transparent;
+  border-width: 10px 10px 0 0;
 }
 
 .ter-component {

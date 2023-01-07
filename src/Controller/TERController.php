@@ -28,6 +28,7 @@ class TERController extends AbstractController
      * Affiche la liste des TER.
      */
     #[Route('/ter', name: 'app_ter')]
+    #[Entity('Student', expr: 'repository.findWithAssignedTER(id)')]
     public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository): Response
     {
         $lstStudentCandidaciesNotEqualToNumberCandidacies = null;
