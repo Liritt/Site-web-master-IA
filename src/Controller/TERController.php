@@ -215,6 +215,10 @@ class TERController extends AbstractController
         return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
     }
 
+    public function updateCandidacyOrderNumber(CandidacyTER $candidacyTER) {
+
+    }
+
     /**
      * @throws CandidaciesNullException
      */

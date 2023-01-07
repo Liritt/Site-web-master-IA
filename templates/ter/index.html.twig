@@ -53,7 +53,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ TER.title }}</h5>
                                         <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                                        <form method="post" action="{{ path('app_ter_toCandidate', {id: TER.id}) }}" style="display: flex; align-items: center; justify-content: space-between;">
+                                        <form method="post" action="{{ path('app_ter_toCandidate', {id: TER.id}) }}" style="display: flex; align-items: flex-end; justify-content: space-between;">
                                             <div>
                                                 <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
                                                 <button type="submit" class="btn btn-secondary" name="candidate-button">Candidater</button>
@@ -101,9 +101,9 @@
                 {% if lstCandidacyTER|length != 0 %}
                     <div class="right-component">
                         <h1>Liste de vos candidatures</h1>
-                            <div class="lst-candidacies">
+                            <ol class="lst-candidacies">
                                 {% for candidacy in lstCandidacyTER %}
-                                    <div class="col-6">
+                                    <li class="col-6">
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ candidacy.TER.title }}</h5>
@@ -112,9 +112,9 @@
                                                 <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </li>
                                 {% endfor %}
-                            </div>
+                            </ol>
                     </div>
                 {% else %}
                     <div class="explanations">
