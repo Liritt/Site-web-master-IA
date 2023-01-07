@@ -130,20 +130,27 @@
                     <div class="trait-cote d-flex flex-column align-items-end pe-2">
                         <h5><strong>{% trans %}Comment s'inscrire ?{% endtrans %}</strong></h5>
                         <br>
-                        <strong>La procédure française :</strong>
+                        <strong>{% trans %}La procédure française :{% endtrans %}</strong>
                         <div>
-                            Vous pouvez candidater au Master IA via la plateforme
+                            {% trans %}Vous pouvez candidater au Master IA via la plateforme{% endtrans %}
                             <a href="https://www.trouvermonmaster.gouv.fr/">
-                                trouvermonmaster
+                                TrouverMonMaster
                                 <span class="material-symbols-outlined">open_in_new</span>
                             </a>
                         </div><br>
-                        <strong>La procédure internationale :</strong>
+                        <strong>{% trans %}La procédure internationale :{% endtrans %}</strong>
+                        <div>
+                            {% trans %} Vous pouvez candidater au Master IA via la plateforme{% endtrans %}
+                            <a href="https://www.campusfrance.org/en">
+                                CampusFrance
+                                <span class="material-symbols-outlined">open_in_new</span>
+                            </a>
+                        </div>
                         <br>
                     </div>
-                        <strong>Modalités d'admission :</strong>
+                        <strong>{% trans %}Modalités d'admission :{% endtrans %}</strong>
                         <br>
-                    <div>Les admissions au Master IA se déroulent sur dossier</div>
+                    <div>{% trans %}Les admissions au Master IA se déroulent sur dossier{% endtrans %}</div>
                     </p>
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                 </div>
