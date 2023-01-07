@@ -12,6 +12,7 @@
                         <li><a class="dropdown-item" href="{{ path('app_student_degree',{degree: 2}) }}">2 ème année</a></li>
                     </ul>
                 </li>
+                <li><a href="{{ path('app_teacher') }}">Professeurs</a></li>
             </ul>
             <form class="d-flex" role="search" action="{{ path('app_student') }}">
                 <input name="search" class="form-control me-2" type="search" placeholder="{{ search|default('') }}" aria-label="rechercher">
