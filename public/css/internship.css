@@ -20,3 +20,8 @@ html, body {
     justify-content: center;
     margin-top: 1em;
 }
+
+.row {
+    gap: 3em;
+    justify-content: space-evenly
+}
