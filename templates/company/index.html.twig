@@ -32,6 +32,7 @@
         <div class="row">
             {% for company in companys %}
                 <div class="col-4">
+                    <a href="{{ path('app_company_profil', {id: company.id}) }}">
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="company_name">{{ company.companyName }}</h2>
@@ -39,6 +40,7 @@
                                 {{ company.supervisorFirstname }} {{ company.supervisorLastname }}
                             </div>
                         </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>
