@@ -66,6 +66,16 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->execute();
     }
 
+    public function countNumberOfCandidacies(Student $student = null)
+    {
+        return $this->createQueryBuilder('ct')
+            ->select('COUNT(ct.id)')
+            ->where('ct.student = :student')
+            ->setParameter('student', $student)
+            ->getQuery()
+            ->getResult()[0];
+    }
+
 //    /**
 //     * @return CandidacyTER[] Returns an array of CandidacyTER objects
 //     */
