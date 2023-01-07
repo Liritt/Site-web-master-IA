@@ -88,9 +88,9 @@
 
     <div class="show__bottom_informations">
         {% if app.user.roles[0] == 'ROLE_STUDENT' %}
-            <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btn btn-primary">Candidater</a>
+            <a href="{{ path('app_internship_tocandidate', {id: internship.id}) }}" class="btnStyle btn">Candidater</a>
         {% elseif app.user.roles[0] == 'ROLE_COMPANY' or app.user.roles[0] == 'ROLE_ADMIN'%}
-            <a href="{{ path('app_internship_candidacies', {id: internship.id}) }}" class="btn btn-primary">Voir les demandes</a>
+            <a href="{{ path('app_internship_candidacies', {id: internship.id}) }}" class="btnStyle btn">Voir les demandes</a>
         {% endif %}
         <a href="{{ path('app_internship') }}" class="btn btn-secondary">Retour à la liste</a>
     </div>
