@@ -63,3 +63,8 @@ html, body {
     background-color: #36818d;
     color: #EEEEEE
 }
+
+.show__seeStudent:hover {
+    background-color: #378E64;
+    color: #EEEEEE
+}
