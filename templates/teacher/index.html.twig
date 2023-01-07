@@ -9,7 +9,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Choix de l'année
+                            Choix de l'année des étudiants
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ path('app_student') }}">Tous</a></li>
@@ -17,8 +17,9 @@
                             <li><a class="dropdown-item" href="{{ path('app_student_degree',{degree: 2}) }}">2 ème année</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ path('app_teacher') }}">Professeurs</a></li>
                 </ul>
-                <form class="d-flex" role="search" action="{{ path('app_student') }}">
+                <form class="d-flex" role="search" action="{{ path('app_teacher') }}">
                     <input name="search" class="form-control me-2" type="search" placeholder="{{ search|default('') }}" aria-label="rechercher">
                     <button class="btn btn-outline-success" type="submit">Rechercher</button>
                 </form>
