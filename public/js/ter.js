@@ -30,4 +30,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
         this.classList.remove('over');
     }
 
+    function handleDrop(e) {
+        e.stopPropagation(); // stops the browser from redirecting.
+
+        if (dragSrcEl !== this) {
+            dragSrcEl.innerHTML = this.innerHTML;
+            this.innerHTML = e.dataTransfer.getData('text/html');
+            // Récupérez l'ID de la candidature déplacée
+            let candidacyId = dragSrcEl.getAttribute('id');
+
+            // Récupérez l'ID de la candidature à laquelle l'élément a été déplacé
+            let targetId = this.getAttribute('id');
+            console.log(targetId);
+
+            // Envoyez une requête Ajax à votre contrôleur pour mettre à jour les champs orderNumber des candidatures concernées
+            fetch('/ter/update-order-number', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'candidacyId=' + encodeURIComponent(candidacyId) + '&targetId=' + encodeURIComponent(targetId)
+            }).then((r) => {return 'Candidatures échangées de place'});
+        }
+
+        return false;
+    }
 });
