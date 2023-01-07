@@ -25,4 +25,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function handleDragEnter(e) {
         this.classList.add('over');
     }
+
+    function handleDragLeave(e) {
+        this.classList.remove('over');
+    }
+
 });
