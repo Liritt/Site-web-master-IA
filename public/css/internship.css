@@ -96,3 +96,7 @@ html, body {
     padding: 0.5em;
     border-radius: 5px;
 }
+
+.show__bottom_informations {
+    margin-top: 3em;
+}
