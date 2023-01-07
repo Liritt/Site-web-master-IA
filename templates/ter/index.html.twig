@@ -1,5 +1,22 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% set trans_month_hash = {
+    "January": "Janvier",
+    "February": "Février",
+    "March": "Mars",
+    "April": "Avril",
+    "May": "Mai",
+    "June": "Juin",
+    "July": "Juillet",
+    "August": "Août",
+    "September": "Septembre",
+    "October": "Octobre",
+    "November": "Novembre",
+    "December": "Décembre",
+}
+%}
+{% set today = "now"|date("U") %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/ter.css') }}">
 {% endblock %}
@@ -22,13 +39,26 @@
                     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
                         {% if app.user.degree == TER.degree %}
                             <div class="col-8">
+                            {% set today = "now"|date("Y-m-d") %}
+                            {% set TERDate = TER.Date|date("Y-m-d") %}
+                            {% set diff = TERDate|date("U") - today|date("U") %}
+                            {% set days = diff|round(0, 'floor')|abs %}
+                            {% set days = days / 86400 %}
+                            {% set days = days|round(0, 'floor') %}
+                            {% if days < 7 %}
+                                <div class="card border-success text-success mb-3">
+                            {% else %}
                                 <div class="card">
+                            {% endif %}
                                     <div class="card-body">
                                         <h5 class="card-title">{{ TER.title }}</h5>
                                         <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                                        <form method="post" action="{{ path('app_ter_toCandidate', {id: TER.id}) }}">
-                                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                                            <button type="submit" class="btn btn-secondary" name="candidate-button">Candidater</button>
+                                        <form method="post" action="{{ path('app_ter_toCandidate', {id: TER.id}) }}" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <div>
+                                                <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                                <button type="submit" class="btn btn-secondary" name="candidate-button">Candidater</button>
+                                            </div>
+                                            <small style="color: grey"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
                                         </form>
                                     </div>
                                 </div>
@@ -40,11 +70,16 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ TER.title }}</h5>
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                                    <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                                    {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                                        <a href="{{ path('app_ter_update', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">edit</a>
-                                        <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
-                                    {% endif %}
+                                    <div style="display: flex; gap: 5px; justify-content: space-between">
+                                        <div>
+                                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                        {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                                            <a href="{{ path('app_ter_update', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">edit</a>
+                                            <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
+                                        {% endif %}
+                                        </div>
+                                        <small style="color: grey"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +108,7 @@
                     </div>
                 {% else %}
                     <div class="explanations">
-                        <p>Les TER sont des projets que vous aurez à faire à partir du (date à décider). Choisissez autant de TER que vous voulez et vous aurez le TER disponible le plus haut de votre liste. Si plusieurs élèves choisissent le même sujet, il y aura alors un tirage au sort et le perdant réitérera l'action si son second choix ou plus est choisi par d'autres personnes.</p>
+                        <p>Vous devez ici trier dans l'ordre que vous voulez les TER. Vous devez cependant candidater à tout les TER.</p>
                     </div>
                 {% endif %}
             {% elseif app.user.roles[0] == 'ROLE_ADMIN' %}

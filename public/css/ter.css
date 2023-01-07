@@ -25,6 +25,9 @@ main .explanations {
   flex: 1;
   margin: 2rem;
 }
+main form {
+  text-align: right;
+}
 
 .ter-component {
   flex: 1;
