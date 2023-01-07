@@ -15,6 +15,9 @@
                 {% if app.user.roles[0] != 'ROLE_STUDENT' %}
                     <a href="{{ path('app_ter_create') }}" class="btn btn-primary col-8">Ajouter un nouveau TER</a>
                 {% endif %}
+                {% if app.user.roles[0] == 'ROLE_TEACHER' %}
+                    <a href="{{ path('app_ter_gallery') }}" class="btn btn-general col-8">Gérer mes TER</a>
+                {% endif %}
                 {% for TER in lstTER %}
                     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
                         {% if app.user.degree == TER.degree %}
