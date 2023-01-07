@@ -75,12 +75,12 @@ html, body {
     border-color: #C0C0C0;
 }
 
-.show__seeStudent {
+.btnStyle {
     background-color: #36818d;
     color: #EEEEEE
 }
 
-.show__seeStudent:hover {
+.btnStyle:hover {
     background-color: #378E64;
     color: #EEEEEE
 }
