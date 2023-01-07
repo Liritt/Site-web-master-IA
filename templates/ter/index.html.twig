@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="{{ asset('css/ter.css') }}">
 {% endblock %}
 
+{% block javascripts %}
+    <script async src="{{ asset('js/ter.js') }}"></script>
+{% endblock %}
+
 {% block title %}Page TER{% endblock %}
 
 {% block body %}
@@ -103,7 +107,7 @@
                         <h1>Liste de vos candidatures</h1>
                             <ol class="lst-candidacies">
                                 {% for candidacy in lstCandidacyTER %}
-                                    <li class="col-6">
+                                    <li id="{{ candidacy.id }}" class="col-6 drag-target" draggable="true">
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ candidacy.TER.title }}</h5>
