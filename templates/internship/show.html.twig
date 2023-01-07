@@ -30,6 +30,13 @@
                         <th>Fin du stage</th>
                         <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d') }}{% endif %}</td>
                     </tr>
+                    {% set duration = internship.endDate|date('U') - internship.beginDate|date('U') %}
+                    {% set duration = duration / 86400 %}
+                    {% set duration = duration|number_format(0, '.', '') %}
+                    <tr>
+                        <th>Durée du stage</th>
+                        <td>{{ duration }} jours</td>
+                    </tr>
                     <tr>
                         <th>Nombre de places</th>
                         <td>{{ internship.studentsNumber }}</td>
