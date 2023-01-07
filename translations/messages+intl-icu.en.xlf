@@ -257,6 +257,40 @@
         <source>Département MMI</source>
         <target>MMI Department</target>
       </trans-unit>
+      <trans-unit id="7pZ_wTi" resname="FIL D'ACTUALITÉ">
+        <source>FIL D'ACTUALITÉ</source>
+        <target>NEWS</target>
+      </trans-unit>
+      <trans-unit id="6yBIgnH" resname="Comment s'inscrire ?">
+        <source>Comment s'inscrire ?</source>
+        <target>How to register?</target>
+      </trans-unit>
+      <trans-unit id="Nr_Mm_i" resname="La procédure française :">
+        <source>La procédure française :</source>
+        <target>The French procedure :</target>
+      </trans-unit>
+      <trans-unit id="IXYc47t" resname="Vous pouvez candidater au Master IA via la plateforme">
+        <source>Vous pouvez candidater au Master IA via la plateforme</source>
+        <target>You can apply for the Master IA via the platform</target>
+      </trans-unit>
+      <trans-unit id="nGGoFuN" resname="La procédure internationale :">
+        <source>La procédure internationale :</source>
+        <target>The international procedure :</target>
+      </trans-unit>
+      <trans-unit id="Pq33Yxs" resname="Modalités d'admission :">
+        <source>Modalités d'admission :</source>
+        <target>Admissions procedures :</target>
+      </trans-unit>
+      <trans-unit id="0PdgkU." resname="Les admissions au Master IA se déroulent sur dossier">
+        <source>Les admissions au Master IA se déroulent sur dossier</source>
+        <target>Admissions to the Master IA are based on application</target>
+      </trans-unit>
+      <trans-unit id="eRxEbSL" resname="Des procédures de validation des acquis sont possibles pour vous permettre d'accéder&#10;                        à la formation ou pour valider le diplôme.">
+        <source>Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                        à la formation ou pour valider le diplôme.</source>
+        <target>Acquired validation procedures are possible to allow you to access
+                        training or to validate the diploma</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
