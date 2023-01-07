@@ -119,5 +119,11 @@ body .margin-top-10 {
 body .test {
   background-color: #378E64;
 }
+body .w-60 {
+  width: 60% !important;
+}
+body .trait-cote {
+  border-right: thin #36818d solid;
+}
 
 /*# sourceMappingURL=lobby.css.map */

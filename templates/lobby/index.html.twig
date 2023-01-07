@@ -10,37 +10,37 @@
 
 {% block body %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <h1>{% trans %}FIL D'ACTUALITÉ{% endtrans %}</h1>
-        <div class="art1-div">
-            <details class="art1">
+        <h1 class="titre">{% trans %}FIL D'ACTUALITÉ{% endtrans %}</h1>
+        <div class="art1-div m-2">
+            <details class="art1 m-2">
                 <summary>
-                    <img src="{{ asset('img/Article1.jfif') }}">
-                    <h3>News #1 : Title</h3>
+                    <img class="shadow-lg rounded-1" src="{{ asset('img/Article1.jfif') }}">
+                    <div class="text-white position-absolute fw-bold news-title fs-1">News #1 : Title</div>
                 </summary>
-                Description de l'article 1
+                <div class="card"><div class="card-body bg-light-blue">Description de l'article 1</div></div>
             </details>
             <div class="art2-div">
-                <details class="art2">
+                <details class="art2 m-5">
                     <summary>
-                        <img src="{{ asset('img/Article2.jpg') }}">
-                        <h3>News #2 : Title</h3>
+                        <img class="img-fluid shadow-lg rounded-1 news-2" src="{{ asset('img/Article2.jpg') }}">
+                        <div class="text-white position-absolute fw-bold news-title fs-1">News #2 : Title</div>
                     </summary>
-                    Description de l'article 2
+                    <div class="card"><div class="card-body bg-light-blue">Description de l'article 2</div></div>
                 </details>
                 <div class="art3-div">
-                    <details class="art3">
+                    <details class="art3 m-5">
                         <summary>
-                            <img src="{{ asset('img/Article3.jfif') }}">
-                            <h3>News #3 : Title</h3>
+                            <img class="img-fluid shadow-lg rounded-1" src="{{ asset('img/Article3.jfif') }}">
+                            <div class="text-white position-absolute fw-bold news-title fs-6">News #3 : Title</div>
                         </summary>
-                        Description de l'article 3
+                        <div class="card"><div class="card-body bg-light-blue">Description de l'article 3</div></div>
                     </details>
-                    <details class="art4">
+                    <details class="art4 m-5">
                         <summary>
-                            <img src="{{ asset('img/Article4.jfif') }}">
-                            <h3>News #4 : Title</h3>
+                            <img class="img-fluid shadow-lg rounded-1" src="{{ asset('img/Article4.jfif') }}">
+                            <div class="text-white position-absolute fw-bold news-title fs-6">News #4 : Title</div>
                         </summary>
-                        Description de l'article 4
+                        <div class="card"><div class="card-body bg-light-blue">Description de l'article 4</div></div>
                     </details>
                 </div>
             </div>
@@ -51,7 +51,6 @@
             <h1><strong>{% trans %}Master informatique{% endtrans %}</strong></h1>
             <h2><strong>{% trans %}Parcours : intelligence artificielle{% endtrans %}</strong></h2>
         </div>
-
     <main>
         <section class="d-flex flex-row align-items-center mt-5 mb-5">
             <div class="flex-row mx-5">
@@ -59,8 +58,8 @@
                 <h2 class="titre2 mb-3">{% trans %}PRÉSENTATION{% endtrans %}</h2>
                 <p class="mt-2">
 
-                    {% trans %}Le{% endtrans %} <strong>{% trans %}Master Informatique parcours IA{% endtrans %}</strong>{% trans %} est un diplôme national,
-                        il est organisé en {% endtrans %}<strong>{% trans %}5 Unités d’Enseignement{% endtrans %}</strong>.
+                    {% trans %}Le{% endtrans %} <strong>{% trans %}Master Informatique parcours IA{% endtrans %} </strong>{% trans %} est un diplôme national,
+                        il est organisé en {% endtrans %}<strong> {% trans %}5 Unités d’Enseignement{% endtrans %}</strong>.
                         <br><br>{% trans %}
                         Les enseignements sont dispensés sous forme de cours magistraux, de travaux dirigés et de travaux pratiques,
                         l’accent étant mis sur les projets individuels et collectifs, les stages, ainsi que sur le contrôle continu.
@@ -127,7 +126,30 @@
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                     <h2 class="titre2 mb-3">{% trans %}ADMISSION{% endtrans %}</h2>
                     <p class="mt-2">
-                        [pas encore défini]
+                    <div class="trait-cote d-flex flex-column align-items-end pe-2">
+                        <h5><strong>{% trans %}Comment s'inscrire ?{% endtrans %}</strong></h5>
+                        <br>
+                        <strong>{% trans %}La procédure française :{% endtrans %}</strong>
+                        <div>
+                            {% trans %}Vous pouvez candidater au Master IA via la plateforme{% endtrans %}
+                            <a href="https://www.trouvermonmaster.gouv.fr/">
+                                TrouverMonMaster
+                                <span class="material-symbols-outlined">open_in_new</span>
+                            </a>
+                        </div><br>
+                        <strong>{% trans %}La procédure internationale :{% endtrans %}</strong>
+                        <div>
+                            {% trans %} Vous pouvez candidater au Master IA via la plateforme{% endtrans %}
+                            <a href="https://www.campusfrance.org/en">
+                                CampusFrance
+                                <span class="material-symbols-outlined">open_in_new</span>
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+                        <strong>{% trans %}Modalités d'admission :{% endtrans %}</strong>
+                        <br>
+                    <div>{% trans %}Les admissions au Master IA se déroulent sur dossier{% endtrans %}</div>
                     </p>
                     <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                 </div>
@@ -165,7 +187,7 @@
                 </div>
         </section>
         <section class="d-flex justify-content-end my-5">
-            <div class="mx-5 d-flex flex-column align-items-end w-50">
+            <div class="mx-5 d-flex flex-column align-items-end w-60">
                 <img src="{{ asset('img/Line 6.svg') }}" alt="ligne" class="m-3">
                 <h2 class="titre2 mb-3">{% trans %}INFORMATIONS PRATIQUES{% endtrans %}</h2>
                 <strong>{% trans %}Pour en savoir plus sur l'orientation et l'insertion professionnelle :{% endtrans %}</strong>
@@ -200,12 +222,10 @@
                     {% trans %}La Validation des acquis{% endtrans %}
                     <span class="material-symbols-outlined">open_in_new</span>
                 </a><br>
-
-
-                {% trans %}Vous avez de l'expérience et/ou un parcours de formation à valoriser ? {% endtrans %}<br>
-                {% trans %}Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
-                à la formation ou pour valider le diplôme.{% endtrans %}<br>
-                {% trans %}Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr{% endtrans %}<br><br>
+                <div>{% trans %}Vous avez de l'expérience et/ou un parcours de formation à valoriser ? {% endtrans %}</div>
+                <div>{% trans %}Des procédures de validation des acquis sont possibles pour vous permettre d'accéder
+                        à la formation ou pour valider le diplôme.{% endtrans %}</div>
+                <div>{% trans %}Pour plus d’informations, vous pouvez envoyer un e-mail à vae@univ-reims.fr{% endtrans %}</div>
 
                 <strong>
                     {% trans %}Pour en savoir plus sur les relations internationales à l'Université :{% endtrans %}
@@ -233,6 +253,7 @@
             </div>
         </section>
     </main>
+
     <footer class="footer d-flex flex-row mt-5 justify-content-center">
         <section class="d-flex flex-column m-lg-5">
             <strong>{% trans %}Composante :{% endtrans %}</strong>

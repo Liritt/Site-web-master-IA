@@ -6,6 +6,7 @@ details > summary::-webkit-details-marker {
     display: none;
 }
 
+
 .art1-div{
     display: flex;
     flex-direction: row;
@@ -37,4 +38,9 @@ details > summary::-webkit-details-marker {
 summary{
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+}
+
+.news-title{
+    margin: 1rem;
 }
