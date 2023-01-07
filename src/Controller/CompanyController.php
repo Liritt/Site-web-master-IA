@@ -18,4 +18,12 @@ class CompanyController extends AbstractController
 
         return $this->render('company/index.html.twig', ['companys' => $companys, 'search' => $search]);
     }
+
+    #[Route('/company/{id}', name: 'app_company_profil')]
+    public function show(CompanyRepository $repository, int $id): Response
+    {
+        $company = $repository->find($id);
+
+        return $this->render('company/profil.html.twig', ['company' => $company]);
+    }
 }
