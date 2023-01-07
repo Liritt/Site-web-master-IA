@@ -1,26 +1,30 @@
 {% extends '_connectedNavBar.html.twig' %}
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/internship.css') }}" />
+{% endblock %}
 
 {% block body %}
-    <h1>Candidatures</h1>
 
-    <h2>Liste des candidats</h2>
-
+    <div class="top__informations">
+        <div class="top__informations__title">
+            <h2>Liste des candidats</h2>
+        </div>
+    </div>
 
     <div class="showCandidacy__container">
         <div class="row">
             {% for candidacy in candidacies %}
-                <div class="col-4">
+                <div class="col-2">
                     <div class="showCandidacy__card card">
                         <div class="card-body">
-                            <h5 class="card-title">{{ candidacy.student.lastname }} {{ candidacy.student.firstname }}</h5>
+                            <h5 class="showCandidacy__card-title card-title"><span class="showCandidacy__lastname">{{ candidacy.student.lastname }}</span> {{ candidacy.student.firstname }}</h5>
 
                             <p class="card-text">{{ candidacy.student.email }}</p>
-                            <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btnStyle btn">Plus de détails</a>
-                            <div class="download">
+                            <div class="showCandidacy__download">
                                 <a class="btn btn-outline-success" href="{{ path('app_internship_candidacy_download', {id: internship.id, idCandidacy: candidacy.id, type: "cv"} ) }}">CV</a>
                                 <a class="btn btn-outline-success" href="{{ path('app_internship_candidacy_download', {id: internship.id, idCandidacy: candidacy.id, type: "coverletter"} ) }}">Lettre de motivation</a>
                             </div>
-                            <div class="decision">
+                            <div class="showCandidacy__decision">
                                 <a class="btn btn-outline-primary" href="{{ path('app_internship_candidacy_accept', {id: internship.id, idCandidacy: candidacy.id} ) }}">Accepter</a>
                                 <a class="btn btn-outline-danger" href="{{ path('app_internship_candidacy_refuse', {id: internship.id, idCandidacy: candidacy.id} ) }}">Refuser</a>
                             </div>
