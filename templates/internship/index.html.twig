@@ -17,14 +17,14 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="index__row row">
             {% for internship in internships %}
 
                 {% if internship.company.userIdentifier == app.user.userIdentifier %}
                     <div class="col-2">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ internship.company.companyName }}</h5>
+                            <div class="index__card-body card-body">
+                                <h5 class="index__card-title card-title">{{ internship.company.companyName }}</h5>
 
                                 <p class="card-text">{{ internship.company.supervisorLastname }} {{ internship.company.supervisorFirstname }}</p>
                                 <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btnStyle btn">Plus de détails</a>
