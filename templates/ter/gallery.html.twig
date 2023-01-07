@@ -13,7 +13,8 @@
         <div class="ter-component">
             <h1>Bonjour {{ teacher.lastname }} {{ teacher.firstname }}, voici les TER que vous dirigez</h1>
             <div class="lst-ter">
-            {% for TER in lstTerTeacher %}
+                <a href="{{ path('app_ter_create') }}" class="btn btn-primary col-8">Ajouter un nouveau TER</a>
+                {% for TER in lstTerTeacher %}
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
@@ -22,7 +23,6 @@
                             <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
                             <a href="{{ path('app_ter_update', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">edit</a>
                             <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
-                            <a href="{{ path('app_ter_create') }}" class="btn btn-primary material-symbols-outlined">add</a>
                         </div>
                     </div>
                 </div>
