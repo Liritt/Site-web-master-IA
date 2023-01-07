@@ -73,7 +73,7 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->where('ct.student = :student')
             ->setParameter('student', $student)
             ->getQuery()
-            ->getResult()[0];
+            ->getResult()[0][1];
     }
 
 //    /**
