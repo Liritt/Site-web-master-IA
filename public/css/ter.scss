@@ -32,41 +32,52 @@ main {
     text-align: right;
   }
 
-  p.ribbon {
+  .ribbon {
     position: relative;   /* pour servir de référent */
     margin: 1em -10px;    /* pour décaler les bords */
     background: green;  /* pour visualiser */
   }
-  p.ribbon::before,
-  p.ribbon::after {
+  .ribbon::before,
+  .ribbon::after {
     content: "";
     position: absolute;
     border-style: solid;
   }
 
+  .ribbon-2 {
+    position: relative;   /* pour servir de référent */
+    margin: 1em -26px;    /* pour décaler les bords */
+    background: green;  /* pour visualiser */
+  }
+  .ribbon-2::before,
+  .ribbon-2::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+  }
 
-  p.left-top::before {
+  .left-top::before {
     left: 0;
     bottom: 100%;
-    border-color: transparent #800000;
+    border-color: transparent lightgreen;
     border-width: 10px 10px 0 0;
   }
-  p.left-bottom::before {
+  .left-bottom::before {
     left: 0;
     top: 100%;
-    border-color: transparent #800000;
+    border-color: transparent lightgreen;
     border-width: 0 10px 10px 0;
   }
-  p.right-top::after {
+  .right-top::after {
     right: 0;
     bottom: 100%;
-    border-color: #800000 transparent;
+    border-color: lightgreen transparent;
     border-width: 0 10px 10px 0;
   }
-  p.right-bottom::after {
+  .right-bottom::after {
     right: 0;
     top: 100%;
-    border-color: #800000 transparent;
+    border-color: lightgreen transparent;
     border-width: 10px 10px 0 0;
   }
 }

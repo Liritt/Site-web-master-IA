@@ -36,15 +36,15 @@
                     <a href="{{ path('app_ter_gallery') }}" class="btn btn-general col-8">Gérer mes TER</a>
                 {% endif %}
                 {% for TER in lstTER %}
+                    {% set today = "now"|date("Y-m-d") %}
+                    {% set TERDate = TER.Date|date("Y-m-d") %}
+                    {% set diff = TERDate|date("U") - today|date("U") %}
+                    {% set days = diff|round(0, 'floor')|abs %}
+                    {% set days = days / 86400 %}
+                    {% set days = days|round(0, 'floor') %}
                     {% if app.user.roles[0] == 'ROLE_STUDENT' %}
                         {% if app.user.degree == TER.degree %}
                             <div class="col-8">
-                            {% set today = "now"|date("Y-m-d") %}
-                            {% set TERDate = TER.Date|date("Y-m-d") %}
-                            {% set diff = TERDate|date("U") - today|date("U") %}
-                            {% set days = diff|round(0, 'floor')|abs %}
-                            {% set days = days / 86400 %}
-                            {% set days = days|round(0, 'floor') %}
                             {% if days < 7 %}
                                 <div class="card border-success text-success mb-3">
                             {% else %}
@@ -81,8 +81,11 @@
                                             <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
                                         {% endif %}
                                         </div>
-                                        <small style="color: grey"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
+                                        <small style="color: grey;"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
                                     </div>
+                                    {% if days < 7 %}
+                                        <p class="ribbon-2 left-bottom right-top text-center" style="color: white">Nouveau TER</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
