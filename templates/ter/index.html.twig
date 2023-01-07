@@ -21,8 +21,10 @@
                                         <h5 class="card-title">{{ TER.title }}</h5>
                                         <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
                                         <p class="card-text">{{ TER.description }}</p>
-                                        <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                                        <a href="{{ path('app_ter_toCandidate', {id: TER.id}) }}" class="btn btn-secondary">Candidater</a>
+                                        <form method="post" action="{{ path('app_ter_toCandidate', {id: TER.id}) }}">
+                                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
+                                            <button type="submit" class="btn btn-secondary" name="candidate-button">Candidater</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
