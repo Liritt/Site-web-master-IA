@@ -40,3 +40,7 @@ summary{
     flex-direction: column;
     justify-content: flex-end;
 }
+
+.news-title{
+    margin: 1rem;
+}
