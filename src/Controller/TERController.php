@@ -28,20 +28,27 @@ class TERController extends AbstractController
      * Affiche la liste des TER.
      */
     #[Route('/ter', name: 'app_ter')]
-    public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository): Response
+    public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository): Response
     {
-        $lstTER = $TERRepository->search();
+        $lstStudentCandidaciesNotEqualToNumberCandidacies = null;
+        $nbEleves = count($studentRepository->findAll());
         if ('ROLE_STUDENT' == $this->getUser()->getRoles()[0]) {
             $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
+            $lstTER = $TERRepository->findAllNotInCandidatures($this->getUser(), $candidacyTERRepository);
+        } else {
+            $lstTER = $TERRepository->search();
+            $lstCandidacyTER = null;
         }
 
         if ('ROLE_ADMIN' == $this->getUser()->getRoles()[0]) {
-            $lstCandidacyTER = $candidacyTERRepository->searchCandidaciesAdmin();
+            $lstStudentCandidaciesNotEqualToNumberCandidacies = $candidacyTERRepository->studentCandidaciesNotEqualToNumberCandidacies($studentRepository, $TERRepository);
         }
 
         return $this->render('ter/index.html.twig', [
             'lstTER' => $lstTER,
             'lstCandidacyTER' => $lstCandidacyTER,
+            'lstStudentCandidaciesNotEqualToNumberCandidacies' => $lstStudentCandidaciesNotEqualToNumberCandidacies,
+            'nbEleves' => $nbEleves,
         ]);
     }
 
@@ -60,7 +67,7 @@ class TERController extends AbstractController
     /**
      * Affiche les informations d'un TER.
      */
-    #[Route('/ter/gallery', name: 'app_ter_teacher')]
+    #[Route('/ter/gallery', name: 'app_ter_gallery')]
     #[Security('is_granted("ROLE_TEACHER")', message: 'Seul un professeur possède des TER.')]
     public function showTERTeacher(TERRepository $TERRepository): Response
     {
@@ -155,21 +162,18 @@ class TERController extends AbstractController
      * @throws CandidacyException
      */
     #[Route('/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
-    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
+    #[Security('is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
     public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER): RedirectResponse|Response
     {
         $candidacyTER = new CandidacyTER();
-        $form = $this->createFormBuilder($candidacyTER)
-            ->add('add', SubmitType::class, ['label' => 'Créer une candidature', 'attr' => ['class' => 'btn btn-primary']])
-            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
-            ->getForm();
 
-        $form->handleRequest($request);
-        if ($form->getClickedButton() && 'add' === $form->getClickedButton()->getName()) {
+        if ($request->isMethod('POST') && $request->request->has('candidate-button')) {
             $date = new DateTimeImmutable('now');
             $candidacyTER->setDate($date);
             $candidacyTER->setStudent($this->getUser());
             $candidacyTER->setTER($TER);
+            $candidacyTER->setOrderNumber($candidacyTERRepository->countNumberOfCandidacies($this->getUser()) + 1);
+
             foreach ($candidacyTERRepository->searchCandidacies($this->getUser()) as $candidacy) {
                 if ($candidacy->getTER()->getId() == $candidacyTER->getTER()->getId()) {
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
@@ -177,18 +181,8 @@ class TERController extends AbstractController
             }
             $this->getUser()->addCandidacyTER($candidacyTER);
             $candidacyTERRepository->save($candidacyTER, true);
-
-            return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
         }
-
-        if ($form->getClickedButton() && 'cancel' === $form->getClickedButton()->getName()) {
-            return $this->redirectToRoute('app_ter', ['id' => $TER->getId()]);
-        }
-
-        return $this->renderForm('ter/createCandidacyTER.html.twig', [
-        'form' => $form,
-        'id' => $TER->getId(),
-        ]);
+        return $this->redirectToRoute('app_ter');
     }
 
     /**
