@@ -21,18 +21,18 @@ html, body {
     margin-top: 1em;
 }
 
-.row {
+.index__row {
     gap: 3em;
     justify-content: space-evenly
 }
 
-.card-body {
+.index__card-body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.card-title {
+.index__card-title {
     font-weight: bold;
 }
 
@@ -100,3 +100,42 @@ html, body {
 .show__bottom_informations {
     margin-top: 3em;
 }
+
+.showCandidacy__container {
+    margin: 3em;
+}
+
+.showCandidacy__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.showCandidacy__card-title {
+    width: 100%;
+}
+
+.showCandidacy__lastname {
+    font-weight: bold;
+}
+
+.showCandidacy__download {
+    margin-bottom: 1em;
+    display: flex;
+    gap: 5px;
+}
+
+.showCandidacy__download a {
+    flex: 1;
+}
+
+.showCandidacy__decision {
+    display: flex;
+    gap: 5px;
+}
+
+.showCandidacy__decision a {
+    flex: 1;
+}
+
