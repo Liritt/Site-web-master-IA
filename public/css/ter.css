@@ -19,6 +19,11 @@ main .lst-ter, main .lst-candidacies {
 main .lst-candidacies .drag-target {
   cursor: move;
 }
+main .card-buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
 main .explanations {
   justify-content: center;
   align-items: center;

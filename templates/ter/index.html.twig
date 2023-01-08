@@ -81,7 +81,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ TER.title }}</h5>
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                                    <div style="display: flex; gap: 5px; justify-content: space-between">
+                                    <div class="card-buttons">
                                         <div>
                                             <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
                                         {% if app.user.roles[0] == 'ROLE_ADMIN' %}

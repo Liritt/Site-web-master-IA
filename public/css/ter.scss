@@ -23,6 +23,12 @@ main {
     }
   }
 
+  .card-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+  }
+
   .explanations {
     justify-content: center;
     align-items: center;
@@ -99,4 +105,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+@media screen {
+
 }
