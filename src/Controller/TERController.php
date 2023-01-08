@@ -188,35 +188,6 @@ class TERController extends AbstractController
         return $this->redirectToRoute('app_ter');
     }
 
-    /**
-     * Formulaire de deletion d'une candidature de TER.
-     */
-    #[Route('/ter/{id}/deleteCandidacy', name: 'app_ter_delete_candidacy')]
-    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
-    public function deleteCandidacyTER(Request $request, CandidacyTER $candidacyTER, CandidacyTERRepository $candidacyTERRepository): Response
-    {
-        $form = $this->createForm(CandidacyTERType::class, $candidacyTER, ['disabled' => true]);
-
-        $deleteForm = $this->createFormBuilder($candidacyTER)
-            ->add('delete', SubmitType::class, ['label' => 'Supprimer ma candidature', 'attr' => ['class' => 'btn btn-primary']])
-            ->add('cancel', SubmitType::class, ['label' => 'Annuler', 'attr' => ['class' => 'btn btn-secondary']])
-            ->getForm();
-
-        $deleteForm->handleRequest($request);
-        if ($deleteForm->getClickedButton() && 'delete' === $deleteForm->getClickedButton()->getName()) {
-            $candidacyTER->getStudent()->removeCandidacyTER($candidacyTER);
-            $candidacyTERRepository->remove($candidacyTER, true);
-
-            return $this->redirectToRoute('app_ter');
-        }
-
-        if ($deleteForm->getClickedButton() && 'cancel' === $deleteForm->getClickedButton()->getName()) {
-            return $this->redirectToRoute('app_ter');
-        }
-
-        return $this->renderForm('ter/deleteCandidacyTER.html.twig', ['candidacyTER' => $candidacyTER, 'form' => $form, 'deleteForm' => $deleteForm]);
-    }
-
     #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
     public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry, UserInterface $user): Response
     {
