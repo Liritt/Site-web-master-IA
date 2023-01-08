@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TeacherController extends AbstractController
 {
-    #[Route('/teacher', name: 'app_teacher')]
+    #[Route('{_locale<%app.supported_locales%>}/teacher', name: 'app_teacher')]
     public function index(TeacherRepository $repository, Request $request): Response
     {
         $search = $request->query->get('search', '');
@@ -19,7 +19,7 @@ class TeacherController extends AbstractController
         return $this->render('teacher/index.html.twig', ['teachers' => $teachers, 'search' => $search]);
     }
 
-    #[Route('/teacher/{id}', name: 'app_teacher_profil')]
+    #[Route('{_locale<%app.supported_locales%>}/teacher/{id}', name: 'app_teacher_profil')]
     public function profil(TeacherRepository $repository, int $id): Response
     {
         $teacher = $repository->find($id);

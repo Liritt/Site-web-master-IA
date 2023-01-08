@@ -54,16 +54,95 @@
                             </span>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li>
+                                {% set route = app.request.attributes.get('_route')%}
                                 {% if app.request.locale == 'fr' %}
-                                    <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}" class="dropdown-item">
-                                        <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
-                                        English
-                                    </a>
+                                    {% if (route == 'app_internship_show'
+                                        or route == 'app_internship_delete'
+                                        or route == 'app_internship_tocandidate'
+                                        or route == 'app_internship_candidacies'
+                                        or route == 'app_internship_candidacy_refuse'
+                                        or route == 'app_internship_candidcy_accept'
+                                        or route == 'app_internship_candidacy_download') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: internship.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% elseif (route == 'app_student_profil') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: student.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% elseif (route == 'app_teacher_profil') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: teacher.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% elseif (route == 'app_company_profil') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: company.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% elseif (route == 'app_ter_show'
+                                                or route == 'app_ter_toCandidate') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: TER.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% elseif route == 'app_ter_update' or route == 'app_ter_delete' %}
+                                        <a href="{{ path(route, {_locale: 'en', id: ter.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path(route, {_locale: 'en'}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% endif %}
                                 {% else %}
-                                    <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}" class="dropdown-item">
-                                        <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
-                                        Français
-                                    </a>
+                                    {% if (route == 'app_internship_show'
+                                        or route == 'app_internship_delete'
+                                        or route == 'app_internship_tocandidate'
+                                        or route == 'app_internship_candidacies'
+                                        or route == 'app_internship_candidacy_refuse'
+                                        or route == 'app_internship_candidcy_accept'
+                                        or route == 'app_internship_candidacy_download') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: internship.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif (route == 'app_student_profil') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: student.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif (route == 'app_teacher_profil') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: teacher.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif (route == 'app_company_profil') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: company.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif (route == 'app_ter_show'
+                                        or route == 'app_ter_toCandidate') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: TER.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif route == 'app_ter_update' or route == 'app_ter_delete' %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: ter.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path(route, {_locale: 'fr'}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             </li>
                         </ul>

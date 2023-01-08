@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CompanyController extends AbstractController
 {
-    #[Route('/company', name: 'app_company')]
+    #[Route('{_locale<%app.supported_locales%>}/company', name: 'app_company')]
     public function index(CompanyRepository $repository, Request $request): Response
     {
         $search = $request->query->get('search', '');
@@ -19,7 +19,7 @@ class CompanyController extends AbstractController
         return $this->render('company/index.html.twig', ['companys' => $companys, 'search' => $search]);
     }
 
-    #[Route('/company/{id}', name: 'app_company_profil')]
+    #[Route('{_locale<%app.supported_locales%>}/company/{id}', name: 'app_company_profil')]
     public function show(CompanyRepository $repository, int $id): Response
     {
         $company = $repository->find($id);

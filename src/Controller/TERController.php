@@ -27,7 +27,7 @@ class TERController extends AbstractController
     /**
      * Affiche la liste des TER.
      */
-    #[Route('/ter', name: 'app_ter')]
+    #[Route('{_locale<%app.supported_locales%>}/ter', name: 'app_ter')]
     #[Entity('Student', expr: 'repository.findWithAssignedTER(id)')]
     public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository): Response
     {
@@ -56,7 +56,7 @@ class TERController extends AbstractController
     /**
      * Affiche les informations d'un TER.
      */
-    #[Route('/ter/{id}', name: 'app_ter_show', requirements: ['id' => '\d+'])]
+    #[Route('{_locale<%app.supported_locales%>}/ter/{id}', name: 'app_ter_show', requirements: ['id' => '\d+'])]
     #[Entity('TER', expr: 'repository.findWithTeacher(id)')]
     public function show(TER $TER): Response
     {
@@ -68,7 +68,7 @@ class TERController extends AbstractController
     /**
      * Affiche les informations d'un TER.
      */
-    #[Route('/ter/gallery', name: 'app_ter_gallery')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/gallery', name: 'app_ter_gallery')]
     #[Security('is_granted("ROLE_TEACHER")', message: 'Seul un professeur possède des TER.')]
     public function showTERTeacher(TERRepository $TERRepository): Response
     {
@@ -83,7 +83,7 @@ class TERController extends AbstractController
     /**
      * Formulaire de création d'un nouveau TER.
      */
-    #[Route('/ter/create', name: 'app_ter_create')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/create', name: 'app_ter_create')]
     #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_TEACHER")', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function createTER(TERRepository $TERRepository, Request $request): RedirectResponse|Response
     {
@@ -108,7 +108,7 @@ class TERController extends AbstractController
     /**
      * Formulaire de modification d'un TER existant.
      */
-    #[Route('/ter/{id}/update', name: 'app_ter_update')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/{id}/update', name: 'app_ter_update')]
     #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_TEACHER")', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function updateTER(ManagerRegistry $doctrine, Request $request, TER $TER, int $id): RedirectResponse|Response
     {
@@ -134,7 +134,7 @@ class TERController extends AbstractController
     /**
      * Formulaire de deletion d'un TER.
      */
-    #[Route('/ter/{id}/delete', name: 'app_ter_delete')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/{id}/delete', name: 'app_ter_delete')]
     #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_TEACHER")', message: 'Vous devez être connecté en tant que professeur pour accéder à cette page.')]
     public function deleteTER(Request $request, TER $TER, TERRepository $service): Response
     {
@@ -162,7 +162,7 @@ class TERController extends AbstractController
     /** Créé une candidature pour un TER.
      * @throws CandidacyException
      */
-    #[Route('/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
     #[Security('is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
     public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER): RedirectResponse|Response
     {
@@ -187,7 +187,7 @@ class TERController extends AbstractController
         return $this->redirectToRoute('app_ter');
     }
 
-    #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/update-order-number', name: 'app_ter_update_order_number')]
     public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry): Response
     {
         if ($request->isMethod('GET')) {
@@ -217,7 +217,7 @@ class TERController extends AbstractController
     /**
      * @throws CandidaciesNullException
      */
-    #[Route('/ter/algo', name: 'app_ter_algo')]
+    #[Route('{_locale<%app.supported_locales%>}/ter/algo', name: 'app_ter_algo')]
     public function assignTER(CandidacyTERRepository $candidacyTERRepository, TERRepository $TERRepository, StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
     {
         $lstOfLstCandidacy = $this->getCandidaciesOrderedByNumber($studentRepository);

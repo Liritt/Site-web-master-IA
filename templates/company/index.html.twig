@@ -36,7 +36,7 @@
         <div class="row">
             {% for company in companys %}
                 <div class="col-3 my-2">
-                    <a class="a-own" href="{{ path('app_company_profil', {id: company.id}) }}">
+                    <a class="a-own" href="{{ path('app_company_profil', {id: company.id, _locale: app.request.locale}) }}">
                         <div class="card text-center">
                             <div class="card-body">
                                 <h2 class="company_name">{{ company.companyName }}</h2>

@@ -13,7 +13,7 @@
         <div class="row">
             {% for student in students %}
                 <div class="col-3 ">
-                    <a class="a-own" href="{{ path('app_student_profil', {id: student.id}) }}">
+                    <a class="a-own" href="{{ path('app_student_profil', {_locale: app.request.locale, id: student.id}) }}">
                         <div class="card my-2 text-center">
                             <div class="card-body">
                                 <img class="img-own img-fluid" src="{{ asset('img/default_profile_picture.png') }}">

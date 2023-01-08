@@ -16,15 +16,15 @@
                             Choix de l'année des étudiants
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ path('app_student') }}">Tous</a></li>
-                            <li><a class="dropdown-item" href="{{ path('app_student_degree',{degree: 1}) }}">1 er année</a></li>
-                            <li><a class="dropdown-item" href="{{ path('app_student_degree',{degree: 2}) }}">2 ème année</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_student', {_locale: app.request.locale}) }}">Tous</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_student_degree',{_locale: app.request.locale, degree: 1}) }}">1 er année</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_student_degree',{_locale: app.request.locale, degree: 2}) }}">2 ème année</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_teacher') }}">Professeurs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_company') }}">Entreprises</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_teacher', {_locale: app.request.locale}) }}">Professeurs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_company', {_locale: app.request.locale}) }}">Entreprises</a></li>
                 </ul>
-                <form class="d-flex" role="search" action="{{ path('app_teacher') }}">
+                <form class="d-flex" role="search" action="{{ path('app_teacher' , {_locale: app.request.locale}) }}">
                     <input name="search" class="form-control me-2" type="search" placeholder="{{ search|default('') }}" aria-label="rechercher">
                     <button class="btn btn-outline-success" type="submit">Rechercher</button>
                 </form>
@@ -36,7 +36,7 @@
         <div class="row">
             {% for teacher in teachers %}
                 <div class="col-3 my-2">
-                    <a class="a-own" href="{{ path('app_teacher_profil', {id: teacher.id}) }}">
+                    <a class="a-own" href="{{ path('app_teacher_profil', {_locale: app.request.locale, id: teacher.id}) }}">
                         <div class="card text-center">
                             <div class="card-body">
                                 <img class="img-fluid img-own" src="{{ asset('img/default_profile_picture.png') }}">
