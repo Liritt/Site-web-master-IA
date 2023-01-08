@@ -224,18 +224,12 @@ class TERController extends AbstractController
         do {
             $lstFirstCandidacy = $this->getLstFirstCandidacy($lstOfLstCandidacy);
             // Pour éviter qu'une candidature se compare elle-même
-            if (1 != count($lstFirstCandidacy)) {
+            if (1 != count($lstOfLstCandidacy)) {
                 // Pour chaque candidature
                 foreach ($lstFirstCandidacy as $candidacy) {
                     $ter1 = $candidacy->getTER()->getId();
                     $date1 = $candidacy->getDate();
-
-                    // On compare avec les autres candidatures de la liste "lstFirstCandidacy"
-                    foreach ($lstFirstCandidacy as $otherCandidacy) {
-                        $ter2 = $otherCandidacy->getTER()->getId();
-                        $date2 = $otherCandidacy->getDate();
-
-
+                    
         } while (0 != count($lstOfLstCandidacy) && $this->checkIfStudentsHaveAssignedTER($studentRepository));
     }
 
@@ -283,7 +277,6 @@ class TERController extends AbstractController
     {
         $lstFirstCandidacy = [];
         foreach ($lstOfLstCandidacy as $lstCandidacy) {
-            dump($lstCandidacy);
             $lstFirstCandidacy[] = $lstCandidacy[0];
         }
 
@@ -298,11 +291,11 @@ class TERController extends AbstractController
         $lstStudent = $studentRepository->findAll();
         foreach ($lstStudent as $student) {
             if (empty($student->getAssignedTER())) {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -315,8 +308,17 @@ class TERController extends AbstractController
                 unset($lstOfLstCandidacy[array_search($lstCandidacy, $lstOfLstCandidacy)]);
                 $lstOfLstCandidacy = array_values($lstOfLstCandidacy);
             } else {
-                unset($lstOfLstCandidacy[array_search($lstCandidacy, $lstOfLstCandidacy)][0]);
-                $lstOfLstCandidacy[array_search($lstCandidacy, $lstOfLstCandidacy)] = array_values($lstOfLstCandidacy[array_search($lstCandidacy, $lstOfLstCandidacy)]);
+                $lstCandidacyIndex = array_search($lstCandidacy, $lstOfLstCandidacy);
+                foreach ($lstCandidacy as $candidacy) {
+                    if (!empty($candidacy->getTER()->getSelectedStudent())) {
+                        $candidacyIndex = array_search($candidacy, $lstCandidacy);
+                        // array_search renvoie false si l'élément n'est pas trouvé
+                        if (false !== $lstCandidacyIndex && false !== $candidacyIndex) {
+                            unset($lstOfLstCandidacy[$lstCandidacyIndex][$candidacyIndex]);
+                        }
+                    }
+                }
+                $lstOfLstCandidacy[$lstCandidacyIndex] = array_values($lstOfLstCandidacy[$lstCandidacyIndex]);
             }
         }
 
