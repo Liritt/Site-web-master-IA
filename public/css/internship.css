@@ -169,5 +169,31 @@ html, body {
 
 input[type="file"].tocandidate__btn::file-selector-button:hover {
     background-color: #378E64;
-    color: #EEEEEE
+    color: #EEEEEE;
+}
+
+.tocandidate__container {
+    display: flex;
+    justify-content: center;
+}
+
+.tocandidate__uploadbtn {
+    display: flex;
+    flex-direction: row;
+}
+
+.tocandidate__decisionbtn {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    gap: 1em;
+}
+
+.tocandidate__decisionbtn button[type="submit"] {
+    flex: 1;
+    width: 100%;
+}
+
+.tocandidate__uploadbtn_title {
+    font-weight: bold;
 }
