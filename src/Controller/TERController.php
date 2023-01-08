@@ -192,26 +192,41 @@ class TERController extends AbstractController
     {
         if ($request->isMethod('GET')) {
             throw new AccessDeniedException('Vous ne pouvez pas accéder à cette page');
+        } elseif ($request->isMethod('POST') && $request->request->has('order-value')) {
+            if (!empty($_POST['change-order-button']) && !empty($_POST['order-value'])) {
+                if ($_POST['order-value'] <= $candidacyTERRepository->countNumberOfCandidacies($this->getUser()) && $_POST['order-value'] > 1) {
+                    $candidacyId = $candidacyTERRepository->searchCandidaciesWOrderNumber($this->getUser(), $_POST['change-order-button'])[0]->getId();
+                    $targetId = $candidacyTERRepository->searchCandidaciesWOrderNumber($this->getUser(), $_POST['order-value'])[0]->getId();
+                } else {
+                    $candidacyId = null;
+                    $targetId = null;
+                }
+            } else {
+                $candidacyId = null;
+                $targetId = null;
+            }
+        } else {
+            $candidacyId = $request->request->get('candidacyId');
+            $targetId = $request->request->get('targetId');
         }
-        $candidacyId = $request->request->get('candidacyId');
-        $targetId = $request->request->get('targetId');
+        if (null != $candidacyId) {
+            // Récupérez les candidatures correspondant aux IDs spécifiés
+            $candidacy = $candidacyTERRepository->find($candidacyId);
+            $target = $candidacyTERRepository->find($targetId);
 
-        // Récupérez les candidatures correspondant aux IDs spécifiés
-        $candidacy = $candidacyTERRepository->find($candidacyId);
-        $target = $candidacyTERRepository->find($targetId);
+            // Échangez les valeurs des champs orderNumber des candidatures
+            $temp = $candidacy->getOrderNumber();
+            $candidacy->setOrderNumber($target->getOrderNumber());
+            $target->setOrderNumber($temp);
 
-        // Échangez les valeurs des champs orderNumber des candidatures
-        $temp = $candidacy->getOrderNumber();
-        $candidacy->setOrderNumber($target->getOrderNumber());
-        $target->setOrderNumber($temp);
+            // Enregistrez les modifications dans la base de données
+            $entityManager = $managerRegistry->getManager();
+            $entityManager->persist($candidacy);
+            $entityManager->persist($target);
+            $entityManager->flush();
+        }
 
-        // Enregistrez les modifications dans la base de données
-        $entityManager = $managerRegistry->getManager();
-        $entityManager->persist($candidacy);
-        $entityManager->persist($target);
-        $entityManager->flush();
-
-        return new Response();
+        return $this->redirectToRoute('app_ter');
     }
 
     /**
