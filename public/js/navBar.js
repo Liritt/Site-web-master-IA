@@ -1,11 +1,9 @@
-const container = document.querySelector(".connected-nav-bar");
+const currentUrl = window.location.href;
 
-const onglets = container.getElementsByClassName("accueil-link");
+const hrefUrl = document.querySelectorAll("a.accueil-link")
 
-for (let i = 0; i < onglets.length; i++) {
-    onglets[i].addEventListener("click", function() {
-        const current = document.getElementsByClassName("test");
-        current[0].className = current[0].className.replace(" test", "");
-        this.className += " test";
-    });
-}
+hrefUrl.forEach((url) => {
+    if (url.href === currentUrl) {
+        url.style.backgroundColor = "#378E64";
+    }
+})
