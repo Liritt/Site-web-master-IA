@@ -15,11 +15,11 @@
         {{ form_start(form) }}
         <div class="tocandidate__uploadbtn">
             <div class="tocandidate__uploadbtn_cv">
-                <label for="file">Télécharger votre CV</label>
+                <label class="tocandidate__uploadbtn_title" for="file">CV</label>
                 {{ form_row(form.cv, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'}}) }}
             </div>
             <div class="tocandidate__uploadbtn_coverletter">
-                <label for="file">Télécharger votre lettre de motivation</label>
+                <label class="tocandidate__uploadbtn_title" for="file">Lettre de motivation</label>
                 {{ form_row(form.coverLetter, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'} } ) }}
             </div>
         </div>
