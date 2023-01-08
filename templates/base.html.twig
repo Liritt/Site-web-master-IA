@@ -72,6 +72,16 @@
                                             <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                             English
                                         </a>
+                                    {% elseif (route == 'app_teacher_profil') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: teacher.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
+                                    {% elseif (route == 'app_company_profil') %}
+                                        <a href="{{ path(route, {_locale: 'en', id: company.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
                                     {% else %}
                                         <a href="{{ path(route, {_locale: 'en'}) }}" class="dropdown-item">
                                             <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
@@ -91,7 +101,17 @@
                                             Français
                                         </a>
                                     {% elseif (route == 'app_student_profil') %}
-                                        <a href="{{ path(route, {_locale: 'fr', id: students.id}) }}" class="dropdown-item">
+                                        <a href="{{ path(route, {_locale: 'fr', id: student.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif (route == 'app_teacher_profil') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: teacher.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif (route == 'app_company_profil') %}
+                                        <a href="{{ path(route, {_locale: 'fr', id: company.id}) }}" class="dropdown-item">
                                             <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                             Français
                                         </a>
