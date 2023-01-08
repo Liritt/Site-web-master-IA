@@ -189,7 +189,7 @@ class TERController extends AbstractController
     }
 
     #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
-    public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry, UserInterface $user): Response
+    public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry): Response
     {
         if ($request->isMethod('GET')) {
             throw new AccessDeniedException('Vous ne pouvez pas accéder à cette page');
