@@ -12,8 +12,8 @@
         <h1>Candidature</h1>
     </div>
     {{ form_start(form) }}
-    {{ form_row(form.cv, {'label': 'File'}) }}
-    {{ form_row(form.coverLetter, {'label': 'myLetter'}) }}
+    {{ form_row(form.cv, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'}}) }}
+    {{ form_row(form.coverLetter, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'} } ) }}
     {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
     <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
     {{ form_end(form) }}
