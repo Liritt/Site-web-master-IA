@@ -187,7 +187,7 @@ class TERController extends AbstractController
         return $this->redirectToRoute('app_ter');
     }
 
-    #[Route('{_locale<%app.supported_locales%>}/ter/update-order-number', name: 'app_ter_update_order_number')]
+    #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
     public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry): Response
     {
         if ($request->isMethod('GET')) {
