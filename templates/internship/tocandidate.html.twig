@@ -25,7 +25,7 @@
         </div>
         <div class="tocandidate__decisionbtn">
             {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
-            <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
+            <a href="{{ path('app_internship_show', {id: internship.id, _locale: app.request.locale}) }}" class="btn btn-secondary">Annuler</a>
         </div>
         {{ form_end(form) }}
     </div>
