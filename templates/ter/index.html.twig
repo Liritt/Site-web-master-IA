@@ -117,6 +117,10 @@
                                                 <h5 class="card-title">{{ candidacy.TER.title }}</h5>
                                                 <p class="card-text">Professeur en charge du projet : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
                                                 <a href="{{ path('app_ter_show', {id: candidacy.TER.id, _locale: app.request.locale}) }}" class="btn btn-primary">Plus de détails</a>
+                                                <form method="post" action="{{ path('app_ter_update_order_number') }}" style="text-align: left">
+                                                    <button type="submit" name="change-order-button" value="{{ candidacy.orderNumber }}" class="btn btn-secondary">Changer la place du TER :</button>
+                                                    <input type="number" name="order-value" placeholder="Entrez le numéro ici">
+                                                </form>
                                             </div>
                                         </div>
                                     </li>
