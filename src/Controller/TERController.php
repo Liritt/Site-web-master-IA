@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class TERController extends AbstractController
 {
@@ -221,52 +220,9 @@ class TERController extends AbstractController
     #[Route('/ter/algo', name: 'app_ter_algo')]
     public function assignTER(CandidacyTERRepository $candidacyTERRepository, TERRepository $TERRepository, StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
     {
-        /*
-        $test = [['yes', 'no'], ['yes', 'no'], ['yes', 'no']];
-        foreach ($test as $testing) {
-            dump($test[array_search($testing, $test)]);
-            unset($test[array_search($testing, $test)][0]);
-        }
-        dd($test);*/
-        $lstStudentCandidacies = $this->getCandidaciesOrderedByDate($studentRepository);
-
-        dump($lstStudentCandidacies);
-        do {
-            if (is_array($lstStudentCandidacies[0])) {
-                foreach ($lstStudentCandidacies as $lstCandidacy) {
-                    $lstFirstCandid[] = $lstCandidacy[0];
-                }
-            } else {
-                $manager = $managerRegistry->getManager();
-                $lstStudentCandidacies[0]->getStudent()->setAssignedTER($lstStudentCandidacies[0]->getTER());
-                $manager->flush();
-                unset($lstStudentCandidacies);
-                break;
-            }
-
-            while (0 != count($lstFirstCandid)) {
-                $candidCompared = reset($lstFirstCandid);
-                for ($j = 1; $j < count($lstFirstCandid) - 1; ++$j) {
-                    if ($lstFirstCandid[$j]->getTER()->getId() == $candidCompared->getTER()->getId()) {
-                        if ($lstFirstCandid[$j]->getDate() < $candidCompared->getDate()) {
-                            unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
-                            $candidCompared = $lstFirstCandid[$j];
-                        } else {
-                            unset($lstFirstCandid[array_search($lstFirstCandid[$j], $lstFirstCandid)]);
-                        }
-                        $lstFirstCandid = array_values($lstFirstCandid);
-                    }
-                }
-                $lstStudentCandidacies = $this->deleteCandidaciesAndStudents($lstStudentCandidacies, $lstFirstCandid);
-                if (empty($candidCompared->getStudent()->getAssignedTER())) {
-                    $manager = $managerRegistry->getManager();
-                    $candidCompared->getStudent()->setAssignedTER($candidCompared->getTER());
-                    $manager->flush();
-                }
-                unset($lstFirstCandid[array_search($candidCompared, $lstFirstCandid)]);
-                $lstFirstCandid = array_values($lstFirstCandid);
-            }
-        } while (0 != count($lstStudentCandidacies) && !$this->checkIfStudentsHaveAssignedTER($studentRepository));
+        $lstOfLstCandidacy = $this->getCandidaciesOrderedByNumber($studentRepository);
+        $lstFirstCandidacy = $this->getLstFirstCandidacy($lstOfLstCandidacy);
+        dd($lstFirstCandidacy);
     }
 
     /**
@@ -307,6 +263,15 @@ class TERController extends AbstractController
         }
 
         return $newLst;
+    }
+
+    public function getLstFirstCandidacy(array $lstOfLstCandidacy): array
+    {
+        $lstFirstCandidacy = [];
+        foreach ($lstOfLstCandidacy as $lstCandidacy) {
+            $lstFirstCandidacy[] = $lstCandidacy[0];
+        }
+        return $lstFirstCandidacy;
     }
 
     /**
