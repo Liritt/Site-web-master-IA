@@ -8,7 +8,9 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Candidature</h1>
+    <div class="top__informations">
+        <h1>Candidature</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.cv, {'label': 'File'}) }}
     {{ form_row(form.coverLetter, {'label': 'myLetter'}) }}
