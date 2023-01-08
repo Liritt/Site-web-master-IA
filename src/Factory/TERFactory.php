@@ -48,7 +48,7 @@ final class TERFactory extends ModelFactory
     {
         return [
             'degree' => self::faker()->numberBetween(1, 2),
-            'description' => self::faker()->text(),
+            'description' => self::faker()->text(2500),
             'title' => self::faker()->text(100),
             'date' => self::faker()->dateTime(),
         ];
