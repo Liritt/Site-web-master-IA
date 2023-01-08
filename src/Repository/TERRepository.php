@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Student;
 use App\Entity\Teacher;
 use App\Entity\TER;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -43,8 +44,8 @@ class TERRepository extends ServiceEntityRepository
     public function search(string $researchText = '')
     {
         return $this->createQueryBuilder('t')
-            ->where('t.title LIKE :searchText')
-            ->orderBy('t.date')
+            ->where('t.title != :searchText')
+            ->orderBy('t.date', 'DESC')
             ->setParameter('searchText', '%'.$researchText.'%')
             ->getQuery()
             ->execute();
@@ -73,6 +74,43 @@ class TERRepository extends ServiceEntityRepository
             ->setParameter(':id', $id)
             ->getQuery()
             ->getResult()[0];
+    }
+
+    public function findAllNotInCandidatures(Student $student, CandidacyTERRepository $candidacyTERRepository): array
+    {
+        $allTER = $this->search();
+        $candidatures = $candidacyTERRepository->searchCandidacies($student);
+        $notInCandidatures = [];
+
+        // Pour chaque TER de la base de données
+        foreach ($allTER as $ter) {
+            $inCandidature = false;
+
+            // Pour chaque candidature de l'étudiant
+            foreach ($candidatures as $candidature) {
+                // Si le TER est présent dans la candidature
+                if ($candidature->getTER() === $ter) {
+                    $inCandidature = true;
+                    break;
+                }
+            }
+
+            // Si le TER n'est pas présent dans aucune candidature de l'étudiant
+            if (!$inCandidature) {
+                // Ajout du TER à la liste des TER qui ne sont pas dans une candidature
+                $notInCandidatures[] = $ter;
+            }
+        }
+
+        return $notInCandidatures;
+    }
+
+    public function countNumberOfTER()
+    {
+        return $this->createQueryBuilder('ct')
+            ->select('COUNT(ct.id)')
+            ->getQuery()
+            ->getResult()[0][1];
     }
 
 //    /**

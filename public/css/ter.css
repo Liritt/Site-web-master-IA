@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   overflow-y: hidden;
 }
@@ -15,6 +16,9 @@ main .lst-ter, main .lst-candidacies {
   overflow-y: scroll;
   max-height: 80vh;
 }
+main .lst-ter .drag-target {
+  cursor: move;
+}
 main .explanations {
   justify-content: center;
   align-items: center;
@@ -24,6 +28,55 @@ main .explanations {
   font-weight: bold;
   flex: 1;
   margin: 2rem;
+}
+main form {
+  text-align: right;
+}
+main .ribbon {
+  position: relative; /* pour servir de référent */
+  margin: 1em -10px; /* pour décaler les bords */
+  background: green; /* pour visualiser */
+}
+main .ribbon::before,
+main .ribbon::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+main .ribbon-2 {
+  position: relative; /* pour servir de référent */
+  margin: 1em -26px; /* pour décaler les bords */
+  background: green; /* pour visualiser */
+}
+main .ribbon-2::before,
+main .ribbon-2::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+main .left-top::before {
+  left: 0;
+  bottom: 100%;
+  border-color: transparent lightgreen;
+  border-width: 10px 10px 0 0;
+}
+main .left-bottom::before {
+  left: 0;
+  top: 100%;
+  border-color: transparent lightgreen;
+  border-width: 0 10px 10px 0;
+}
+main .right-top::after {
+  right: 0;
+  bottom: 100%;
+  border-color: lightgreen transparent;
+  border-width: 0 10px 10px 0;
+}
+main .right-bottom::after {
+  right: 0;
+  top: 100%;
+  border-color: lightgreen transparent;
+  border-width: 10px 10px 0 0;
 }
 
 .ter-component {

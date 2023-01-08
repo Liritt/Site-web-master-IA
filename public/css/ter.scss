@@ -17,6 +17,12 @@ main {
     max-height: 80vh;
   }
 
+  .lst-ter {
+    .drag-target {
+      cursor: move;
+    }
+  }
+
   .explanations {
     justify-content: center;
     align-items: center;
@@ -26,6 +32,59 @@ main {
     font-weight: bold;
     flex: 1;
     margin: 2rem;
+  }
+
+  form {
+    text-align: right;
+  }
+
+  .ribbon {
+    position: relative;   /* pour servir de référent */
+    margin: 1em -10px;    /* pour décaler les bords */
+    background: green;  /* pour visualiser */
+  }
+  .ribbon::before,
+  .ribbon::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+  }
+
+  .ribbon-2 {
+    position: relative;   /* pour servir de référent */
+    margin: 1em -26px;    /* pour décaler les bords */
+    background: green;  /* pour visualiser */
+  }
+  .ribbon-2::before,
+  .ribbon-2::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+  }
+
+  .left-top::before {
+    left: 0;
+    bottom: 100%;
+    border-color: transparent lightgreen;
+    border-width: 10px 10px 0 0;
+  }
+  .left-bottom::before {
+    left: 0;
+    top: 100%;
+    border-color: transparent lightgreen;
+    border-width: 0 10px 10px 0;
+  }
+  .right-top::after {
+    right: 0;
+    bottom: 100%;
+    border-color: lightgreen transparent;
+    border-width: 0 10px 10px 0;
+  }
+  .right-bottom::after {
+    right: 0;
+    top: 100%;
+    border-color: lightgreen transparent;
+    border-width: 10px 10px 0 0;
   }
 }
 .ter-component {

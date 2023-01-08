@@ -46,7 +46,7 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->join('ct.student', 'student')
             ->addSelect('student')
             ->where('ct.student = :student')
-            ->orderBy('student.lastname')
+            ->orderBy('ct.orderNumber')
             ->addOrderBy('student.firstname')
             ->addOrderBy('ct.date')
             ->setParameter('student', $student)
@@ -64,6 +64,34 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->addOrderBy('ct.date')
             ->getQuery()
             ->execute();
+    }
+
+    public function countNumberOfCandidacies(Student $student = null)
+    {
+        return $this->createQueryBuilder('ct')
+            ->select('COUNT(ct.id)')
+            ->where('ct.student = :student')
+            ->setParameter('student', $student)
+            ->getQuery()
+            ->getResult()[0][1];
+    }
+
+    /**
+     * Récupère les étudiants qui n'ont pas candidaté à tout les TER.
+     *
+     * @return array
+     */
+    public function studentCandidaciesNotEqualToNumberCandidacies(StudentRepository $studentRepository, TERRepository $TERRepository): array
+    {
+        $lstStudent = $studentRepository->findAll();
+        $lstFinishedCandidaciesStudents = [];
+        foreach ($lstStudent as $student) {
+            if ($this->countNumberOfCandidacies($student) < $TERRepository->countNumberOfTER()) {
+                $lstFinishedCandidaciesStudents[] = $student;
+            }
+        }
+
+        return $lstFinishedCandidaciesStudents;
     }
 
 //    /**

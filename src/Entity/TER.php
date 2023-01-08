@@ -145,12 +145,12 @@ class TER
     public function setSelectedStudent(?Student $selectedStudent): self
     {
         // unset the owning side of the relation if necessary
-        if ($selectedStudent === null && $this->selectedStudent !== null) {
+        if (null === $selectedStudent && null !== $this->selectedStudent) {
             $this->selectedStudent->setAssignedTER(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($selectedStudent !== null && $selectedStudent->getAssignedTER() !== $this) {
+        if (null !== $selectedStudent && $selectedStudent->getAssignedTER() !== $this) {
             $selectedStudent->setAssignedTER($this);
         }
 
