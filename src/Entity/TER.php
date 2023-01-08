@@ -28,7 +28,7 @@ class TER
     #[ORM\ManyToOne(inversedBy: 'TERs')]
     private ?Teacher $teacher = null;
 
-    #[ORM\OneToMany(mappedBy: 'TER', targetEntity: CandidacyTER::class)]
+    #[ORM\OneToMany(mappedBy: 'TER', targetEntity: CandidacyTER::class, cascade: ['remove'])]
     private Collection $candidacyTERs;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

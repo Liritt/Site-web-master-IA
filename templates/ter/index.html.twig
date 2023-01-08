@@ -62,8 +62,10 @@
                                                 <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
                                                 <button type="submit" class="btn btn-secondary" name="candidate-button">Candidater</button>
                                             </div>
-                                            <small style="color: grey"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
                                         </form>
+                                        <div class="card-footer text-muted text-center">
+                                            créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}
+                                        </div>
                                     </div>
                                     {% if days < 7 %}
                                     <p class="ribbon left-bottom right-top text-center" style="color: white">Nouveau TER</p>
@@ -81,7 +83,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ TER.title }}</h5>
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                                    <div style="display: flex; gap: 5px; justify-content: space-between">
+                                    <div class="card-buttons">
                                         <div>
                                             <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
                                         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
@@ -89,8 +91,9 @@
                                             <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
                                         {% endif %}
                                         </div>
-                                        <small style="color: grey;"><em>créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}</em></small>
-                                    </div>
+                                        <div class="card-footer text-muted text-center">
+                                            créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}
+                                        </div>                                    </div>
                                     {% if days < 7 %}
                                         <p class="ribbon-2 left-bottom right-top text-center" style="color: white">Nouveau TER</p>
                                     {% endif %}
@@ -113,7 +116,6 @@
                                                 <h5 class="card-title">{{ candidacy.TER.title }}</h5>
                                                 <p class="card-text">Professeur en charge du projet : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
                                                 <a href="{{ path('app_ter_show', {id: candidacy.TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                                                <a href="{{ path('app_ter_delete_candidacy', {id: candidacy.id}) }}" class="btn btn-secondary">Supprimer ma candidature</a>
                                             </div>
                                         </div>
                                     </li>

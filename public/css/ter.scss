@@ -17,10 +17,16 @@ main {
     max-height: 80vh;
   }
 
-  .lst-ter {
+  .lst-candidacies {
     .drag-target {
       cursor: move;
     }
+  }
+
+  .card-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
   }
 
   .explanations {

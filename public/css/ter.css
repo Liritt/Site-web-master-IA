@@ -16,8 +16,13 @@ main .lst-ter, main .lst-candidacies {
   overflow-y: scroll;
   max-height: 80vh;
 }
-main .lst-ter .drag-target {
+main .lst-candidacies .drag-target {
   cursor: move;
+}
+main .card-buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
 }
 main .explanations {
   justify-content: center;

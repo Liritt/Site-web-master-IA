@@ -26,10 +26,10 @@ class Student extends User
     #[ORM\ManyToOne(inversedBy: 'students')]
     private ?Internship $internship = null;
 
-    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Candidacy::class)]
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Candidacy::class, cascade: ['remove'])]
     private Collection $candidacies;
 
-    #[ORM\OneToMany(mappedBy: 'student', targetEntity: CandidacyTER::class)]
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: CandidacyTER::class, cascade: ['remove'])]
     private Collection $candidacyTERs;
 
     #[ORM\OneToOne(inversedBy: 'selectedStudent', cascade: ['persist', 'remove'])]
