@@ -272,11 +272,11 @@ class TERController extends AbstractController
     /**
      * Permet de trier les candidatures de chaque élève par date avec un tri à bulle.
      */
-    public function orderCandidaciesByDate(array $candidacies): array
+    public function orderCandidaciesByNumber(array $candidacies): array
     {
         for ($I = count($candidacies) - 2; $I >= 0; --$I) {
             for ($J = 0; $J <= $I; ++$J) {
-                if ($candidacies[$J + 1]->getDate() < $candidacies[$J]->getDate()) {
+                if ($candidacies[$J + 1]->getOrderNumber() < $candidacies[$J]->getOrderNumber()) {
                     $t = $candidacies[$J + 1];
                     $candidacies[$J + 1] = $candidacies[$J];
                     $candidacies[$J] = $t;
@@ -292,7 +292,7 @@ class TERController extends AbstractController
      *
      * @throws CandidaciesNullException
      */
-    public function getCandidaciesOrderedByDate(StudentRepository $studentRepository): array
+    public function getCandidaciesOrderedByNumber(StudentRepository $studentRepository): array
     {
         $lstStudent = $studentRepository->findAll();
         $candid = [];
@@ -303,7 +303,7 @@ class TERController extends AbstractController
             throw new CandidaciesNullException("Impossible de lancer l'algorithme, aucune candidature n'a été soumise pour le moment.");
         }
         foreach ($candid as $lstCandidacies) {
-            $newLst[] = $this->orderCandidaciesByDate($lstCandidacies);
+            $newLst[] = $this->orderCandidaciesByNumber($lstCandidacies);
         }
 
         return $newLst;
