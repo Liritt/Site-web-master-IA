@@ -7,7 +7,7 @@
         {% if is_granted('ROLE_STUDENT') == true or is_granted('ROLE_ADMIN') == true or is_granted('ROLE_TEACHER') == true %}
         <a class="accueil-link" href="#">Agenda</a>
         {% endif %}
-        <a class="accueil-link" href="{{ path('app_internship') }}">Stage</a>
+        <a class="accueil-link" href="{{ path('app_internship', {_locale: app.request.locale}) }}">Stage</a>
         {% if is_granted('ROLE_STUDENT') == true or is_granted('ROLE_ADMIN') == true or is_granted('ROLE_TEACHER') == true %}
         <a class="accueil-link" href="{{ path('app_ter') }}">TER</a>
         {% endif %}
