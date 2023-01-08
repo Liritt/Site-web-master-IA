@@ -167,7 +167,7 @@ html, body {
     border-radius: var(--bs-btn-border-radius);
 }
 
-.tocandidate__btn::file-selector-button:hover {
+input[type="file"].tocandidate__btn::file-selector-button:hover {
     background-color: #378E64;
     color: #EEEEEE
 }
