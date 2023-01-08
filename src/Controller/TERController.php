@@ -6,7 +6,6 @@ use App\Entity\CandidacyTER;
 use App\Entity\TER;
 use App\Exception\CandidaciesNullException;
 use App\Exception\CandidacyException;
-use App\Form\CandidacyTERType;
 use App\Form\TERType;
 use App\Repository\CandidacyTERRepository;
 use App\Repository\StudentRepository;
@@ -16,6 +15,7 @@ use Monolog\DateTimeImmutable;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -191,6 +191,9 @@ class TERController extends AbstractController
     #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
     public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry, UserInterface $user): Response
     {
+        if ($request->isMethod('GET')) {
+            throw new AccessDeniedException('Vous ne pouvez pas accéder à cette page');
+        }
         $candidacyId = $request->request->get('candidacyId');
         $targetId = $request->request->get('targetId');
 
