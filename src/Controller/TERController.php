@@ -229,7 +229,32 @@ class TERController extends AbstractController
                 foreach ($lstFirstCandidacy as $candidacy) {
                     $ter1 = $candidacy->getTER()->getId();
                     $date1 = $candidacy->getDate();
-                    
+
+                    // On compare avec les autres candidatures de la liste "lstFirstCandidacy"
+                    foreach ($lstFirstCandidacy as $otherCandidacy) {
+                        $ter2 = $otherCandidacy->getTER()->getId();
+                        $date2 = $otherCandidacy->getDate();
+
+                        if ($ter1 == $ter2) {
+                            if ($date1 > $date2) {
+                                $candidacy = $otherCandidacy;
+                                $ter1 = $otherCandidacy->getTER()->getId();
+                                $date1 = $otherCandidacy->getDate();
+                            }
+                        }
+                    }
+
+                    $em = $managerRegistry->getManager();
+                    $candidacy->getStudent()->setAssignedTER($candidacy->getTER());
+                    $em->flush();
+                }
+            // Si lstFirstCandidacy n'a qu'un élément, on saute les étapes d'avant et on assigne directement le TER
+            } else {
+                $em = $managerRegistry->getManager();
+                $lstFirstCandidacy[0]->getStudent()->setAssignedTER($lstFirstCandidacy[0]->getTER());
+                $em->flush();
+            }
+            $lstOfLstCandidacy = $this->deleteCandidaciesAndStudents($lstOfLstCandidacy, $lstFirstCandidacy);
         } while (0 != count($lstOfLstCandidacy) && $this->checkIfStudentsHaveAssignedTER($studentRepository));
     }
 
