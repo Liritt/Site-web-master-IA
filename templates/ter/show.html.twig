@@ -1,11 +1,20 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/ter.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</h1>
-
-    <h2>{{ TER.title }}</h2>
-
-    <p>{{ TER.description }}</p>
+    <div class="ter-info">
+        <h1>Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</h1>
+        <h2>Titre du sujet : {{ TER.title }}</h2>
+        <div class="ter-desc">
+            <h3>Description du sujet</h3>
+            <p>
+                {{ TER.description }}
+            </p>
+        </div>
+    </div>
 {% endblock %}
 
 {% block title %}
