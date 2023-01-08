@@ -1,0 +1,23 @@
+html {
+  font: "Inter", sans-serif;
+}
+
+.a-own {
+  text-decoration: none;
+  color: #36818d;
+}
+
+.student:hover, .teacher:hover, .supervisor:hover {
+  filter: brightness(0.8);
+}
+
+.student, .teacher, .supervisor, .company_name {
+  text-align: center;
+  margin: 5%;
+}
+
+.img-own {
+  width: 50%;
+}
+
+/*# sourceMappingURL=trombinoscope.css.map */

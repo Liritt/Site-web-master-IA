@@ -1,5 +1,9 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/trombinoscope.css') }}" />
+{% endblock %}
+
 {% block title %}Page trombinoscope{% endblock %}
 
 {% block body %}
@@ -8,17 +12,19 @@
     <div class="container">
         <div class="row">
             {% for student in students %}
-                <div class="col-4">
-                    <a href="{{ path('app_student_profil', {id: student.id}) }}">
-                        <div class="card">
+                <div class="col-3 ">
+                    <a class="a-own" href="{{ path('app_student_profil', {id: student.id}) }}">
+                        <div class="card my-2 text-center">
                             <div class="card-body">
-                                <img src="{{ asset('img/default_profile_picture.png') }}">
+                                <img class="img-own img-fluid" src="{{ asset('img/default_profile_picture.png') }}">
+                                <div class="student">
                                 {{ student.firstname }} {{ student.lastname }}
                                 {% if student.degree == 1%}
-                                    1 er année
+                                    <div>1 ère année</div>
                                 {% else %}
-                                    2 ème année
+                                    <div>2 ème année</div>
                                 {% endif %}
+                                </div>
                             </div>
                         </div>
                     </a>

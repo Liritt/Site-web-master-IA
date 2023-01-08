@@ -1,5 +1,9 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/trombinoscope.css') }}" />
+{% endblock %}
+
 {% block title %}Hello StudentController!{% endblock %}
 
 {% block body %}
@@ -7,12 +11,12 @@
     <div class="container">
         <div class="row">
             {% for student in students %}
-                <div class="col-4">
-                    <a href="{{ path('app_student_profil', {id: student.id}) }}">
+                <div class="col-3 my-2">
+                    <a class="a-own" href="{{ path('app_student_profil', {id: student.id}) }}">
                         <div class="card">
-                            <div class="card-body">
-                                <img src="{{ asset('img/default_profile_picture.png') }}">
-                                {{ student.firstname }} {{ student.lastname }}
+                            <div class="card-body d-flex align-items-center flex-column">
+                                <img class="img-own img-fluid" src="{{ asset('img/default_profile_picture.png') }}">
+                                <div class="student">{{ student.firstname }} {{ student.lastname }}</div>
                             </div>
                         </div>
                     </a>
