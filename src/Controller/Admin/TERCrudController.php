@@ -6,11 +6,11 @@ use App\Entity\TER;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use phpDocumentor\Reflection\DocBlock\Description;
 
 class TERCrudController extends AbstractCrudController
 {
@@ -41,6 +41,14 @@ class TERCrudController extends AbstractCrudController
                 ->setLabel('Titre'),
             TextareaField::new('Description')
                 ->hideOnIndex(),
+            AssociationField::new('teacher')
+                ->setLabel('Enseignant')
+                ->formatValue(function ($value, $entity) {
+                    $prenom = $entity->getTeacher()->getFirstname();
+                    $nom = strtoupper($entity->getTeacher()->getLastname());
+
+                    return "{$nom} {$prenom}";
+                }),
         ];
     }
 

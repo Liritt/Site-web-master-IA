@@ -3,7 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\CandidacyTER;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 class CandidacyTERCrudController extends AbstractCrudController
 {
@@ -12,14 +16,33 @@ class CandidacyTERCrudController extends AbstractCrudController
         return CandidacyTER::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')
+                ->hideOnForm()
+                ->hideOnIndex(),
+            DateField::new('date')
+                ->setLabel('Date'),
+            AssociationField::new('student')
+                ->setLabel('Étudiant')
+                ->formatValue(function ($value, $entity) {
+                    $nom = strtoupper($entity->getStudent()->getLastname());
+                    $prenom = $entity->getStudent()->getFirstname();
+
+                    return "{$nom} {$prenom}";
+                }),
+            AssociationField::new('TER')
+                ->formatValue(function ($value, $entity) {
+                    return $entity->getTER()->getTitle();
+                }),
         ];
     }
-    */
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('candidature')
+            ->setPageTitle('index', 'Candidatures de stage');
+    }
 }
