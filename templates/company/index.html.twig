@@ -1,5 +1,9 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets%}
+        <link rel="stylesheet" href="{{ asset('css/trombinoscope.css') }}" />
+{% endblock %}
+
 {% block title %}Page trombinoscope{% endblock %}
 
 {% block body %}
@@ -31,13 +35,13 @@
     <div class="container">
         <div class="row">
             {% for company in companys %}
-                <div class="col-4">
-                    <a href="{{ path('app_company_profil', {id: company.id}) }}">
-                        <div class="card">
+                <div class="col-3 my-2">
+                    <a class="a-own" href="{{ path('app_company_profil', {id: company.id}) }}">
+                        <div class="card text-center">
                             <div class="card-body">
                                 <h2 class="company_name">{{ company.companyName }}</h2>
-                                <img src="{{ asset('img/default_profile_picture.png') }}">
-                                {{ company.supervisorFirstname }} {{ company.supervisorLastname }}
+                                <img class="img-fluid img-own" src="{{ asset('img/default_profile_picture.png') }}">
+                                <div class="supervisor">{{ company.supervisorFirstname }} {{ company.supervisorLastname }}</div>
                             </div>
                         </div>
                     </a>

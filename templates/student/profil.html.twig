@@ -1,20 +1,27 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}" />
+{% endblock %}
+
 {% block title %}Profil étudiant{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_student') }}" class="btn btn-primary">Retour</a>
-    <img src="{{ asset('img/default_profile_picture.png') }}">
-    <dl>
-        <dt>Nom :</dt>
-            <dd>{{ student.lastname }}</dd>
-        <dt>Prenom :</dt>
-            <dd>{{ student.firstname }}</dd>
-        <dt>Date de naissance :</dt>
-            <dd>{{ student.birthDate|date('d/m/y') }}</dd>
-        <dt>Niveau :</dt>
-            <dd>{{ student.degree }}</dd>
-    </dl>
-
+        <div class="card text-center w-25 m-5">
+            <div class="card-body">
+                <img class="img-own img-fluid" src="{{ asset('img/default_profile_picture.png') }}">
+                <dl>
+                    <dt>Nom :</dt>
+                        <dd>{{ student.lastname }}</dd>
+                    <dt>Prenom :</dt>
+                        <dd>{{ student.firstname }}</dd>
+                    <dt>Date de naissance :</dt>
+                        <dd>{{ student.birthDate|date('d/m/y') }}</dd>
+                    <dt>Niveau :</dt>
+                        <dd>{{ student.degree }}</dd>
+                </dl>
+                <a href="{{ path('app_student') }}" class="btn btn-primary">Retour</a>
+            </div>
+        </div>
 {% endblock %}
 

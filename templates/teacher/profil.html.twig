@@ -1,18 +1,26 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}" />
+{% endblock %}
+
 {% block title %}Profil professeur{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_teacher') }}" class="btn btn-primary">Retour</a>
-    <img src="{{ asset('img/default_profile_picture.png') }}">
-    <dl>
-        <dt>Nom :</dt>
-        <dd>{{ teacher.lastname }}</dd>
-        <dt>Prenom :</dt>
-        <dd>{{ teacher.firstname }}</dd>
-        <dt>Date de naissance :</dt>
-        <dd>{{ teacher.birthDate|date('d/m/Y') }}</dd>
-    </dl>
+    <div class="card text-center w-25 m-5">
+        <div class="card-body">
+        <img src="{{ asset('img/default_profile_picture.png') }}">
+        <dl>
+            <dt>Nom :</dt>
+            <dd>{{ teacher.lastname }}</dd>
+            <dt>Prenom :</dt>
+            <dd>{{ teacher.firstname }}</dd>
+            <dt>Date de naissance :</dt>
+            <dd>{{ teacher.birthDate|date('d/m/Y') }}</dd>
+        </dl>
+            <a href="{{ path('app_teacher') }}" class="btn btn-primary">Retour</a>
+        </div>
+    </div>
 {% endblock %}
 
 
