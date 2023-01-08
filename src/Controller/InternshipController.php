@@ -100,7 +100,7 @@ class InternshipController extends AbstractController
     {
         $candidacy = new Candidacy();
         $form = $this->createForm(CandidacyType::class, $candidacy)
-            ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btn btn-primary']]);
+            ->add('validate', SubmitType::class, ['label' => 'Valider', 'attr' => ['class' => 'btnStyle btn']]);
 
         $form->handleRequest($request);
         if ($form->getClickedButton() && 'validate' === $form->getClickedButton()->getName()) {
