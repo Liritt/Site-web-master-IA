@@ -14,17 +14,17 @@ class InternshipType extends AbstractType
     {
         $builder
             ->add('beginDate', DateType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'html5' => false,
-                'format' => 'dd MM yyyy',
+                'format' => 'dd/MM/yyyy',
                 'attr' => [
                     'class' => 'js-datepicker',
                 ],
             ])
             ->add('endDate', DateType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'html5' => false,
-                'format' => 'dd MM yyyy',
+                'format' => 'dd/MM/yyyy',
                 'attr' => [
                     'class' => 'js-datepicker',
                 ],

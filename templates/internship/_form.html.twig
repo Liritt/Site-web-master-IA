@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 {{ form_start(form) }}
 {{ form_row(form.beginDate, {'label': 'Date de début'}) }}
 {{ form_row(form.endDate, {'label': 'Date de fin'}) }}
@@ -6,3 +9,11 @@
 {{ form_row(form.subject, {'label': 'Sujet du stage'}) }}
 <input type="submit" value="{{label_submit}}" class="btn btn-primary" />
 {{ form_end(form) }}
+
+<script>
+    flatpickr(".js-datepicker", {
+        dateFormat: "d/m/Y",
+        minDate: "today",
+        locale: "fr",
+    });
+</script>

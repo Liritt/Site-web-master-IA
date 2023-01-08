@@ -1,16 +1,33 @@
 {% extends '_connectedNavBar.html.twig' %}
+{% block stylesheets%}
+    <link rel="stylesheet" href="{{ asset('css/internship.css') }}" />
+{% endblock %}
 
 {% block title %}
-
+    Candidature à un stage
 {% endblock %}
 
 {% block body %}
-    <h1>Test</h1>
-    {{ form_start(form) }}
-    {{ form_row(form.cv, {'label': 'File'}) }}
-    {{ form_row(form.coverLetter, {'label': 'myLetter'}) }}
-    {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
-    <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
-    {{ form_end(form) }}
+    <div class="top__informations">
+        <h1>Candidature</h1>
+    </div>
+    <div class="tocandidate__container">
+        {{ form_start(form) }}
+        <div class="tocandidate__uploadbtn">
+            <div class="tocandidate__uploadbtn_cv">
+                <label class="tocandidate__uploadbtn_title" for="file">CV</label>
+                {{ form_row(form.cv, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'}}) }}
+            </div>
+            <div class="tocandidate__uploadbtn_coverletter">
+                <label class="tocandidate__uploadbtn_title" for="file">Lettre de motivation</label>
+                {{ form_row(form.coverLetter, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'} } ) }}
+            </div>
+        </div>
+        <div class="tocandidate__decisionbtn">
+            {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
+            <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 
