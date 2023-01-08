@@ -17,8 +17,10 @@
             {{ form_row(form.cv, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'}}) }}
             {{ form_row(form.coverLetter, { 'label': ' ', 'attr': {'class': 'tocandidate__btn'} } ) }}
         </div>
-        {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
-        <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
+        <div class="tocandidate__decisionbtn">
+            {{ form_row(form.validate, {'label': 'Valider la candidature'}) }}
+            <a href="{{ path('app_internship_show', {id: internship.id}) }}" class="btn btn-secondary">Annuler</a>
+        </div>
         {{ form_end(form) }}
     </div>
 {% endblock %}
