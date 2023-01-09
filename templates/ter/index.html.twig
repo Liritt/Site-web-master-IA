@@ -83,7 +83,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ TER.title }}</h5>
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
-                                    <div class="card-buttons">
+                                    <div class="card-buttons" style="display: flex; flex-direction: column">
                                         <div>
                                             <a href="{{ path('app_ter_show', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary">Plus de détails</a>
                                         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
@@ -93,7 +93,8 @@
                                         </div>
                                         <div class="card-footer text-muted text-center">
                                             créé le {{ TER.date|date('d') }} {{ trans_month_hash[TER.date|date('F')] }} {{ TER.date|date('Y à H:i')}}
-                                        </div>                                    </div>
+                                        </div>
+                                    </div>
                                     {% if days < 7 %}
                                         <p class="ribbon-2 left-bottom right-top text-center" style="color: white">Nouveau TER</p>
                                     {% endif %}
@@ -116,6 +117,10 @@
                                                 <h5 class="card-title">{{ candidacy.TER.title }}</h5>
                                                 <p class="card-text">Professeur en charge du projet : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
                                                 <a href="{{ path('app_ter_show', {id: candidacy.TER.id, _locale: app.request.locale}) }}" class="btn btn-primary">Plus de détails</a>
+                                                <form method="post" action="{{ path('app_ter_update_order_number') }}" style="text-align: left">
+                                                    <button type="submit" name="change-order-button" value="{{ candidacy.orderNumber }}" class="btn btn-secondary">Changer la place du TER :</button>
+                                                    <input type="number" name="order-value" placeholder="Entrez le numéro ici">
+                                                </form>
                                             </div>
                                         </div>
                                     </li>
@@ -135,14 +140,14 @@
                             {% for student in lstStudentCandidaciesNotEqualToNumberCandidacies %}
                                 <div class="col-6">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <a href="{{ path('app_student_profil', {id: student.id, _locale: app.request.locale}) }}" class="card-body">
                                             <p class="card-text">Élève : {{ student.lastname }} {{ student.firstname }}</p>
                                         {% if student.degree == 1 %}
                                             <p class="card-text">Niveau : {{ student.degree }}ère année</p>
                                         {% else %}
                                             <p class="card-text">Niveau : {{ student.degree }}e année</p>
                                         {% endif %}
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             {% endfor %}

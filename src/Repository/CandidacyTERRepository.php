@@ -94,6 +94,18 @@ class CandidacyTERRepository extends ServiceEntityRepository
         return $lstFinishedCandidaciesStudents;
     }
 
+    public function searchCandidaciesWOrderNumber(Student $student = null, ?int $orderNumber = null)
+    {
+        return $this->createQueryBuilder('ct')
+            ->join('ct.student', 'student')
+            ->addSelect('student')
+            ->where('ct.student = :student')
+            ->andWhere('ct.orderNumber = :orderNumber')
+            ->setParameters(['student' => $student, 'orderNumber' => $orderNumber])
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return CandidacyTER[] Returns an array of CandidacyTER objects
 //     */
