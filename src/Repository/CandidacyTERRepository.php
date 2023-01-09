@@ -54,26 +54,13 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->execute();
     }
 
-    public function searchCandidaciesAdmin()
-    {
-        return $this->createQueryBuilder('ct')
-            ->join('ct.student', 'student')
-            ->addSelect('student')
-            ->orderBy('student.lastname')
-            ->addOrderBy('student.firstname')
-            ->addOrderBy('ct.date')
-            ->getQuery()
-            ->execute();
-    }
-
-    public function countNumberOfCandidacies(Student $student = null)
+    public function countNumberOfCandidacies()
     {
         return $this->createQueryBuilder('ct')
             ->select('COUNT(ct.id)')
-            ->where('ct.student = :student')
-            ->setParameter('student', $student)
+            ->groupBy('ct.student')
             ->getQuery()
-            ->getResult()[0][1];
+            ->getResult();
     }
 
     /**
@@ -84,10 +71,12 @@ class CandidacyTERRepository extends ServiceEntityRepository
     public function studentCandidaciesNotEqualToNumberCandidacies(StudentRepository $studentRepository, TERRepository $TERRepository): array
     {
         $lstStudent = $studentRepository->findAll();
+        $numberOfTer = $TERRepository->countNumberOfTER();
+        $numberOFCandidacies = $this->countNumberOfCandidacies();
         $lstFinishedCandidaciesStudents = [];
-        foreach ($lstStudent as $student) {
-            if ($this->countNumberOfCandidacies($student) < $TERRepository->countNumberOfTER()) {
-                $lstFinishedCandidaciesStudents[] = $student;
+        for ($i = 0; $i < count($lstStudent); ++$i) {
+            if ($numberOFCandidacies[$i][1] < $numberOfTer) {
+                $lstFinishedCandidaciesStudents[] = $lstStudent[$i];
             }
         }
 
