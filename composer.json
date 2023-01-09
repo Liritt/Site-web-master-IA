@@ -96,6 +96,7 @@
             "php-cs-fixer fix"
         ],
         "test:codecept": [
+            "php vendor/bin/codecept clean",
             "php bin/console doctrine:database:drop --force --quiet --env=test",
             "php bin/console doctrine:database:create --quiet --env=test",
             "php bin/console doctrine:schema:create --quiet --env=test",

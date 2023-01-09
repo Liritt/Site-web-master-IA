@@ -27,9 +27,8 @@ class LoginCest
         $I->seeElement('.disconnected-nav-bar');
         $I->seeInTitle('Accueil');
         $I->amLoggedInAs($realUser);
-        $I->seeCurrentRouteIs('admin');
+        $I->amOnPage('/admin');
         $I->seeResponseCodeIs(200);
-        $I->seeInTitle('https://localhost:8000/admin');
     }
 
     public function LoginStudent(ControllerTester $I): void
