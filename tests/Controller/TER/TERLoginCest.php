@@ -4,6 +4,8 @@
 namespace App\Tests\Controller\TER;
 
 use App\Entity\Teacher;
+use App\Factory\AdministratorFactory;
+use App\Factory\CompanyFactory;
 use App\Factory\StudentFactory;
 use App\Factory\TeacherFactory;
 use App\Factory\UserFactory;
@@ -15,7 +17,7 @@ class TERLoginCest
     {
     }
 
-    public function CanAccessAsStudent(ControllerTester $I)
+    public function CanAccessAsStudent(ControllerTester $I): void
     {
         $user = StudentFactory::createOne([
             'email' => 'user@test.com',
@@ -29,7 +31,7 @@ class TERLoginCest
         $I->seeResponseCodeIs(200);
     }
 
-    public function CanAccessAsTeacher(ControllerTester $I)
+    public function CanAccessAsTeacher(ControllerTester $I): void
     {
         $user = TeacherFactory::createOne([
             'email' => 'user@test.com',
@@ -43,9 +45,9 @@ class TERLoginCest
         $I->seeResponseCodeIs(200);
     }
 
-    public function CanAccessAsAdmin(ControllerTester $I)
+    public function CanAccessAsAdmin(ControllerTester $I): void
     {
-        $user = TeacherFactory::createOne([
+        $user = AdministratorFactory::createOne([
             'email' => 'user@test.com',
             'password' => 'test',
             'roles' => ['ROLE_ADMIN'],
@@ -57,9 +59,9 @@ class TERLoginCest
         $I->seeResponseCodeIs(200);
     }
 
-    public function CantAccessAsCompany(ControllerTester $I)
+    public function CantAccessAsCompany(ControllerTester $I): void
     {
-        $user = TeacherFactory::createOne([
+        $user = CompanyFactory::createOne([
             'email' => 'user@test.com',
             'password' => 'test',
             'roles' => ['ROLE_COMPANY'],
