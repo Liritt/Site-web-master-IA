@@ -54,14 +54,13 @@ class CandidacyTERRepository extends ServiceEntityRepository
             ->execute();
     }
 
-    public function countNumberOfCandidacies(Student $student = null)
+    public function countNumberOfCandidacies()
     {
         return $this->createQueryBuilder('ct')
             ->select('COUNT(ct.id)')
-            ->where('ct.student = :student')
-            ->setParameter('student', $student)
+            ->groupBy('ct.student')
             ->getQuery()
-            ->getResult()[0][1];
+            ->getResult();
     }
 
     /**
@@ -73,10 +72,11 @@ class CandidacyTERRepository extends ServiceEntityRepository
     {
         $lstStudent = $studentRepository->findAll();
         $numberOfTer = $TERRepository->countNumberOfTER();
+        $numberOFCandidacies = $this->countNumberOfCandidacies();
         $lstFinishedCandidaciesStudents = [];
-        foreach ($lstStudent as $student) {
-            if ($this->countNumberOfCandidacies($student) < $numberOfTer) {
-                $lstFinishedCandidaciesStudents[] = $student;
+        for ($i = 0; $i < count($lstStudent); ++$i) {
+            if ($numberOFCandidacies[$i][1] < $numberOfTer) {
+                $lstFinishedCandidaciesStudents[] = $lstStudent[$i];
             }
         }
 
