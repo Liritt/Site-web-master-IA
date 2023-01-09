@@ -12,7 +12,7 @@
         </div>
 
         {% if app.user.roles[0] == 'ROLE_COMPANY' or app.user.roles[0] == 'ROLE_ADMIN' %}
-            <a class="btn btn-outline-primary" href={{ path('app_internship_create', {_locale: app.request.locale}) }}>Ajouter une offre de stage</a>
+            <a class="btn btn-outline-primary index__addInternshipBtn" href={{ path('app_internship_create', {_locale: app.request.locale}) }}>Ajouter une offre de stage</a>
         {% endif %}
     </div>
 
