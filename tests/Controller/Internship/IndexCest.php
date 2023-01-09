@@ -37,6 +37,7 @@ class IndexCest
         $I->seeInTitle('Liste des stages');
         $I->see('Liste des stages', 'h1');
         $I->seeNumberOfElements('.card-body', 5);
+        $I->seeNumberOfElements('.card-body > a', 5);
     }
 
     public function checkAddInternshipButton(ControllerTester $I): void
