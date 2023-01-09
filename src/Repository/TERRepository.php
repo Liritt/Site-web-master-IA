@@ -45,7 +45,9 @@ class TERRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->addSelect('teach as teacher')
+            ->addSelect('stud as student')
             ->leftJoin('t.teacher', 'teach')
+            ->leftJoin('t.selectedStudent', 'stud')
             ->orderBy('t.date', 'DESC')
             ->getQuery()
             ->execute();

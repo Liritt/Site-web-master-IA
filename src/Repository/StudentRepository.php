@@ -39,7 +39,7 @@ class StudentRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByDegree(int $degree):array
+    public function findByDegree(int $degree): array
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.degree = :degree')
