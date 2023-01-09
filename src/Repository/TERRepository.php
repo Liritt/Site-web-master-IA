@@ -41,12 +41,12 @@ class TERRepository extends ServiceEntityRepository
         }
     }
 
-    public function search(string $researchText = '')
+    public function search()
     {
         return $this->createQueryBuilder('t')
-            ->where('t.title != :searchText')
+            ->addSelect('teach as teacher')
+            ->leftJoin('t.teacher', 'teach')
             ->orderBy('t.date', 'DESC')
-            ->setParameter('searchText', '%'.$researchText.'%')
             ->getQuery()
             ->execute();
     }
