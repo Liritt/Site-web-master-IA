@@ -11,7 +11,7 @@ use App\Factory\TeacherFactory;
 use App\Factory\UserFactory;
 use App\Tests\Support\ControllerTester;
 
-class TERLoginCest
+class TERAcessCest
 {
     public function _before(ControllerTester $I)
     {
