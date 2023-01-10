@@ -34,5 +34,18 @@ class TrombinoscopeCest
         $I->seeResponseCodeIsSuccessful();
     }
 
+    public function TestRouteCompany(ControllerTester $I)
+    {
+        $user = AdministratorFactory::createOne([
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+            'roles' => ['ROLE_ADMIN'],
+        ]);
+        $realUser = $user->object();
+        $I->amLoggedInAs($realUser);
+        $I->amOnPage('/fr/company');
+        $I->seeResponseCodeIsSuccessful();
+    }
+
 
 }
