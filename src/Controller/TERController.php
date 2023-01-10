@@ -194,7 +194,7 @@ class TERController extends AbstractController
             throw new AccessDeniedException('Vous ne pouvez pas accéder à cette page');
         } elseif ($request->isMethod('POST') && $request->request->has('order-value')) {
             if (!empty($_POST['change-order-button']) && !empty($_POST['order-value'])) {
-                if ($_POST['order-value'] <= $candidacyTERRepository->countNumberOfCandidacies($this->getUser()) && $_POST['order-value'] > 1) {
+                if ($_POST['order-value'] <= $candidacyTERRepository->countNumberOfCandidacies($this->getUser()) && $_POST['order-value'] >= 1) {
                     $candidacyId = $candidacyTERRepository->searchCandidaciesWOrderNumber($this->getUser(), $_POST['change-order-button'])[0]->getId();
                     $targetId = $candidacyTERRepository->searchCandidaciesWOrderNumber($this->getUser(), $_POST['order-value'])[0]->getId();
                 } else {
