@@ -73,7 +73,7 @@ class TrombinoscopeCest
             'firstname' => 'Exemple',
             'lastname' => 'Lastname',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 1,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -82,7 +82,7 @@ class TrombinoscopeCest
             'firstname' => 'Test',
             'lastname' => 'LastnameTest',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 1,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -91,7 +91,7 @@ class TrombinoscopeCest
             'firstname' => 'Exemple',
             'lastname' => 'Lastname',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 2,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -117,7 +117,7 @@ class TrombinoscopeCest
             'firstname' => 'Exemple',
             'lastname' => 'Lastname',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 2,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -126,7 +126,7 @@ class TrombinoscopeCest
             'firstname' => 'Test',
             'lastname' => 'LastnameTest',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 1,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -135,7 +135,7 @@ class TrombinoscopeCest
             'firstname' => 'Exemple',
             'lastname' => 'Lastname',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 2,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -162,7 +162,7 @@ class TrombinoscopeCest
             'lastname' => 'Aaaaaaaaaaaaaaa',
             'firstname' => 'Joe',
             'birthdate' => '1999-06-28',
-            'email' => 'student@exemple.com',
+            'email' => 'student@etudiant.univ-reims.fr',
             'degree' => 2,
             'roles' => ['ROLE_STUDENT'],
             'password' => 'test',
@@ -200,7 +200,7 @@ class TrombinoscopeCest
             'lastname' => 'Bob',
             'firstname' => 'bob_bob',
             'birthdate' => '1999-06-28',
-            'email' => 'teacher@exemple.com',
+            'email' => 'teacher@univ-reims.fr',
             'roles' => ['ROLE_TEACHER'],
             'password' => 'test',
         ]);
@@ -229,5 +229,24 @@ class TrombinoscopeCest
         $I->seeNumberOfElements('.card-body > img', 10);
         $I->seeNumberOfElements('.card-body > .supervisor', 10);
         $I->seeNumberOfElements('.a-own', 10);
+    }
+
+    public function testClicCompany(ControllerTester $I): void
+    {
+        CompanyFactory::createMany(5);
+        CompanyFactory::createOne([
+            'company_name' => 'Google',
+            'supervisor_firstname' => 'Moi',
+            'supervisor_lastname' => 'blbl',
+            'email' => 'company@company.fr',
+            'roles' => ['ROLE_COMPANY'],
+            'password' => 'test',
+        ]);
+
+        $I->amOnPage('/fr/company');
+        $I->seeResponseCodeIsSuccessful();
+        $I->click('Moi blbl');
+        $I->seeResponseCodeIsSuccessful();
+        $I->canSeeCurrentRouteIs('app_company_profil', ['id' => 6]);
     }
 }
