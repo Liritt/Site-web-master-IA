@@ -64,4 +64,48 @@ class TrombinoscopeCest
         $I->seeNumberOfElements('.card-body > .student', 10);
         $I->seeNumberOfElements('.a-own', 10);
     }
+
+    public function TestPageStudentDegree1(ControllerTester $I)
+    {
+        StudentFactory::createOne([
+            'firstname' => 'Exemple',
+            'lastname' => 'Lastname',
+            'birthdate' => '1999-06-28',
+            'email' => 'student@exemple.com',
+            'degree' => 1,
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+        ]);
+        StudentFactory::createOne([
+            'firstname' => 'Test',
+            'lastname' => 'LastnameTest',
+            'birthdate' => '1999-06-28',
+            'email' => 'student@exemple.com',
+            'degree' => 1,
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+        ]);
+        StudentFactory::createOne([
+            'firstname' => 'Exemple',
+            'lastname' => 'Lastname',
+            'birthdate' => '1999-06-28',
+            'email' => 'student@exemple.com',
+            'degree' => 2,
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+        ]);
+        $user = AdministratorFactory::createOne([
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+            'roles' => ['ROLE_ADMIN'],
+        ]);
+        $realUser = $user->object();
+        $I->amLoggedInAs($realUser);
+        $I->amOnPage('/fr/student/1');
+        $I->seeResponseCodeIsSuccessful();
+        $I->seeInTitle('Page trombinoscope');
+        $I->seeNumberOfElements('.card-body > img', 2);
+        $I->seeNumberOfElements('.card-body > .student', 2);
+        $I->seeNumberOfElements('.a-own', 2);
+    }
 }
