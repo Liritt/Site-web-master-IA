@@ -51,3 +51,24 @@ items.forEach(function(item) {
     item.addEventListener('dragend', handleDragEnd);
     item.addEventListener('drop', handleDrop);
 });
+
+let link = document.getElementById("assign-ter-button").getElementsByTagName("a")[0];
+let overlay = document.getElementById('overlay');
+let yesButton = document.getElementById("overlay-yes-button");
+let noButton = document.getElementById("overlay-no-button");
+
+link.addEventListener("click", function(e) {
+    e.preventDefault();
+    overlay.style.display = "block";
+});
+
+yesButton.addEventListener("click", function() {
+    overlay.style.display = "none";
+    alert("Les TER vont être assignés.");
+    window.location.href = link.href;
+});
+
+noButton.addEventListener("click", function() {
+    overlay.style.display = "none";
+    alert("Action annulée");
+});

@@ -102,7 +102,6 @@
             "php vendor/bin/codecept run"
         ],
         "test": [
-            "@test:cs",
             "@test:codecept"
         ],
         "db": [
