@@ -152,4 +152,24 @@ class TrombinoscopeCest
         $I->seeNumberOfElements('.card-body > .student', 2);
         $I->seeNumberOfElements('.a-own', 2);
     }
+
+    public function testClic(ControllerTester $I): void
+    {
+        StudentFactory::createMany(5);
+        StudentFactory::createOne([
+            'lastname' => 'Aaaaaaaaaaaaaaa',
+            'firstname' => 'Joe',
+            'birthdate' => '1999-06-28',
+            'email' => 'student@exemple.com',
+            'degree' => 2,
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+        ]);
+
+        $I->amOnPage('/fr/student');
+        $I->seeResponseCodeIsSuccessful();
+        $I->click('Aaaaaaaaaaaaaaa Joe');
+        $I->seeResponseCodeIsSuccessful();
+        $I->canSeeCurrentRouteIs('app_student_profil', ['id' => 6]);
+    }
 }
