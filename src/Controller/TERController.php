@@ -153,7 +153,7 @@ class TERController extends AbstractController
         }
 
         if ($deleteForm->getClickedButton() && 'cancel' === $deleteForm->getClickedButton()->getName()) {
-            return $this->redirectToRoute('app_ter_show', ['id' => $TER->getId()]);
+            return $this->redirectToRoute('app_ter');
         }
 
         return $this->renderForm('ter/deleteTER.html.twig', ['ter' => $TER, 'form' => $form, 'deleteForm' => $deleteForm]);
@@ -233,7 +233,7 @@ class TERController extends AbstractController
      * @throws CandidaciesNullException
      */
     #[Route('{_locale<%app.supported_locales%>}/ter/algo', name: 'app_ter_algo')]
-    #[Security('is_granted("ROLE_ADMIN', message: "Vous n'avez pas accès à cette page.")]
+    #[Security('is_granted("ROLE_ADMIN")', message: "Vous n'avez pas accès à cette page.")]
     public function assignTER(StudentRepository $studentRepository, ManagerRegistry $managerRegistry): RedirectResponse
     {
         $lstOfLstCandidacy = $this->getCandidaciesOrderedByNumber($studentRepository);
