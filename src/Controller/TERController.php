@@ -97,7 +97,7 @@ class TERController extends AbstractController
             $ter->setDate($date);
             $TERRepository->save($ter, true);
 
-            return $this->redirectToRoute('app_ter_show', ['id' => $ter->getId()]);
+            return $this->redirectToRoute('app_ter');
         }
 
         return $this->renderForm('ter/createTER.html.twig', [
@@ -121,7 +121,7 @@ class TERController extends AbstractController
             $TER->setDate($date);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_ter_show', ['id' => $id]);
+            return $this->redirectToRoute('app_ter');
         }
 
         return $this->renderForm('ter/updateTER.html.twig', [
