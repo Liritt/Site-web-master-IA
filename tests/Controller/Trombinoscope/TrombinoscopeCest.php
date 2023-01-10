@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Trombinoscope;
 
 use App\Factory\AdministratorFactory;
 use App\Factory\StudentFactory;
+use App\Factory\TeacherFactory;
 use App\Tests\Support\ControllerTester;
 
 class TrombinoscopeCest
@@ -171,5 +172,23 @@ class TrombinoscopeCest
         $I->click('Aaaaaaaaaaaaaaa Joe');
         $I->seeResponseCodeIsSuccessful();
         $I->canSeeCurrentRouteIs('app_student_profil', ['id' => 6]);
+    }
+
+    public function TestPageTeacher(ControllerTester $I)
+    {
+        TeacherFactory::createMany(10);
+        $user = AdministratorFactory::createOne([
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+            'roles' => ['ROLE_ADMIN'],
+        ]);
+        $realUser = $user->object();
+        $I->amLoggedInAs($realUser);
+        $I->amOnPage('/fr/teacher');
+        $I->seeResponseCodeIsSuccessful();
+        $I->seeInTitle('Page trombinoscope');
+        $I->seeNumberOfElements('.card-body > img', 10);
+        $I->seeNumberOfElements('.card-body > .teacher', 10);
+        $I->seeNumberOfElements('.a-own', 10);
     }
 }
