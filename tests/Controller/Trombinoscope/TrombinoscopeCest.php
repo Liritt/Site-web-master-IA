@@ -47,5 +47,21 @@ class TrombinoscopeCest
         $I->seeResponseCodeIsSuccessful();
     }
 
-
+    public function TestPageStudent(ControllerTester $I)
+    {
+        StudentFactory::createMany(10);
+        $user = AdministratorFactory::createOne([
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+            'roles' => ['ROLE_ADMIN'],
+        ]);
+        $realUser = $user->object();
+        $I->amLoggedInAs($realUser);
+        $I->amOnPage('/fr/student');
+        $I->seeResponseCodeIsSuccessful();
+        $I->seeInTitle('Page trombinoscope');
+        $I->seeNumberOfElements('.card-body > img', 10);
+        $I->seeNumberOfElements('.card-body > .student', 10);
+        $I->seeNumberOfElements('.a-own', 10);
+    }
 }
