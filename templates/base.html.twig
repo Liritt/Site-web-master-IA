@@ -93,13 +93,20 @@
                                             <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                             English
                                         </a>
+                                    {% elseif route == 'app_student_degree' %}
+                                        <a href="{{ path(route, {_locale: 'en', degree: degree}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            English
+                                        </a>
                                     {% else %}
                                         <a href="{{ path(route, {_locale: 'en'}) }}" class="dropdown-item">
                                             <img src="{{ asset('img/english-flag.png') }}" alt="English flag" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                             English
                                         </a>
                                     {% endif %}
+
                                 {% else %}
+
                                     {% if (route == 'app_internship_show'
                                         or route == 'app_internship_delete'
                                         or route == 'app_internship_tocandidate'
@@ -134,6 +141,11 @@
                                         </a>
                                     {% elseif route == 'app_ter_update' or route == 'app_ter_delete' %}
                                         <a href="{{ path(route, {_locale: 'fr', id: ter.id}) }}" class="dropdown-item">
+                                            <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
+                                            Français
+                                        </a>
+                                    {% elseif route == 'app_student_degree' %}
+                                        <a href="{{ path(route, {_locale: 'fr', degree: degree}) }}" class="dropdown-item">
                                             <img src="{{ asset('img/france-flag.png') }}" alt="drapeau français" class="img-fluid" aria-labelledby="dropdownMenuLanguage" width="43px" height="27px">
                                             Français
                                         </a>
