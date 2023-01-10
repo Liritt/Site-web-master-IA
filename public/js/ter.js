@@ -64,6 +64,7 @@ link.addEventListener("click", function(e) {
 
 yesButton.addEventListener("click", function() {
     overlay.style.display = "none";
+    alert("Les TER vont être assignés.");
     window.location.href = link.href;
 });
 
