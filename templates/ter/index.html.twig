@@ -28,6 +28,9 @@
 {% block title %}Page TER{% endblock %}
 
 {% block body %}
+    {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+        <h1 class="assign-ter">Assigner les TER aux étudiants : <a href="{{ path('app_ter_algo') }}" class="btn btn-info">Cliquez ici</a></h1>
+    {% endif %}
     <main>
         {% if lstTER|length != 0 %}
             <div class="ter-component">
@@ -77,9 +80,9 @@
                         <div class="col-8">
                             {% if days < 7 %}
                             <div class="card border-success text-success mb-3">
-                                {% else %}
-                                <div class="card">
-                                    {% endif %}
+                            {% else %}
+                            <div class="card">
+                            {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title">{{ TER.title }}</h5>
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>

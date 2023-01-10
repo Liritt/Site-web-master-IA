@@ -233,7 +233,7 @@ class TERController extends AbstractController
      * @throws CandidaciesNullException
      */
     #[Route('{_locale<%app.supported_locales%>}/ter/algo', name: 'app_ter_algo')]
-    public function assignTER(CandidacyTERRepository $candidacyTERRepository, TERRepository $TERRepository, StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
+    public function assignTER(StudentRepository $studentRepository, ManagerRegistry $managerRegistry)
     {
         $lstOfLstCandidacy = $this->getCandidaciesOrderedByNumber($studentRepository);
         do {
@@ -269,8 +269,10 @@ class TERController extends AbstractController
                 $lstFirstCandidacy[0]->getStudent()->setAssignedTER($lstFirstCandidacy[0]->getTER());
                 $em->flush();
             }
-            $lstOfLstCandidacy = $this->deleteCandidaciesAndStudents($lstOfLstCandidacy, $lstFirstCandidacy);
+            $lstOfLstCandidacy = $this->deleteCandidaciesAndStudents($lstOfLstCandidacy);
         } while (0 != count($lstOfLstCandidacy) && $this->checkIfStudentsHaveAssignedTER($studentRepository));
+
+        return $this->redirectToRoute('app_ter');
     }
 
     /**
@@ -341,7 +343,7 @@ class TERController extends AbstractController
     /**
      * Permet de retirer les candidatures des étudiants ayant déjà un TER et les candidatures qui viennent de passe dans l'algo.
      */
-    public function deleteCandidaciesAndStudents(array $lstOfLstCandidacy, array $lstFirstCandid): array
+    public function deleteCandidaciesAndStudents(array $lstOfLstCandidacy): array
     {
         foreach ($lstOfLstCandidacy as $lstCandidacy) {
             if (null != $lstCandidacy[0]->getStudent()->getAssignedTER()) {
