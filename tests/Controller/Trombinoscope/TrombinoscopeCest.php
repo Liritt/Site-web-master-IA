@@ -305,4 +305,31 @@ class TrombinoscopeCest
         $I->seeResponseCodeIsSuccessful();
         $I->canSeeCurrentRouteIs('app_company_profil', ['id' => 6]);
     }
+
+    public function searchCompany(ControllerTester $I): void
+    {
+        CompanyFactory::createMany(2);
+        CompanyFactory::createOne([
+            'company_name' => 'Google',
+            'supervisor_firstname' => 'Moi',
+            'supervisor_lastname' => 'blbl',
+            'email' => 'company@company.fr',
+            'roles' => ['ROLE_COMPANY'],
+            'password' => 'test',
+        ]);
+        CompanyFactory::createOne([
+            'company_name' => 'Apple',
+            'supervisor_firstname' => 'Marie',
+            'supervisor_lastname' => 'Michel',
+            'email' => 'company@company.fr',
+            'roles' => ['ROLE_COMPANY'],
+            'password' => 'test',
+        ]);
+
+        $I->amOnPage('/fr/company');
+        $I->seeResponseCodeIsSuccessful();
+        $I->amOnPage('/fr/company?search=Google');
+        $liste = $I->grabMultiple('h2.company_name');
+        $I->assertEquals($liste, ['Google']);
+    }
 }
