@@ -175,6 +175,35 @@ class TrombinoscopeCest
         $I->canSeeCurrentRouteIs('app_student_profil', ['id' => 6]);
     }
 
+    public function searchStudent(ControllerTester $I): void
+    {
+        StudentFactory::createMany(2);
+        StudentFactory::createOne([
+            'lastname' => 'Marie',
+            'firstname' => 'Jean',
+            'birthdate' => '1999-06-28',
+            'email' => 'student@etudiant.univ-reims.fr',
+            'degree' => 2,
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+        ]);
+        StudentFactory::createOne([
+            'lastname' => 'Michel',
+            'firstname' => 'Marie',
+            'birthdate' => '1999-06-28',
+            'email' => 'student@etudiant.univ-reims.fr',
+            'degree' => 1,
+            'roles' => ['ROLE_STUDENT'],
+            'password' => 'test',
+        ]);
+
+        $I->amOnPage('/fr/student');
+        $I->seeResponseCodeIsSuccessful();
+        $I->amOnPage('/fr/student?search=Marie');
+        $liste = $I->grabMultiple('div.student');
+        $I->assertEquals($liste, ['Jean Marie 2 ème année', 'Marie Michel 1 ère année']);
+    }
+
     public function TestPageTeacher(ControllerTester $I)
     {
         TeacherFactory::createMany(10);
