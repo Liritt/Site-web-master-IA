@@ -65,4 +65,5 @@ class TERCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('TER')
             ->setPageTitle('index', 'TER');
     }
+
 }
