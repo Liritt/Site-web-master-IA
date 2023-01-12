@@ -291,6 +291,38 @@
         <target>Acquired validation procedures are possible to allow you to access
                         training or to validate the diploma</target>
       </trans-unit>
+      <trans-unit id="CsPSyzA" resname="Se connecter">
+        <source>Se connecter</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="sYru0ag" resname="Se déconnecter">
+        <source>Se déconnecter</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="UzFhc1Y" resname="Accueil">
+        <source>Accueil</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="D99IX1v" resname="Agenda">
+        <source>Agenda</source>
+        <target>Calendar</target>
+      </trans-unit>
+      <trans-unit id="3oOIVeS" resname="Stage">
+        <source>Stage</source>
+        <target>Internship</target>
+      </trans-unit>
+      <trans-unit id="X38EytV" resname="TER">
+        <source>TER</source>
+        <target>TER</target>
+      </trans-unit>
+      <trans-unit id="LBdLfTN" resname="Messagerie">
+        <source>Messagerie</source>
+        <target>Messaging service</target>
+      </trans-unit>
+      <trans-unit id="OHCI92a" resname="Trombinoscope">
+        <source>Trombinoscope</source>
+        <target>Organization chart with photographs</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
