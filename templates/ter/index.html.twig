@@ -19,6 +19,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/ter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/internship.css') }}">
 {% endblock %}
 
 {% block javascripts %}
@@ -45,10 +46,10 @@
                 <h1>Liste des TER</h1>
                 <div class="lst-ter">
                 {% if app.user.roles[0] != 'ROLE_STUDENT' %}
-                    <a href="{{ path('app_ter_create', {_locale: app.request.locale}) }}" class="btn btn-primary col-8">Ajouter un nouveau TER</a>
+                    <a href="{{ path('app_ter_create', {_locale: app.request.locale}) }}" class="btn btn-primary btnStyle col-8">Ajouter un nouveau TER</a>
                 {% endif %}
                 {% if app.user.roles[0] == 'ROLE_TEACHER' %}
-                    <a href="{{ path('app_ter_gallery', {_locale: app.request.locale}) }}" class="btn btn-general col-8">Gérer mes TER</a>
+                    <a href="{{ path('app_ter_gallery', {_locale: app.request.locale}) }}" class="btn btn-general btnStyle col-8">Gérer mes TER</a>
                 {% endif %}
                 {% for TER in lstTER %}
                     {% set today = "now"|date("Y-m-d") %}
@@ -70,7 +71,7 @@
                                         <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
                                         <form method="post" action="{{ path('app_ter_toCandidate', {id: TER.id, _locale: app.request.locale}) }}" style="display: flex; align-items: flex-end; justify-content: space-between;">
                                             <div>
-                                                <a href="{{ path('app_ter_show', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary">Plus de détails</a>
+                                                <a href="{{ path('app_ter_show', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary btnStyle">Plus de détails</a>
                                                 <button type="submit" class="btn btn-secondary" name="candidate-button">Candidater</button>
                                             </div>
                                         </form>
@@ -96,10 +97,10 @@
                                     <p class="card-text">Professeur en charge du projet : {{ TER.teacher.lastname }} {{ TER.teacher.firstname }}</p>
                                     <div class="card-buttons" style="display: flex; flex-direction: column">
                                         <div>
-                                            <a href="{{ path('app_ter_show', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary">Plus de détails</a>
+                                            <a href="{{ path('app_ter_show', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary btnStyle">Plus de détails</a>
                                         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                                            <a href="{{ path('app_ter_update', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary material-symbols-outlined">edit</a>
-                                            <a href="{{ path('app_ter_delete', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
+                                            <a href="{{ path('app_ter_update', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary btnStyle material-symbols-outlined">edit</a>
+                                            <a href="{{ path('app_ter_delete', {id: TER.id, _locale: app.request.locale}) }}" class="btn btn-primary btnStyle material-symbols-outlined">delete</a>
                                         {% endif %}
                                         </div>
                                         <div class="card-footer text-muted text-center">
@@ -127,7 +128,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ candidacy.TER.title }}</h5>
                                                 <p class="card-text">Professeur en charge du projet : {{ candidacy.TER.teacher.lastname }} {{ candidacy.TER.teacher.firstname }}</p>
-                                                <a href="{{ path('app_ter_show', {id: candidacy.TER.id, _locale: app.request.locale}) }}" class="btn btn-primary">Plus de détails</a>
+                                                <a href="{{ path('app_ter_show', {id: candidacy.TER.id, _locale: app.request.locale}) }}" class="btn btn-primary btnStyle">Plus de détails</a>
                                                 <form method="post" action="{{ path('app_ter_update_order_number') }}" style="text-align: left">
                                                     <button type="submit" name="change-order-button" value="{{ candidacy.orderNumber }}" class="btn btn-secondary">Changer la place du TER :</button>
                                                     <input type="number" name="order-value" placeholder="Entrez le numéro ici">

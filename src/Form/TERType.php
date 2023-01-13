@@ -44,6 +44,7 @@ class TERType extends AbstractType
                 'label' => 'Décrivez le sujet',
                 'empty_data' => '',
                 'trim' => true,
+                'attr' => ['rows' => 10, 'cols' => 40],
             ])
             ->add('teacher', EntityType::class, [
                 'label' => 'Professeur en charge du TER',

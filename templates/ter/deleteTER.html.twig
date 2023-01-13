@@ -2,17 +2,26 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}Page suppression de TER{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/internship.css') }}">
+{% endblock %}
 {% block body %}
+
+    <h1 class="titre-no-border">Suppression</h1>
+
+    <div class="d-flex justify-content-center mb-5">
     {{ form_start(form) }}
         {{ form_row(form.title) }}
         {{ form_row(form.description) }}
         {{ form_row(form.degree) }}
         {{ form_row(form.teacher) }}
     {{ form_end(form) }}
-
+    </div>
+    <div class="d-flex justify-content-center mb-5">
     {{ form_start(deleteForm, { 'attr': {'class': 'd-flex'} }) }}
-        {{ form_row(deleteForm.delete, {'label' : 'Supprimer'}) }}
+        {{ form_row(deleteForm.delete, {'label' : 'Supprimer', 'attr': {'class': 'btn btn-primary btnStyle me-3'}}) }}
         {{ form_row(deleteForm.cancel, {'label' : 'Annuler', 'attr': {'class': 'btn btn-secondary'} } )}}
     {{ form_end(deleteForm) }}
+    </div>
+
 {% endblock %}

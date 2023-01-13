@@ -1,9 +1,11 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
+<link rel="stylesheet" href="{{ asset('css/internship.css') }}">
+
 {{ form_start(form) }}
     {{ form_row(form.title) }}
     {{ form_row(form.description) }}
     {{ form_row(form.degree) }}
     {{ form_row(form.teacher) }}
-    <input type="submit" value="{{label_submit}}" class="btn btn-primary" />
+    <input type="submit" value="{{label_submit}}" class="btn btn-primary btnStyle" />
 {{ form_end(form) }}
