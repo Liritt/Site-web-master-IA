@@ -119,3 +119,12 @@ composer translate:en
    - enfin accédez au fichier de traduction "translation/messages+intl-icu.en.xlf"
 et modifier le contenu des balises `<target>` avec la traduction du contenu des balises
 `<source>`
+
+### Utilisateurs (`email:password`)
+
+- `admin@example.com:admin`
+- `teacher@example.com:test`
+- `student@example.com:test`
+- `company@example.com:test`
+
+### Adresse de déploiement : http://10.31.11.106
