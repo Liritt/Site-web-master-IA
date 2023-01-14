@@ -37,6 +37,7 @@ class InternshipType extends AbstractType
             ])
             ->add('subject', null, [
                 'empty_data' => '',
+                'attr' => ['rows' => 10, 'cols' => 40],
             ])
         ;
     }

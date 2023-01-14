@@ -81,13 +81,18 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Accueil administrateur', 'fa fa-home');
+        yield MenuItem::section('Utilisateurs du site');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user-alt', User::class);
         yield MenuItem::linkToCrud('Étudiants', 'fas fa-user-graduate', Student::class);
         yield MenuItem::linkToCrud('Enseignants', 'fas fa-chalkboard-teacher', Teacher::class);
         yield MenuItem::linkToCrud('Entreprises', 'fas fa-user-tie', Company::class);
+        yield MenuItem::section('Stages');
         yield MenuItem::linkToCrud('Stages', 'fas fa-building', Internship::class);
         yield MenuItem::linkToCrud('Candidatures de stage', 'fa fa-id-card-o', Candidacy::class);
+        yield MenuItem::section('TER');
         yield MenuItem::linkToCrud('TER', 'fas fa-scroll', TER::class);
         yield MenuItem::linkToCrud('Candidatures de TER', 'fas fa-user-shield', CandidacyTER::class);
+        yield MenuItem::section('');
+        yield MenuItem::linkToLogout('Déconnexion', 'fa-solid fa-right-from-bracket');
     }
 }

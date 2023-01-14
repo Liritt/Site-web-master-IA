@@ -157,4 +157,14 @@ main .ter-assigned p {
   gap: 10px;
 }
 
+.btnStyle {
+  background-color: #36818d;
+  color: #EEEEEE;
+}
+
+.btnStyle:hover {
+  background-color: #378E64;
+  color: #EEEEEE;
+}
+
 /*# sourceMappingURL=ter.css.map */
