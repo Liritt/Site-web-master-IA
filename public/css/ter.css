@@ -122,6 +122,25 @@ main .right-bottom::after {
   border-color: lightgreen transparent;
   border-width: 10px 10px 0 0;
 }
+main .ter-assigned {
+  margin: 1% 10% 0 10%;
+}
+main .ter-assigned h1 {
+  border: 2px solid black;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+main .ter-assigned h2 {
+  margin-top: 2%;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  padding: 5px;
+}
+main .ter-assigned p {
+  border: 1px solid black;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
 
 .ter-component {
   flex: 1;
