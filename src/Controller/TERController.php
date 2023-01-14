@@ -21,6 +21,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class TERController extends AbstractController
 {
@@ -29,13 +31,13 @@ class TERController extends AbstractController
      */
     #[Route('{_locale<%app.supported_locales%>}/ter', name: 'app_ter')]
     #[Entity('Student', expr: 'repository.findWithAssignedTER(id)')]
-    public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository): Response
+    public function index(TERRepository $TERRepository, CandidacyTERRepository $candidacyTERRepository, StudentRepository $studentRepository, #[CurrentUser] UserInterface $user): Response
     {
         $lstStudentCandidaciesNotEqualToNumberCandidacies = null;
         $nbEleves = count($studentRepository->findAll());
         if ('ROLE_STUDENT' == $this->getUser()->getRoles()[0]) {
-            $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($this->getUser());
-            $lstTER = $TERRepository->findAllNotInCandidatures($this->getUser(), $candidacyTERRepository);
+            $lstCandidacyTER = $candidacyTERRepository->searchCandidacies($user);
+            $lstTER = $TERRepository->findAllNotInCandidatures($user, $candidacyTERRepository);
         } else {
             $lstTER = $TERRepository->search();
             $lstCandidacyTER = null;
@@ -70,13 +72,13 @@ class TERController extends AbstractController
      */
     #[Route('{_locale<%app.supported_locales%>}/ter/gallery', name: 'app_ter_gallery')]
     #[Security('is_granted("ROLE_TEACHER")', message: 'Seul un professeur possède des TER.')]
-    public function showTERTeacher(TERRepository $TERRepository): Response
+    public function showTERTeacher(TERRepository $TERRepository, #[CurrentUser] UserInterface $user): Response
     {
-        $lstTerTeacher = $TERRepository->searchTeacherTERS($this->getUser());
+        $lstTerTeacher = $TERRepository->searchTeacherTERS($user);
 
         return $this->render('ter/gallery.html.twig', [
             'lstTerTeacher' => $lstTerTeacher,
-            'teacher' => $this->getUser(),
+            'teacher' => $user,
         ]);
     }
 
@@ -164,18 +166,18 @@ class TERController extends AbstractController
      */
     #[Route('{_locale<%app.supported_locales%>}/ter/{id}/candidacy', name: 'app_ter_toCandidate')]
     #[Security('is_granted("ROLE_STUDENT")', message: 'Vous devez être un étudiant pour accéder à cette page.')]
-    public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER): RedirectResponse|Response
+    public function toCandidateTER(CandidacyTERRepository $candidacyTERRepository, Request $request, TER $TER, #[CurrentUser] UserInterface $user): RedirectResponse|Response
     {
         $candidacyTER = new CandidacyTER();
 
         if ($request->isMethod('POST') && $request->request->has('candidate-button')) {
             $date = new DateTimeImmutable('now');
             $candidacyTER->setDate($date);
-            $candidacyTER->setStudent($this->getUser());
+            $candidacyTER->setStudent($user);
             $candidacyTER->setTER($TER);
-            $candidacyTER->setOrderNumber($candidacyTERRepository->countNumberOfCandidacies($this->getUser()) + 1);
+            $candidacyTER->setOrderNumber($candidacyTERRepository->countNumberOfCandidacies($user) + 1);
 
-            foreach ($candidacyTERRepository->searchCandidacies($this->getUser()) as $candidacy) {
+            foreach ($candidacyTERRepository->searchCandidacies($user) as $candidacy) {
                 if ($candidacy->getTER()->getId() == $candidacyTER->getTER()->getId()) {
                     throw new CandidacyException('Vous avez déjà candidaté à ce TER !');
                 }
@@ -188,15 +190,15 @@ class TERController extends AbstractController
     }
 
     #[Route('/ter/update-order-number', name: 'app_ter_update_order_number')]
-    public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry): Response
+    public function updateCandidacyOrderNumber(Request $request, CandidacyTERRepository $candidacyTERRepository, ManagerRegistry $managerRegistry, #[CurrentUser] UserInterface $user): Response
     {
         if ($request->isMethod('GET')) {
             throw new AccessDeniedException('Vous ne pouvez pas accéder à cette page');
         } elseif ($request->isMethod('POST') && $request->request->has('order-value')) {
             if (!empty($_POST['change-order-button']) && !empty($_POST['order-value'])) {
-                if ($_POST['order-value'] <= $candidacyTERRepository->countNumberOfCandidacies($this->getUser()) && $_POST['order-value'] >= 1) {
-                    $candidacyId = $candidacyTERRepository->searchCandidaciesWOrderNumber($this->getUser(), $_POST['change-order-button'])[0]->getId();
-                    $targetId = $candidacyTERRepository->searchCandidaciesWOrderNumber($this->getUser(), $_POST['order-value'])[0]->getId();
+                if ($_POST['order-value'] <= $candidacyTERRepository->countNumberOfCandidacies($user) && $_POST['order-value'] >= 1) {
+                    $candidacyId = $candidacyTERRepository->searchCandidaciesWOrderNumber($user, $_POST['change-order-button'])[0]->getId();
+                    $targetId = $candidacyTERRepository->searchCandidaciesWOrderNumber($user, $_POST['order-value'])[0]->getId();
                 } else {
                     $candidacyId = null;
                     $targetId = null;
