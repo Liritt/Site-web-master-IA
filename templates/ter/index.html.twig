@@ -42,7 +42,11 @@
     <main>
         {% if lstTER|length != 0 %}
             <div class="ter-component">
+                {% if app.user.roles[0] == 'ROLE_STUDENT' and app.user.assignedTER is null %}
                 <h1>Liste des TER</h1>
+                {% elseif app.user.roles[0] != 'ROLE_STUDENT' %}
+                <h1>Liste des TER</h1>
+                {% endif %}
                 <div class="lst-ter">
                 {% if app.user.roles[0] != 'ROLE_STUDENT' %}
                     <a href="{{ path('app_ter_create', {_locale: app.request.locale}) }}" class="btn btn-primary col-8">Ajouter un nouveau TER</a>
@@ -57,7 +61,7 @@
                     {% set days = diff|round(0, 'floor')|abs %}
                     {% set days = days / 86400 %}
                     {% set days = days|round(0, 'floor') %}
-                    {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+                    {% if app.user.roles[0] == 'ROLE_STUDENT' and app.user.assignedTER is null %}
                         {% if app.user.degree == TER.degree %}
                             <div class="col-8">
                             {% if days < 7 %}
@@ -84,7 +88,7 @@
                                 </div>
                                 </div>
                         {% endif %}
-                    {% else %}
+                    {% elseif app.user.roles[0] != 'ROLE_STUDENT' %}
                         <div class="col-8">
                             {% if days < 7 %}
                             <div class="card border-success text-success mb-3">
@@ -116,8 +120,8 @@
                 {% endfor %}
                 </div>
             </div>
-            {% if app.user.roles[0] == 'ROLE_STUDENT' %}
-                {% if lstCandidacyTER|length != 0 %}
+            {% if app.user.roles[0] == 'ROLE_STUDENT' and app.user.assignedTER is null %}
+                {% if lstCandidacyTER|length != 0  %}
                     <div class="right-component">
                         <h1>Liste de vos candidatures</h1>
                             <ol class="lst-candidacies">
@@ -153,12 +157,12 @@
                                     <div class="card">
                                         <a href="{{ path('app_student_profil', {id: student.id, _locale: app.request.locale}) }}" class="card-body">
                                             <p class="card-text">Élève : {{ student.lastname }} {{ student.firstname }}</p>
+                                        </a>
                                         {% if student.degree == 1 %}
                                             <p class="card-text">Niveau : {{ student.degree }}ère année</p>
                                         {% else %}
                                             <p class="card-text">Niveau : {{ student.degree }}e année</p>
                                         {% endif %}
-                                        </a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -173,6 +177,16 @@
         {% else %}
             <div class="no-ter">
                 <p>Il n'y a actuellement aucun TER de disponible, les professeurs les rajouteront durant l'année.</p>
+            </div>
+        {% endif %}
+        {% if app.user.roles[0] == 'ROLE_STUDENT' and app.user.assignedTER is not null %}
+            <div class="ter-assigned">
+                <h1>Le TER qui vous a été assigné est : "{{ app.user.assignedTER.title}}"</h1>
+                <h2>Description du sujet :</h2>
+                <p>{{ app.user.assignedTER.description }}</p>
+                <div class="ter-assigned-buttons">
+                    <a href="#" class="btn btn-primary">Contacter le professeur {{ app.user.assignedTER.teacher.lastname }} {{ app.user.assignedTER.teacher.firstname }} pour poser des questions</a>
+                </div>
             </div>
         {% endif %}
     </main>
