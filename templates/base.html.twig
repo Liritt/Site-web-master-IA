@@ -27,12 +27,12 @@
                         {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
                             <button class="btn btn-primary header-button d-flex align-items-center" onclick="self.location.href='{{ path('app_login') }}'">
                                 <span class="material-symbols-outlined me-2">login</span>
-                                Se connecter
+                                {% trans %}Se connecter{% endtrans %}
                             </button>
                         {% else %}
                             <button class="btn btn-danger d-flex align-items-center" onclick="self.location.href='{{ path('app_logout') }}'">
                                 <span class="material-symbols-outlined me-2">logout</span>
-                                Se déconnecter
+                                {% trans %}Se déconnecter{% endtrans %}
                             </button>
                         {% endif %}
                     </li>

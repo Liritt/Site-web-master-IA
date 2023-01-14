@@ -1,5 +1,7 @@
 {% extends '_connectedNavBar.html.twig' %}
 
+
+
 {% block title %}
     Liste des TER de {{ teacher.lastname }} {{ teacher.firstname }}
 {% endblock %}
@@ -13,15 +15,15 @@
         <div class="ter-component">
             <h1>Bonjour {{ teacher.lastname }} {{ teacher.firstname }}, voici les TER que vous dirigez</h1>
             <div class="lst-ter">
-                <a href="{{ path('app_ter_create') }}" class="btn btn-primary col-8">Ajouter un nouveau TER</a>
+                <a href="{{ path('app_ter_create') }}" class="btn btn-primary btnStyle col-8">Ajouter un nouveau TER</a>
                 {% for TER in lstTerTeacher %}
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ TER.title }}</h5>
-                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary">Plus de détails</a>
-                            <a href="{{ path('app_ter_update', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">edit</a>
-                            <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary material-symbols-outlined">delete</a>
+                            <a href="{{ path('app_ter_show', {id: TER.id}) }}" class="btn btn-primary btnStyle">Plus de détails</a>
+                            <a href="{{ path('app_ter_update', {id: TER.id}) }}" class="btn btn-primary btnStyle material-symbols-outlined">edit</a>
+                            <a href="{{ path('app_ter_delete', {id: TER.id}) }}" class="btn btn-primary btnStyle material-symbols-outlined">delete</a>
                         </div>
                     </div>
                 </div>

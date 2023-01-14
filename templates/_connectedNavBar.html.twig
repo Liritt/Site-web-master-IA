@@ -3,16 +3,16 @@
 {% block header %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') == true %}
     <div class="connected-nav-bar">
-        <a class="accueil-link" href="{{ path('app_lobby_index') }}">Accueil</a>
+        <a class="accueil-link" href="{{ path('app_lobby_index') }}">{% trans %}Accueil{% endtrans %}</a>
         {% if is_granted('ROLE_STUDENT') == true or is_granted('ROLE_ADMIN') == true or is_granted('ROLE_TEACHER') == true %}
-        <a class="accueil-link" href="#">Agenda</a>
+        <a class="accueil-link" href="#">{% trans %}Agenda{% endtrans %}</a>
         {% endif %}
-        <a class="accueil-link" href="{{ path('app_internship') }}">Stage</a>
+        <a class="accueil-link" href="{{ path('app_internship') }}">{% trans %}Stage{% endtrans %}</a>
         {% if is_granted('ROLE_STUDENT') == true or is_granted('ROLE_ADMIN') == true or is_granted('ROLE_TEACHER') == true %}
-        <a class="accueil-link" href="{{ path('app_ter') }}">TER</a>
+        <a class="accueil-link" href="{{ path('app_ter') }}">{% trans %}TER{% endtrans %}</a>
         {% endif %}
-        <a class="accueil-link" href="#">Messagerie</a>
-        <a class="accueil-link" href="{{ path('app_student') }}">Trombinoscope</a>
+        <a class="accueil-link" href="#">{% trans %}Messagerie{% endtrans %}</a>
+        <a class="accueil-link" href="{{ path('app_student') }}">{% trans %}Trombinoscope{% endtrans %}</a>
     </div>
     {% else %}
     <div class="disconnected-nav-bar">

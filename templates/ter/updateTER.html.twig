@@ -3,5 +3,9 @@
 {% block title %}Page modification de TER{% endblock %}
 
 {% block body %}
+    <h1 class="titre-no-border">Modification</h1>
+
+    <div class="d-flex justify-content-center mb-5">
     {{ include('ter/_formTER.html.twig', {label_submit: "Modifier le TER", form: form}, with_context = false) }}
+    </div>
 {% endblock %}
