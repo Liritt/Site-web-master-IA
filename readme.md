@@ -1,4 +1,4 @@
-<h1 style='color:red'>Projet : site web pour le master IA de l'URCA</h1>
+<h1>Projet : site web pour le master IA de l'URCA</h1>
 
 ## Membres du projet :
 
@@ -7,21 +7,20 @@
 - ROBION Alban, `robi0082`
 - LAIDIE Lucie, `laid0003`
 
-____
 
 ## Introduction du projet
 
-___
+
 
 > L'université de Reims Champagne-Ardenne a besoin d'un site pour leur master informatique parcours IA. Nous sommes ici chargés de la création de ce site. Ce projet est composé en 3 étapes :
 >  - La réalisation du [cahier des charges](https://docs.google.com/document/d/1SNjHnTAs2dZm_Wvjl6REXTSZmRf3SR8BpaIwg26iOUk/edit?usp=sharing "Lien vers le drive du cahier des charges")
 >  - La réalisation du [rapport d'analyse](https://docs.google.com/document/d/1bvXWJZBKu2fY5icIPTMaX61Fq6h1UfLQC4F78m-e2SE/edit?usp=sharing "Lien vers le drive du rapport d'analyse") à l'aide de la méthode SCRUM
 >  - La partie développement, permettant de mettre en place les diagrammes créés auparavant.
-___
+
 
 ## Outils utilisés
 
-____
+
 
 - <abbr title="Hypertext Preprocessor">**PHP**</abbr>
   - Le projet sera fait sur [**Symfony**](https://symfony.com/download)
@@ -33,9 +32,9 @@ ____
   - [**Bootstrap**](https://getbootstrap.com/)
 - <abbr title="Syntactically Awesome Style Sheet">**SCSS**</abbr>
 - **Javascript**
-___
+
 ## Installation et configuration
-___
+
 
 Ce projet utlise le framework *Symfony* :
 
@@ -47,9 +46,9 @@ composer install
 ```bash
 composer start
 ```
-___
+
 ## Tester le projet
-___
+
 Utilisation : composer [script_name]
 
     start: Démarre le serveur symfony sans restriction de durée
@@ -59,22 +58,21 @@ Utilisation : composer [script_name]
     test: Démarre les tests de codeception et de composer à la suite.,
     db: Génère une base de donnée de test.
 
-___
+
 ## Base de donnée:
-___
+
 
 Le fichier de configuration de la base de donnée est .env.local La ligne de configuration a la bd se présente sous cette forme :
 ```bash 
 DATABASE_URL="mysql://[phpmyadmin_name]:[mdp]@mysql:3306/[nom_bdd_dans_phpMyAdmin]?serverVersion=mariadb-[maria-db_version (x.x.x)]"
 ```
-___
+
 ## Style de codage
-___
+
 Le code suit la recommandation [PSR-12](https://www.php-fig.org/psr/psr-12/) :
 - il peut être reformaté automatiquement avec `composer fix:cs`
-___
+
 ## Utilisateurs (`email:password`)
-___
 
 - `admin@example.com:admin`
 - `teacher@example.com:test`
